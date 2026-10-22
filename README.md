@@ -3,29 +3,11 @@
 </p>
 
 </div>
-
-## The current loop
-
-> Building useful things and learning in public.
-
-- 👥 **0** followers · **0** following
-
-*Small, useful work over vague claims.*
-
-## Things I’m building
-
-Public projects are being indexed.
-
-## Signals
-
 <p align="center">
   <img src="https://www.gitskins.com/api/section/stats?username=axs-offcl&theme=satan&avatar=https%3A%2F%2Favatars.githubusercontent.com%2Fu%2F297477132%3Fu%3D3a1938eae85265e9e2974c3471705ea636e93348%26v%3D4" alt="axs-offcl stats visual" />
 </p>
 
 <p><code>1,562 contributions</code> · <code>8 day streak</code></p>
-
-## The shipping calendar
-
 <p align="center">
   <img src="https://www.gitskins.com/api/section/heatmap?username=axs-offcl&theme=satan" alt="axs-offcl contribution activity" />
 </p>
