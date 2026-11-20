@@ -1,20 +1,38 @@
 <p align="center">
-  <img src="https://www.gitskins.com/api/section/hero?username=axs-offcl&theme=satan&avatar=https%3A%2F%2Favatars.githubusercontent.com%2Fu%2F297477132%3Fu%3D3a1938eae85265e9e2974c3471705ea636e93348%26v%3D4" alt="axs-offcl hero visual" />
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/axs-official/axs-official/main/assets/hero-dark.svg">
+    <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/axs-official/axs-official/main/assets/hero-light.svg">
+    <img src="https://raw.githubusercontent.com/axs-official/axs-official/main/assets/hero-dark.svg" alt="A-XS — Independent systems studio. Software, built to the line." width="100%">
+  </picture>
 </p>
 
-</div>
-<p align="center">
-  <img src="https://www.gitskins.com/api/section/stats?username=axs-offcl&theme=satan&avatar=https%3A%2F%2Favatars.githubusercontent.com%2Fu%2F297477132%3Fu%3D3a1938eae85265e9e2974c3471705ea636e93348%26v%3D4" alt="axs-offcl stats visual" />
-</p>
+## A-XS
 
-<p align="center">
-  <img src="https://www.gitskins.com/api/section/heatmap?username=axs-offcl&theme=satan" alt="axs-offcl contribution activity" />
-</p>
+**Independent systems studio.** Language design, native software, interfaces.  
+Based in Algeria. Working worldwide.
 
-<p align="center">
-  <img src="https://www.gitskins.com/api/section/social?username=axs-offcl&theme=satan&avatar=https%3A%2F%2Favatars.githubusercontent.com%2Fu%2F297477132%3Fu%3D3a1938eae85265e9e2974c3471705ea636e93348%26v%3D4" alt="axs-offcl social visual" />
-</p>
+[Website](https://axs-official.github.io) &nbsp;·&nbsp; [Practice](https://axs-official.github.io/practice/) &nbsp;·&nbsp; [Archive](https://axs-official.github.io/archive/) &nbsp;·&nbsp; [Contact](https://axs-official.github.io/contact/)
 
-<a href="https://github.com/axs-offcl">GitHub</a>
+---
 
-<p align="center"><sub>A-XS · Indie hacker profile generated with <a href="https://www.gitskins.com/readme-generator">GitSkins</a></sub></p>
+### I. Practice
+
+**Languages &amp; runtimes** — grammar, type systems, code generation, and the tooling around them.  
+**Native systems** — C++ and Rust for Windows; small binaries, direct APIs, measured performance.  
+**Interfaces** — editorial UI and design systems for complex tools.
+
+### II. Method
+
+Measure the claim. Prefer the native path. Treat the interface as part of the system. Publish the limit, not the promise.
+
+### III. Now
+
+Building in private. There is no public index yet; the archive opens when the work holds.
+
+[Request a private dossier ↗](https://axs-official.github.io/archive/)
+
+### IV. Correspondence
+
+[GitHub](https://github.com/axs-official) &nbsp;·&nbsp; [axs-official.github.io](https://axs-official.github.io)
+
+<p align="right"><sub>Independent systems studio · Algeria · Private archive</sub></p>
