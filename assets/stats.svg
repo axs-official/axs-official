@@ -13,7 +13,7 @@
     @keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
     @keyframes grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
     @keyframes blink{0%,100%{opacity:.3}50%{opacity:1}}
-    @keyframes sweep{0%{transform:translateX(-120px);opacity:0}14%{opacity:.9}60%{opacity:.3}100%{transform:translateX(280px);opacity:0}}
+    @keyframes sweep{0%{transform:translateX(0);opacity:0}16%{opacity:.9}70%{opacity:.35}100%{transform:translateX(128px);opacity:0}}
     @keyframes spin{to{transform:rotate(360deg)}}
     @keyframes twinkle{0%,100%{opacity:.14}50%{opacity:.8}}
     @keyframes pop{from{opacity:0;transform:scale(.4)}to{opacity:1;transform:scale(1)}}
@@ -23,37 +23,37 @@
   <text x="32" y="38" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace" font-size="11" letter-spacing="3" fill="#9CB4FF">GITHUB</text><text x="808" y="38" text-anchor="end" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace" font-size="10" letter-spacing="1.6" fill="#7A7A7A">LAST 12 MONTHS · SYNCED 22 NOV 2026</text><path d="M32 52H808" stroke="#262626"/>
   <g class="rise" style="animation-delay:0.0s">
       <rect x="32" y="68" width="250" height="108" rx="12" fill="#111111" stroke="#262626"/>
-      <rect class="grow" x="33" y="69" width="248" height="2" fill="#3B63F6" opacity="0.9" style="animation-delay:0.1s"/>
+      <rect class="grow" x="46" y="69" width="222" height="2" rx="1" fill="#3B63F6" opacity="0.9" style="animation-delay:0.1s"/>
       <text x="52" y="94" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace" font-size="11.5" letter-spacing="1.5" fill="#7A7A7A">01 / CONTRIBUTIONS</text>
       <text x="52" y="138" font-family="Georgia, 'Times New Roman', 'Iowan Old Style', serif" font-size="36" letter-spacing="-0.5" fill="#F5F5F5">1,767</text>
       <text x="52" y="160" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="13" fill="#A3A3A3">in the last 12 months</text>
     </g><g class="rise" style="animation-delay:0.07s">
       <rect x="295" y="68" width="250" height="108" rx="12" fill="#111111" stroke="#262626"/>
-      <rect class="grow" x="296" y="69" width="248" height="2" fill="#3B63F6" opacity="0.76" style="animation-delay:0.17s"/>
+      <rect class="grow" x="309" y="69" width="222" height="2" rx="1" fill="#3B63F6" opacity="0.76" style="animation-delay:0.17s"/>
       <text x="315" y="94" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace" font-size="11.5" letter-spacing="1.5" fill="#7A7A7A">02 / ACTIVE DAYS</text>
       <text x="315" y="138" font-family="Georgia, 'Times New Roman', 'Iowan Old Style', serif" font-size="36" letter-spacing="-0.5" fill="#F5F5F5">62</text>
       <text x="315" y="160" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="13" fill="#A3A3A3">days with commits</text>
     </g><g class="rise" style="animation-delay:0.14s">
       <rect x="558" y="68" width="250" height="108" rx="12" fill="#111111" stroke="#262626"/>
-      <rect class="grow" x="559" y="69" width="248" height="2" fill="#3B63F6" opacity="0.64" style="animation-delay:0.24s"/>
+      <rect class="grow" x="572" y="69" width="222" height="2" rx="1" fill="#3B63F6" opacity="0.64" style="animation-delay:0.24s"/>
       <text x="578" y="94" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace" font-size="11.5" letter-spacing="1.5" fill="#7A7A7A">03 / BEST STREAK</text>
       <text x="578" y="138" font-family="Georgia, 'Times New Roman', 'Iowan Old Style', serif" font-size="36" letter-spacing="-0.5" fill="#F5F5F5">18</text>
       <text x="578" y="160" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="13" fill="#A3A3A3">days in a row</text>
     </g><g class="rise" style="animation-delay:0.21s">
       <rect x="32" y="190" width="250" height="108" rx="12" fill="#111111" stroke="#262626"/>
-      <rect class="grow" x="33" y="191" width="248" height="2" fill="#3B63F6" opacity="0.54" style="animation-delay:0.31s"/>
+      <rect class="grow" x="46" y="191" width="222" height="2" rx="1" fill="#3B63F6" opacity="0.54" style="animation-delay:0.31s"/>
       <text x="52" y="216" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace" font-size="11.5" letter-spacing="1.5" fill="#7A7A7A">04 / REPOSITORIES</text>
       <text x="52" y="260" font-family="Georgia, 'Times New Roman', 'Iowan Old Style', serif" font-size="36" letter-spacing="-0.5" fill="#F5F5F5">13</text>
       <text x="52" y="282" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="13" fill="#A3A3A3">public and private</text>
     </g><g class="rise" style="animation-delay:0.28s">
       <rect x="295" y="190" width="250" height="108" rx="12" fill="#111111" stroke="#262626"/>
-      <rect class="grow" x="296" y="191" width="248" height="2" fill="#3B63F6" opacity="0.46" style="animation-delay:0.38s"/>
+      <rect class="grow" x="309" y="191" width="222" height="2" rx="1" fill="#3B63F6" opacity="0.46" style="animation-delay:0.38s"/>
       <text x="315" y="216" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace" font-size="11.5" letter-spacing="1.5" fill="#7A7A7A">05 / PUBLIC REPOS</text>
       <text x="315" y="260" font-family="Georgia, 'Times New Roman', 'Iowan Old Style', serif" font-size="36" letter-spacing="-0.5" fill="#F5F5F5">2</text>
       <text x="315" y="282" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="13" fill="#A3A3A3">the rest stay private</text>
     </g><g class="rise" style="animation-delay:0.35s">
       <rect x="558" y="190" width="250" height="108" rx="12" fill="#111111" stroke="#262626"/>
-      <rect class="grow" x="559" y="191" width="248" height="2" fill="#3B63F6" opacity="0.4" style="animation-delay:0.45s"/>
+      <rect class="grow" x="572" y="191" width="222" height="2" rx="1" fill="#3B63F6" opacity="0.4" style="animation-delay:0.45s"/>
       <text x="578" y="216" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace" font-size="11.5" letter-spacing="1.5" fill="#7A7A7A">06 / COMMITS / WEEK</text>
       <text x="578" y="260" font-family="Georgia, 'Times New Roman', 'Iowan Old Style', serif" font-size="36" letter-spacing="-0.5" fill="#F5F5F5">34</text>
       <text x="578" y="282" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="13" fill="#A3A3A3">52-week average</text>

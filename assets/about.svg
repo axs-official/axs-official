@@ -13,7 +13,7 @@
     @keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
     @keyframes grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
     @keyframes blink{0%,100%{opacity:.3}50%{opacity:1}}
-    @keyframes sweep{0%{transform:translateX(-120px);opacity:0}14%{opacity:.9}60%{opacity:.3}100%{transform:translateX(280px);opacity:0}}
+    @keyframes sweep{0%{transform:translateX(0);opacity:0}16%{opacity:.9}70%{opacity:.35}100%{transform:translateX(128px);opacity:0}}
     @keyframes spin{to{transform:rotate(360deg)}}
     @keyframes twinkle{0%,100%{opacity:.14}50%{opacity:.8}}
     @keyframes pop{from{opacity:0;transform:scale(.4)}to{opacity:1;transform:scale(1)}}
