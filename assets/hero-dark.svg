@@ -47,9 +47,9 @@
   <g>
     <circle class="spin-r" cx="660" cy="152" r="118" stroke="#FFFFFF" stroke-opacity=".16" stroke-width="1" stroke-dasharray="26 12"/>
     <circle class="spin" cx="660" cy="152" r="92" stroke="#262626" stroke-width="1" stroke-dasharray="2 6"/>
-    <ellipse class="spin-r" cx="660" cy="152" rx="136" ry="36" stroke="#FFFFFF" stroke-opacity=".3" stroke-width="1" transform="rotate(-24 660 152)"/>
+    <ellipse class="spin-r" cx="660" cy="152" rx="136" ry="36" stroke="#3B63F6" stroke-opacity=".6" stroke-width="1" transform="rotate(-24 660 152)"/>
     <circle cx="660" cy="60" r="2.4" fill="#FFFFFF" opacity=".8"/>
-    <circle cx="790" cy="208" r="2" fill="#FFFFFF" opacity=".45"/>
+    <circle cx="790" cy="208" r="2" fill="#9CB4FF" opacity=".7"/>
   </g>
   <g>
     <circle cx="660" cy="152" r="45" fill="url(#planet)" stroke="#FFFFFF" stroke-opacity=".35"/>
@@ -70,13 +70,13 @@
     <text x="30" y="172" font-family="Georgia, 'Times New Roman', 'Iowan Old Style', serif" font-size="70" letter-spacing="-1" fill="url(#name)">A-XS</text>
   </g>
   <rect x="32" y="189" width="220" height="1.5" fill="url(#rule)"/>
-  <rect class="sweep" x="32" y="188.5" width="92" height="2" rx="1" fill="#FFFFFF" opacity=".9"/>
+  <rect class="sweep" x="32" y="188.5" width="92" height="2" rx="1" fill="#3B63F6" opacity=".9"/>
   <g class="rise" style="animation-delay:.18s">
     <text x="32" y="234" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="19" fill="#F5F5F5" fill-opacity=".94">I build small tools that take a boring job away.</text>
     <text x="32" y="260" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="15" fill="#A3A3A3">Self-taught developer in Algeria. Python, TypeScript, a bit of 3D.</text>
   </g>
   <g font-family="'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace" font-size="10.5" letter-spacing="1.6" fill="#7A7A7A">
-    <circle class="blink" cx="34" cy="292" r="3.2" fill="#FFFFFF"/>
+    <circle class="blink" cx="34" cy="292" r="3.2" fill="#3B63F6"/>
     <text x="46" y="296">OPEN TO WORK</text>
     <text x="166" y="296">ALGERIA</text>
     <text x="244" y="296">UTC+1</text>
