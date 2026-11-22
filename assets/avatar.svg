@@ -1,0 +1,94 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A-XS avatar">
+    <title>A-XS</title>
+    <defs>
+    <linearGradient id="titleGrad" gradientUnits="userSpaceOnUse" x1="60" y1="80" x2="640" y2="300">
+      <stop offset="0" stop-color="#4ce7ff"/>
+      <stop offset="0.38" stop-color="#6a8cff"/>
+      <stop offset="0.7" stop-color="#9b6cff"/>
+      <stop offset="1" stop-color="#ff5fc8"/>
+    </linearGradient>
+    <linearGradient id="numGrad" gradientUnits="userSpaceOnUse" x1="40" y1="90" x2="1160" y2="220">
+      <stop offset="0" stop-color="#4ce7ff"/>
+      <stop offset="0.45" stop-color="#6a8cff"/>
+      <stop offset="0.75" stop-color="#9b6cff"/>
+      <stop offset="1" stop-color="#ff5fc8"/>
+    </linearGradient>
+    <linearGradient id="barGrad" gradientUnits="userSpaceOnUse" x1="40" y1="0" x2="1160" y2="0">
+      <stop offset="0" stop-color="#4ce7ff"/>
+      <stop offset="0.55" stop-color="#6a8cff"/>
+      <stop offset="1" stop-color="#9b6cff"/>
+    </linearGradient>
+    <linearGradient id="cellHot" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#4ce7ff"/>
+      <stop offset="0.55" stop-color="#9b6cff"/>
+      <stop offset="1" stop-color="#ff5fc8"/>
+    </linearGradient>
+    <radialGradient id="glowCyan">
+      <stop offset="0" stop-color="#4ce7ff" stop-opacity="0.2"/>
+      <stop offset="1" stop-color="#4ce7ff" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowViolet">
+      <stop offset="0" stop-color="#9b6cff" stop-opacity="0.22"/>
+      <stop offset="1" stop-color="#9b6cff" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="coreGrad">
+      <stop offset="0" stop-color="#16224a"/>
+      <stop offset="0.62" stop-color="#070a14"/>
+      <stop offset="1" stop-color="#02030a"/>
+    </radialGradient>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M48 0H0V48" fill="none" stroke="#1a2240" stroke-width="0.7"/>
+    </pattern>
+    <linearGradient id="gridFade" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fff" stop-opacity="0.9"/>
+      <stop offset="0.78" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+    <mask id="gridMask">
+      <rect width="100%" height="100%" fill="url(#gridFade)"/>
+    </mask>
+  </defs>
+    
+    <style>
+      .spin-slow { transform-box: view-box; animation: spin 44s linear infinite; }
+      .spin-reverse { transform-box: view-box; animation: spin 29s linear infinite reverse; }
+      .pulse { transform-box: fill-box; transform-origin: center; animation: pulse 4.8s ease-in-out infinite; }
+      .twinkle { animation: twinkle 5.5s ease-in-out infinite; }
+      .float { transform-box: fill-box; transform-origin: center; animation: float 7s ease-in-out infinite; }
+      .cell { transform-box: fill-box; transform-origin: center; animation: cell-in 0.55s cubic-bezier(0.22, 1, 0.36, 1) both; }
+      .bar { transform-box: fill-box; transform-origin: bottom; animation: bar-in 0.8s cubic-bezier(0.22, 1, 0.36, 1) both; }
+      @keyframes spin { to { transform: rotate(360deg); } }
+      @keyframes pulse { 0%, 100% { opacity: 0.78; transform: scale(0.98); } 50% { opacity: 1; transform: scale(1.03); } }
+      @keyframes twinkle { 0%, 100% { opacity: 0.18; } 50% { opacity: 0.75; } }
+      @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+      @keyframes cell-in { from { opacity: 0; transform: scale(0.35); } to { opacity: 1; transform: scale(1); } }
+      @keyframes bar-in { from { opacity: 0; transform: scaleY(0.08); } to { opacity: 1; transform: scaleY(1); } }
+      @media (prefers-reduced-motion: reduce) {
+        .spin-slow, .spin-reverse, .pulse, .twinkle, .float, .cell, .bar { animation: none !important; }
+      }
+    </style>
+  
+    <rect width="512" height="512" fill="#05050c"/>
+    <circle cx="256" cy="256" r="300" fill="url(#glowViolet)" opacity="0.9"/>
+    <circle cx="110" cy="430" r="250" fill="url(#glowCyan)" opacity="0.8"/>
+    <rect width="512" height="512" fill="url(#grid)" opacity="0.22" mask="url(#gridMask)"/>
+    <g class="spin-slow" style="transform-origin:256px 256px">
+      <circle cx="256" cy="256" r="196" stroke="#4ce7ff" stroke-opacity="0.28" stroke-dasharray="2 10"/>
+      <circle cx="256" cy="60" r="4" fill="#4ce7ff"/>
+    </g>
+    <g class="spin-reverse" style="transform-origin:256px 256px">
+      <circle cx="256" cy="256" r="158" stroke="#9b6cff" stroke-opacity="0.32"/>
+      <circle cx="414" cy="256" r="3" fill="#ff5fc8"/>
+    </g>
+    <circle cx="256" cy="256" r="128" fill="#0b0f1e" stroke="#2c3a68" stroke-width="1.5"/>
+    <circle cx="256" cy="256" r="112" fill="url(#coreGrad)" stroke="#2c3a68" stroke-width="1"/>
+    <path d="M109.48 292L133.77 199.6L164.13 199.6L188.42 292L170.46 292L165.45 271.67L132.45 271.67L127.43 292ZM136.54 255.57L161.36 255.57L150.14 210.56L147.76 210.56ZM198.71 265.86L198.71 250.82L237.78 250.82L237.78 265.86ZM244.38 292L271.44 245.4L244.65 199.6L264.45 199.6L282.8 233L285.17 233L303.52 199.6L323.32 199.6L296.52 245.4L323.58 292L303.78 292L285.17 257.81L282.8 257.81L264.18 292ZM365.69 293.85Q355 293.85 346.82 290.02Q338.63 286.19 334.01 279.06Q329.39 271.94 329.39 261.9L329.39 258.21L346.55 258.21L346.55 261.9Q346.55 270.22 351.7 274.38Q356.85 278.54 365.69 278.54Q374.67 278.54 379.09 274.97Q383.51 271.41 383.51 265.86Q383.51 262.04 381.33 259.66Q379.16 257.28 375 255.77Q370.84 254.25 364.9 252.93L361.86 252.27Q352.36 250.16 345.56 246.92Q338.76 243.69 335.13 238.41Q331.5 233.13 331.5 224.68Q331.5 216.23 335.53 210.23Q339.56 204.22 346.88 200.99Q354.21 197.75 364.11 197.75Q374.01 197.75 381.73 201.12Q389.45 204.48 393.87 211.15Q398.3 217.82 398.3 227.85L398.3 231.81L381.14 231.81L381.14 227.85Q381.14 222.57 379.09 219.33Q377.04 216.1 373.22 214.58Q369.39 213.06 364.11 213.06Q356.19 213.06 352.43 216.03Q348.66 219 348.66 224.15Q348.66 227.58 350.45 229.96Q352.23 232.34 355.79 233.92Q359.36 235.5 364.9 236.69L367.94 237.35Q377.84 239.46 385.16 242.76Q392.49 246.06 396.58 251.48Q400.67 256.89 400.67 265.34Q400.67 273.78 396.38 280.19Q392.09 286.59 384.24 290.22Q376.38 293.85 365.69 293.85Z" fill="url(#titleGrad)"/>
+    <text x="256" y="338" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" letter-spacing="3.4" fill="#7f8aad">DEVELOPER / AUTOMATION</text>
+    
+    <g stroke="#2c3a68" stroke-width="0.9" opacity="0.7">
+      <path d="M24 24h11M24 24v11"/>
+      <path d="M488 24h-11M488 24v11"/>
+      <path d="M24 488h11M24 488v-11"/>
+      <path d="M488 488h-11M488 488v-11"/>
+    </g>
+  
+  </svg>
