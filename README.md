@@ -1,4 +1,4 @@
-<img src="https://raw.githubusercontent.com/axs-official/axs-official/main/assets/hero-dark.svg?v=7" alt="axs — privacy-first developer in Algeria. I build tools that don't watch you." width="100%">
+<img src="https://raw.githubusercontent.com/axs-official/axs-official/main/assets/hero-dark.svg?v=8" alt="axs — privacy-first developer in Algeria. I build tools that don't watch you." width="100%">
 
 <div align="center">
   <sub>
@@ -10,17 +10,17 @@
   </sub>
 </div>
 
-<img src="https://raw.githubusercontent.com/axs-official/axs-official/main/assets/stats.svg?v=7" alt="1,767 contributions, 62 active days, 18 day best streak, 13 repositories, 2 public repos, 34 commits per week." width="100%">
+<img src="https://raw.githubusercontent.com/axs-official/axs-official/main/assets/stats.svg?v=8" alt="1,767 contributions, 62 active days, 18 day best streak, 13 repositories, 2 public repos, 34 commits per week." width="100%">
 
-<img src="https://raw.githubusercontent.com/axs-official/axs-official/main/assets/activity.svg?v=7" alt="Contribution map for axs-official: 1,767 contributions across 62 active days, plus active days per week for the last year." width="100%">
+<img src="https://raw.githubusercontent.com/axs-official/axs-official/main/assets/activity.svg?v=8" alt="Contribution map for axs-official: 1,767 contributions across 62 active days, plus active days per week for the last year." width="100%">
 
-<img src="https://raw.githubusercontent.com/axs-official/axs-official/main/assets/about.svg?v=7" alt="About axs: builds privacy-first tools and automations from Algeria. Arabic and English. Open to paid work." width="100%">
+<img src="https://raw.githubusercontent.com/axs-official/axs-official/main/assets/about.svg?v=8" alt="About axs: builds privacy-first tools and automations from Algeria. Arabic and English. Open to paid work." width="100%">
 
-<img src="https://raw.githubusercontent.com/axs-official/axs-official/main/assets/work.svg?v=7" alt="Work: this site, the GitHub profile cards, and a pile of private automation scripts." width="100%">
+<img src="https://raw.githubusercontent.com/axs-official/axs-official/main/assets/work.svg?v=8" alt="Work: this site, the GitHub profile cards, and private automation work." width="100%">
 
-<img src="https://raw.githubusercontent.com/axs-official/axs-official/main/assets/stack.svg?v=7" alt="Toolchain: Python, JavaScript, React, Next.js, Tailwind, TypeScript, Node.js, Git, Three.js, Rust, GitHub Actions, Linux, SQLite, Docker, C++, Figma and REST APIs, each as a floating 3D plate." width="100%">
+<img src="https://raw.githubusercontent.com/axs-official/axs-official/main/assets/stack.svg?v=8" alt="Toolchain: Python, JavaScript, React, Next.js, Tailwind, TypeScript, Node.js, Git, Three.js, Rust, GitHub Actions, Linux, SQLite, Docker, C++, Figma and REST APIs, each as a floating 3D plate." width="100%">
 
-<img src="https://raw.githubusercontent.com/axs-official/axs-official/main/assets/contact.svg?v=7" alt="Contact axs at axs.contact.me@gmail.com for paid work and business enquiries only." width="100%">
+<img src="https://raw.githubusercontent.com/axs-official/axs-official/main/assets/contact.svg?v=8" alt="Contact axs at axs.contact.me@gmail.com for paid work and business enquiries only." width="100%">
 
 <div align="center">
   <sub>

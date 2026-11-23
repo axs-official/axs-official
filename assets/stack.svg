@@ -207,7 +207,5 @@
     </g>
   </g>
   </g>
-  <text x="32" y="38" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace" font-size="11" letter-spacing="3" fill="#9CB4FF">TOOLCHAIN</text><text x="808" y="38" text-anchor="end" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace" font-size="10" letter-spacing="1.6" fill="#7A7A7A">17 TOOLS · ALL FLOATING</text><path d="M32 52H808" stroke="#262626"/>
-  <text x="32" y="326" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace" font-size="10" letter-spacing="1.6" fill="#7A7A7A">github.com/axs-official</text>
-  <text x="808" y="326" text-anchor="end" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace" font-size="10" letter-spacing="1.6" fill="#7A7A7A">NO TRACKERS · NO ANALYTICS</text>
+  <text x="32" y="38" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace" font-size="13" letter-spacing="2.6" fill="#9CB4FF">TOOLCHAIN</text><text x="808" y="38" text-anchor="end" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace" font-size="12" letter-spacing="1.4" fill="#8F8F8F">17 TOOLS</text><path d="M32 52H808" stroke="#262626"/>
 </svg>
