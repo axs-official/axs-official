@@ -1,4 +1,4 @@
-<svg width="840" height="326" viewBox="0 0 840 326" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Things A-XS has built: this site, the GitHub profile cards, and private automation work.">
+<svg width="840" height="326" viewBox="0 0 840 326" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Things axs has built: this site, the GitHub profile cards, and private automation work.">
   <title>Work</title>
   <style>
     .rise{animation:rise .8s cubic-bezier(.22,1,.36,1) both}
@@ -10,6 +10,10 @@
     .star{animation:twinkle 5s ease-in-out infinite}
     .cell{animation:pop .5s cubic-bezier(.22,1,.36,1) both}
     .fade{animation:fade 1.4s ease-out both}
+    .float{animation:float 7s ease-in-out infinite}
+    .dash{animation:dash 24s linear infinite}
+    .scan{animation:scan 7.5s cubic-bezier(.45,0,.25,1) infinite}
+    .draw{animation:draw 3.2s cubic-bezier(.4,0,.2,1) .3s both}
     @keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
     @keyframes grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
     @keyframes blink{0%,100%{opacity:.3}50%{opacity:1}}
@@ -18,6 +22,10 @@
     @keyframes twinkle{0%,100%{opacity:.14}50%{opacity:.8}}
     @keyframes pop{from{opacity:0;transform:scale(.4)}to{opacity:1;transform:scale(1)}}
     @keyframes fade{from{opacity:0}to{opacity:1}}
+    @keyframes float{0%,100%{transform:translateY(-3.5px)}50%{transform:translateY(3.5px)}}
+    @keyframes dash{to{stroke-dashoffset:-240}}
+    @keyframes scan{0%{transform:translateX(0);opacity:0}12%{opacity:1}82%{opacity:1}100%{transform:translateX(744px);opacity:0}}
+    @keyframes draw{to{stroke-dashoffset:0}}
   </style>
   <rect x="0.5" y="0.5" width="839" height="325" rx="16" fill="#0A0A0A" stroke="#262626"/>
   <text x="32" y="38" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace" font-size="11" letter-spacing="3" fill="#9CB4FF">WORK</text><text x="808" y="38" text-anchor="end" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace" font-size="10" letter-spacing="1.6" fill="#7A7A7A">THREE THINGS · TWO LIVE</text><path d="M32 52H808" stroke="#262626"/>
