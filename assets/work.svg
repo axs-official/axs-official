@@ -28,7 +28,7 @@
     @keyframes draw{to{stroke-dashoffset:0}}
   </style>
   <rect x="0.5" y="0.5" width="839" height="325" rx="16" fill="#0A0A0A" stroke="#262626"/>
-  <text x="32" y="38" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace" font-size="13" letter-spacing="2.6" fill="#9CB4FF">WORK</text><path d="M32 52H808" stroke="#262626"/>
+  <text x="32" y="38" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace" font-size="13" letter-spacing="2.6" fill="#EDEDED">WORK</text><path d="M32 52H808" stroke="#262626"/>
   <g class="rise" style="animation-delay:0.0s">
       <text x="32" y="86" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="17" font-weight="600" fill="#F5F5F5">This site</text>
       <text x="32" y="109" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace" font-size="12.5" letter-spacing="1.1" fill="#A3A3A3">NEXT.JS · THREE.JS · TAILWIND</text>

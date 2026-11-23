@@ -29,7 +29,7 @@
   </style>
   <rect x="0.5" y="0.5" width="839" height="193" rx="16" fill="#0A0A0A" stroke="#262626"/>
   <text x="32" y="34" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace" font-size="13" letter-spacing="2.6" fill="#F5F5F5">CONTACT</text>
-  <text x="808" y="34" text-anchor="end" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace" font-size="12" letter-spacing="1.4" fill="#9CB4FF">PAID WORK ONLY</text>
+  <text x="808" y="34" text-anchor="end" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace" font-size="12" letter-spacing="1.4" fill="#EDEDED">PAID WORK ONLY</text>
   <path d="M32 48H808" stroke="#262626"/>
   <text x="32" y="92" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="22" font-weight="500" fill="#F5F5F5">axs.contact.me@gmail.com</text>
   <text x="32" y="118" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="14.5" fill="#A3A3A3">Jobs you need built, fixed or automated.</text>
