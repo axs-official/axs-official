@@ -19,6 +19,12 @@
 <img src="https://raw.githubusercontent.com/axs-official/axs-official/main/assets/contact.svg?v=11" alt="Contact A-XS at axs.contact.me@gmail.com for paid work and business enquiries only." width="100%">
 
 <div align="center">
+  <a href="https://axs-official.github.io"><img src="https://raw.githubusercontent.com/axs-official/axs-official/main/assets/btn-site.svg?v=11" alt="Visit my site" height="44"></a>
+  <a href="https://axs-official.github.io/links"><img src="https://raw.githubusercontent.com/axs-official/axs-official/main/assets/btn-links.svg?v=11" alt="All my links" height="44"></a>
+  <a href="mailto:axs.contact.me@gmail.com"><img src="https://raw.githubusercontent.com/axs-official/axs-official/main/assets/btn-email.svg?v=11" alt="Email me about paid work" height="44"></a>
+</div>
+
+<div align="center">
   <sub>
     A-XS · <a href="https://github.com/axs-official">github.com/axs-official</a> · paid work only:
     <a href="mailto:axs.contact.me@gmail.com">axs.contact.me@gmail.com</a>

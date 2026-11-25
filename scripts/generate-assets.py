@@ -561,18 +561,25 @@ def chip(slug, x, y, w):
 
 
 def stack():
-    """Compact toolchain panel: a single soft pulse accent, no floating cards."""
-    BX = PAD
-    BY = 78
+    """Compact toolchain panel: 2 columns of chips, one soft pulse accent."""
+    COLS = 2
+    GAP_X = 24
+    GAP_Y = 18
+    cell_w = (W - PAD * 2 - GAP_X) / COLS
+    top = 74
     panels = []
     for index, slug in enumerate(KIT):
-        panels.append(chip(slug, BX, BY + index * 20, W - PAD * 2))
+        col, row = index % COLS, index // COLS
+        x = PAD + col * (cell_w + GAP_X)
+        y = top + row * GAP_Y
+        panels.append(chip(slug, x, y, cell_w))
 
     listing = ", ".join(STACK_LABELS[slug] for slug in KIT)
+    rows = (len(KIT) + COLS - 1) // COLS
 
     return (
         open_svg(
-            188,
+            74 + rows * GAP_Y + 30,
             f"Toolchain: {listing}.",
             "Toolchain",
             extra_css='<style>'
@@ -583,14 +590,13 @@ def stack():
             ' }'
             '</style>',
         )
-        + f'''  {frame(188)}
-  {grid(188, 60, 0.05)}
-  <text x="{PAD}" y="56" font-family="{MONO}" font-size="13" letter-spacing="2.6" fill="{BLUE_SOFT}">TOOLCHAIN</text>
-  <text x="{W - PAD}" y="56" text-anchor="end" font-family="{MONO}" font-size="12" letter-spacing="1.2" fill="{DIM}">{len(KIT)} TOOLS</text>
-  <path d="M{PAD} 68H{W - PAD}" stroke="{LINE}"/>
+        + f'''  {frame(74 + rows * GAP_Y + 30)}
+  {grid(74 + rows * GAP_Y + 30, 60, 0.05)}
+  <text x="{PAD}" y="54" font-family="{MONO}" font-size="13" letter-spacing="2.6" fill="{BLUE_SOFT}">TOOLCHAIN</text>
+  <text x="{W - PAD}" y="54" text-anchor="end" font-family="{MONO}" font-size="12" letter-spacing="1.2" fill="{DIM}">{len(KIT)} TOOLS</text>
+  <path d="M{PAD} 66H{W - PAD}" stroke="{LINE}"/>
   {''.join(panels)}
-  <rect x="{PAD}" y="{BY + len(KIT) * 20 + 6}" width="{W - PAD * 2}" height="1.4" class="pulse" fill="none" stroke="{BLUE}" stroke-opacity="0.4"/>
-  <text x="{W - PAD}" y="{BY + len(KIT) * 20 + 28}" text-anchor="end" font-family="{MONO}" font-size="11" letter-spacing="1.2" fill="{DIM}">github.com/axs-official/axs-official.github.io</text>
+  <rect x="{PAD}" y="{74 + rows * GAP_Y + 8}" width="{W - PAD * 2}" height="1.4" class="pulse" fill="none" stroke="{BLUE}" stroke-opacity="0.4"/>
 </svg>
     '''
     )
