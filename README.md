@@ -6,14 +6,6 @@
   <a href="mailto:axs.contact.me@gmail.com"><img src="https://raw.githubusercontent.com/axs-official/axs-official/main/assets/btn-email.svg?v=11" alt="Email me about paid work" height="44"></a>
 </div>
 
-<div align="center">
-  <sub>
-    <a href="https://x.com/axs_officiall">X</a> &nbsp;·&nbsp;
-    <a href="https://www.reddit.com/user/axs_official/">Reddit</a> &nbsp;·&nbsp;
-    <a href="https://www.instagram.com/axs.officiall/">Instagram</a>
-  </sub>
-</div>
-
 <img src="https://raw.githubusercontent.com/axs-official/axs-official/main/assets/stats.svg?v=11" alt="1,767 contributions, 62 active days, 18 day best streak, 13 repositories, 2 public repos, 34 commits per week." width="100%">
 
 <img src="https://raw.githubusercontent.com/axs-official/axs-official/main/assets/activity.svg?v=11" alt="Contribution map for axs-official: 1,767 contributions across 62 active days, plus active days per week for the last year." width="100%">
