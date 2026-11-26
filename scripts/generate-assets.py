@@ -556,131 +556,333 @@ def terminal():
 
 
 # %% Undertale sprites
-# Hand-drawn pixel maps in the game's own palette: Frisk, Sans and the red SOUL.
-FRISK_COLOURS = {
-    "h": "#4E342E",
-    "H": "#6D4C41",
-    "s": "#F6D5B3",
-    "e": "#1F1512",
-    "p": "#8E5BB5",
-    "P": "#5E3A7A",
-    "d": "#33334D",
-    "b": "#151515",
-}
-SANS_COLOURS = {
-    "k": "#F2F2F2",
-    "e": "#111111",
-    "j": "#3A6EA5",
-    "w": "#F2F2F2",
-    "n": "#141414",
-    "p": "#E9A6B8",
-}
-SOUL_COLOURS = {"#": "#E5484D"}
-
-FRISK_A = (
-    "...hhhhhh...",
-    "..hhhhhhhh..",
-    ".hhhhhhhhhh.",
-    ".hhhhhhhhhh.",
-    ".hhsssssshh.",
-    ".hhsssssshh.",
-    ".hheesseehh.",
-    ".hhsssssshh.",
-    "..hssssssh..",
-    "...ssssss...",
-    "....ssss....",
-    "..pppppppp..",
-    ".spppppppps.",
-    ".spppPPppps.",
-    ".spppppppps.",
-    "..dddddddd..",
-    "..dddddddd..",
-    "...dd..dd...",
-    "...dd..dd...",
-    "..bbb..bbb..",
+# Pixel maps lifted from the game's own sprite files (spr_maincharar_0, spr_sans_d_0,
+# spr_heart_0, spr_gasterblaster_0) so Frisk and Sans look exactly as they do in the game.
+FRISK_COLOURS = {"a": "#3D120E", "b": "#FFC90E", "c": "#67A4E0", "d": "#E607F8"}
+FRISK_PX = (
+    "....aaaaaaaaa....",
+    "...aaaaaaaaaaaa..",
+    "..aaaaaaaaaaaaaa.",
+    ".aaaaaaaaaaaaaaaa",
+    ".aaaaaaaaaaaaaaaa",
+    "aaaaaaaaaaababaaa",
+    "aaaaaaaaaabbabaa.",
+    "aaaaaaaaaabbbbba.",
+    "aaaaaabbaabbbbba.",
+    "aaaaaabbbabbaaba.",
+    "aaaaaaabbabbbbbba",
+    "aaaaaaaabbbbbbbba",
+    ".aaaaaaaabbbbbaaa",
+    ".a.aaaaaabbbbbba.",
+    "....a.aabbaaaaa..",
+    ".......abba......",
+    ".......aaaa......",
+    "......aacaaa.....",
+    ".....acacccca....",
+    ".....adacadda....",
+    ".....acacaacca...",
+    ".....adaabbada...",
+    ".....accabbaca...",
+    ".....acccaacca...",
+    ".....aaccccca....",
+    "....aaaaa.aaa.aa.",
+    "....aaaa..aaaaa..",
+    ".....aaaa..aaa...",
 )
 
-FRISK_B = FRISK_A[:17] + (
-    "...dd..dd...",
-    "..dd....dd..",
-    ".bbb....bbb.",
+SANS_COLOURS = {"a": "#000000", "b": "#FFFFFF", "c": "#4782C9", "d": "#BDC0C9"}
+SANS_PX = (
+    ".......aaaaaaaaa.......",
+    ".....aabbbbbbbbbaa.....",
+    "....abbbbbbbbbbbbba....",
+    "....abbbbbbbbbbbbba....",
+    "...abbbbbbbbbbbbbbba...",
+    "...abbaaabbbbbaaabba...",
+    "...abbaaabbbbbaaabba...",
+    "...abbaaabbabbaaabba...",
+    "....abbbbbaaabbbbba....",
+    "...aababbbbbbbbbabaa...",
+    "...abbaaaaaaaaaaabba...",
+    "...abbbabababababbba...",
+    "....aabbaaaaaaabbaa....",
+    "...aaaaabbbbbbbaaaaa...",
+    "..acaaaaaaaaaaaaaaaca..",
+    ".aacaddabbbabbbaddacaa.",
+    ".acccaddaaabaaaddaccca.",
+    "accaacaaabbabbaaacaacca",
+    "accccaccabbbbbaccacccca",
+    "acccccacaabbbaacaccccca",
+    ".acccaccabbbbbaccaccca.",
+    "..aacaccaaaaaaaccacaa..",
+    "...aaaccaaaaaaaccaaa...",
+    "....aaaaaaaaaaaaaaa....",
+    "....aaaaaaaaaaaaaaa....",
+    ".....aaaaaaaaaaaaa.....",
+    ".....addddaaaaaaaa.....",
+    "....addddaa.abbbba.....",
+    "....aaaaaa..abbbbba....",
+    "............aaaaaaa....",
 )
 
-SANS = (
-    "....kkkkkk....",
-    "..kkkkkkkkkk..",
-    ".kkkkkkkkkkkk.",
-    ".kkkkkkkkkkkk.",
-    ".kkeekkkkeekk.",
-    ".kkeekkkkeekk.",
-    ".kkkkkkkkkkkk.",
-    "..kkkkkkkkkk..",
-    "...kkkkkkkk...",
-    "....kkkkkk....",
-    "..jjjjjjjjjj..",
-    ".jjjjwwwwjjjj.",
-    ".jjjjwwwwjjjj.",
-    ".jjjjwwwwjjjj.",
-    ".jjjwwwwwwjjj.",
-    "..jjjjjjjjjj..",
-    "..nnnnnnnnnn..",
-    "..nnnnnnnnnn..",
-    "..kkk....kkk..",
-    "..kkk....kkk..",
-    ".pppp....pppp.",
-    ".pppp....pppp.",
+SOUL_COLOURS = {"a": "#FF3B3B"}
+HEART_PX = (
+    "..aa........aa..",
+    ".aaaaa....aaaaa.",
+    "aaaaaaa..aaaaaaa",
+    "aaaaaaa..aaaaaaa",
+    "aaaaaaaaaaaaaaaa",
+    "aaaaaaaaaaaaaaaa",
+    "aaaaaaaaaaaaaaaa",
+    "aaaaaaaaaaaaaaaa",
+    "aaaaaaaaaaaaaaaa",
+    "aaaaaaaaaaaaaaaa",
+    "..aaaaaaaaaaaa..",
+    "..aaaaaaaaaaaa..",
+    "....aaaaaaaa....",
+    "....aaaaaaaa....",
+    "......aaaa......",
+    "......aaaa......",
 )
 
-HEART = (
-    ".##.##.",
-    "#######",
-    "#######",
-    ".#####.",
-    "..###..",
-    "...#...",
+BLASTER_COLOURS = {"a": "#000000", "b": "#FFFFFF"}
+BLASTER_PX = (
+    ".....................aa....................",
+    "....................abba...................",
+    "....................abba...................",
+    "....................abba...................",
+    "...................abbbba..................",
+    ".........aa.......abbbbbba.......aa........",
+    "........abba.....abbbbbbbba.....abba.......",
+    ".......abba....aabbbbbbbbbbaa....abba......",
+    "......abba...aabbbbbbbbbbbbbbaa...abba.....",
+    ".....abba..aabbbbbbbbbbbbbbbbbbaa..abba....",
+    "....abbba.abbbbbbbbbbbbbbbbbbbbbba.abbba...",
+    "....abba.abbbbbbbbbbbbbbbbbbbbbbbba.abba...",
+    "....abbaabbbbbbbbbbbbaabbbbbbbbbbbbaabba...",
+    "...abbbbbbbbbbbbbbbbbaabbbbbbbbbbbbbbbbba..",
+    "...abbbbbbbbbbbbbbbbbaabbbbbbbbbbbbbbbbba..",
+    "..abbbbbbbbbbbbbbbbbbaabbbbbbbbbbbbbbbbbba.",
+    "..abbbbbbbbbbbbbbbbbbaabbbbbbbbbbbbbbbbbba.",
+    ".abbbbbbbbbbbbbbbbbbbaabbbbbbbbbbbbbbbbbbba",
+    ".abbbbbbbabbbbbbbbbbbaabbbbbbbbbbbabbbbbbba",
+    ".abbbbbbabbbbbbbbbbbbaabbbbbbbbbbbbabbbbbba",
+    ".abbbbbaabbbbbbbbbbbbaabbbbbbbbbbbbaabbbbba",
+    ".abbbbbaabbbbbbbbbbbbaabbbbbbbbbbbbaabbbbba",
+    "..abbbbabbbaaabbbbbbbaabbbbbbbaaabbbabbbba.",
+    "..abbbbabba...abbbbbbaabbbbbba...abbabbbba.",
+    "...abbbabba..aaabbbbbaabbbbba....abbabbba..",
+    "....abbaaba.abbaabbbbaabbbba.....abaabba...",
+    "....abbaabaabbbbabbbbaabbbba.....abaabba...",
+    "....abbaabaabbbbabbbbaabbbba.....abaabba...",
+    "....abbaabbabbbbabbbbaabbbba....abbaabba...",
+    ".....abaabbabbbbaabbbaabbba.....abbaaba....",
+    ".....abbaabaabbbaabbbaabbba....aabaabba....",
+    ".....abbaabbbaaaaabbbaabbbaaaaabbbaabba....",
+    ".....abba.abbbbbbbbba..abbbbbbbbba.abba....",
+    "..aa..aba.abbbbbbbbba..abbbbbbbbba.aba..aa.",
+    ".abba.aba.abbbbbbbba....abbbbbbbba.aba.abba",
+    "..aabaabbaabbbbbbbba....abbbbbbbbaabbaabaa.",
+    "...abbabbaababbbbbba....abbbbbbabaabbabba..",
+    "...abbbbbbababbbbbba....abbbbbbababbbbbba..",
+    "...abbbbbbba.abbbbbbaaaabbbbbba.abbbbbbba..",
+    "....abbbbbba.ababbbbbbbbbbbbaba.abbbbbba...",
+    "....abbbbbba.ababbbbbbbbbbbbaba.abbbbbba...",
+    ".....abbbbba.abababbbaabbbababa.abbbbba....",
+    ".....abbbbba.abaa.aba..aba.aaba.abbbbba....",
+    "......abbbba.aba..aba..aba..aba.abbbba.....",
+    "......abbbba.aba..aba..aba..aba.abbbba.....",
+    "......abbbba..a..aba....aba..a..abbbba.....",
+    "......abbba......aba....aba......abbba.....",
+    ".aa.a.abbba.......a......a.......abbba.a.aa",
+    "abbabaabba........................abbaababb",
+    ".ababaabba........................abbaababa",
+    ".abababbba........................abbbababa",
+    "..abbabbba........................abbbabba.",
+    "..abbbbbba........................abbbbbba.",
+    "...abbbbba........................abbbbba..",
+    "...abbbbba........................abbbbba..",
+    "...abbbba..........................abbbba..",
+    "....aaaa............................aaaa...",
 )
 
 
-def _pixel_row(row, r, unit, palette):
-    """One rect per run of identical pixels, so a sprite stays a few hundred bytes."""
-    out = []
-    start, current = 0, row[0]
-    for c in range(1, len(row) + 1):
-        ch = row[c] if c < len(row) else None
-        if ch != current:
-            if current != ".":
-                out.append(
-                    f'<rect x="{start * unit:.1f}" y="{r * unit:.1f}" '
-                    f'width="{(c - start) * unit:.1f}" height="{unit}" fill="{palette[current]}"/>'
-                )
-            start, current = c, ch
-    return "".join(out)
+BONE_COLOURS = {"#": "#FFFFFF"}
+BONE_PX = (
+    ".##....##.",
+    "####..####",
+    "##########",
+    "##########",
+    ".########.",
+    ".########.",
+    "..######..",
+    "..######..",
+    "..######..",
+    "..######..",
+    "..######..",
+    "..######..",
+    "..######..",
+    "..######..",
+    "..######..",
+    "..######..",
+    "..######..",
+    "..######..",
+    "..######..",
+    "..######..",
+    "..######..",
+    "..######..",
+    "..######..",
+    "..######..",
+    "..######..",
+    "..######..",
+    "..######..",
+    "..######..",
+    "..######..",
+    "..######..",
+    "..######..",
+    "..######..",
+    "..######..",
+    "..######..",
+    "..######..",
+    "..######..",
+    "..######..",
+    "..######..",
+    "..######..",
+    "..######..",
+    "..######..",
+    "..######..",
+    "..######..",
+    "..######..",
+    "..######..",
+    "..######..",
+    "..######..",
+    "..######..",
+    "..######..",
+    "..######..",
+    "..######..",
+    "..######..",
+    "..######..",
+    "..######..",
+    "..######..",
+    "..######..",
+    "..######..",
+    "..######..",
+    "..######..",
+    "..######..",
+    "..######..",
+    "..######..",
+    "..######..",
+    "..######..",
+    "..######..",
+    "..######..",
+    "..######..",
+    "..######..",
+    "..######..",
+    "..######..",
+    "..######..",
+    "..######..",
+    "..######..",
+    "..######..",
+    "..######..",
+    "..######..",
+    "..######..",
+    "..######..",
+    "..######..",
+    "..######..",
+    "..######..",
+    "..######..",
+    "..######..",
+    "..######..",
+    "..######..",
+    "..######..",
+    "..######..",
+    "..######..",
+    "..######..",
+    "..######..",
+    "..######..",
+    "..######..",
+    "..######..",
+    "..######..",
+    ".########.",
+    ".########.",
+    "##########",
+    "##########",
+    "####..####",
+    ".##....##.",
+)
 
 
 def sprite(rows, x, y, unit, palette):
+    """Pixel map -> one rect per same-colour block, runs merged both ways, so sprites stay small."""
     assert len({len(row) for row in rows}) == 1, "sprite rows must be equal width"
-    body = "".join(_pixel_row(row, r, unit, palette) for r, row in enumerate(rows))
+    height, width = len(rows), len(rows[0])
+    used = [[False] * width for _ in range(height)]
+    parts = []
+    for r in range(height):
+        for c in range(width):
+            ch = rows[r][c]
+            if ch == "." or used[r][c]:
+                continue
+            c2 = c
+            while c2 < width and rows[r][c2] == ch and not used[r][c2]:
+                c2 += 1
+            r2 = r + 1
+            while r2 < height and all(rows[r2][k] == ch and not used[r2][k] for k in range(c, c2)):
+                r2 += 1
+            for rr in range(r, r2):
+                for cc in range(c, c2):
+                    used[rr][cc] = True
+            parts.append(
+                f'<rect x="{c * unit:.2f}" y="{r * unit:.2f}" width="{(c2 - c) * unit:.2f}" '
+                f'height="{(r2 - r) * unit:.2f}" fill="{palette[ch]}"/>'
+            )
+    body = "".join(parts)
     return f'<g transform="translate({x:.1f} {y:.1f})" shape-rendering="crispEdges">{body}</g>'
 
 
 SCENE_CSS = (
     "<style>"
-    " .walker{animation:walk 16s linear infinite}"
-    " .walkA{animation:stepA .62s steps(1) infinite}"
-    " .walkB{animation:stepB .62s steps(1) infinite}"
-    " .soulhop{animation:soulhop 2.2s cubic-bezier(.35,0,.25,1) infinite}"
-    " .soulbob{animation:soulbob 1.1s ease-in-out infinite}"
-    " .eyeglow{animation:eyeglow 4.6s ease-in-out 1.2s infinite}"
-    " .breathe{animation:breathe 3.6s ease-in-out infinite}"
-    " @keyframes walk{0%{transform:translateX(0);opacity:0}5%{opacity:1}"
-    "93%{opacity:1}100%{transform:translateX(880px);opacity:0}}"
-    " @keyframes stepA{0%,49%{opacity:1}50%,100%{opacity:0}}"
-    " @keyframes stepB{0%,49%{opacity:0}50%,100%{opacity:1}}"
-    " @keyframes soulhop{0%,64%{transform:translateY(0)}78%{transform:translateY(-14px)}"
-    "92%,100%{transform:translateY(0)}}"
-    " @keyframes soulbob{0%,100%{transform:translateY(0)}50%{transform:translateY(2.2px)}}"
-    " @keyframes eyeglow{0%,86%,100%{opacity:0}90%{opacity:.95}95%{opacity:0}}"
-    " @keyframes breathe{0%,100%{transform:translateY(0)}50%{transform:translateY(-1.6px)}}"
+    " .friskHop{animation:friskHop 12s linear infinite}"
+    " .sansBob{animation:sansBob 3.8s ease-in-out infinite}"
+    " .eye{animation:eye 12s linear infinite;opacity:0}"
+    " .soulWrap{animation:soulDodge 12s linear infinite}"
+    " .soulBob{animation:soulBob 1.5s ease-in-out infinite}"
+    " .bone{animation:boneRun 12s linear infinite;opacity:0}"
+    " .blasterWrap{animation:blasterIn 12s linear infinite;opacity:0}"
+    " .beam{animation:beamShot 12s linear infinite;opacity:0;stroke-dasharray:100}"
+    " .beamFlash{animation:beamFlash 12s linear infinite;opacity:0}"
+    " @keyframes friskHop{0%,21%{transform:translateY(0)}"
+    "22.5%{transform:translateY(-5px)}24%{transform:translateY(-17px)}"
+    "25.5%{transform:translateY(-17px)}27%{transform:translateY(-5px)}"
+    "28%,30%{transform:translateY(0)}31.5%{transform:translateY(-5px)}"
+    "33%{transform:translateY(-18px)}34.5%{transform:translateY(-18px)}"
+    "36%{transform:translateY(-5px)}37%,39%{transform:translateY(0)}"
+    "40.5%{transform:translateY(-5px)}42%{transform:translateY(-17px)}"
+    "43.5%{transform:translateY(-17px)}45%{transform:translateY(-5px)}"
+    "46%,100%{transform:translateY(0)}}"
+    " @keyframes soulDodge{0%,16%{transform:translate(0,0)}"
+    "18%{transform:translate(0,-14px)}22%{transform:translate(0,0)}"
+    "24%{transform:translate(24px,0)}26%{transform:translate(24px,-14px)}"
+    "30%{transform:translate(24px,0)}32%{transform:translate(50px,0)}"
+    "34%{transform:translate(50px,-16px)}38%{transform:translate(50px,0)}"
+    "40%{transform:translate(24px,0)}44%,56%{transform:translate(0,0)}"
+    "58%{transform:translate(8px,0)}60%{transform:translate(8px,26px)}"
+    "67%{transform:translate(8px,26px)}69%{transform:translate(8px,8px)}"
+    "73%,100%{transform:translate(0,0)}}"
+    " @keyframes soulBob{0%,100%{transform:translateY(0)}50%{transform:translateY(1.8px)}}"
+    " @keyframes sansBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-1.4px)}}"
+    " @keyframes eye{0%,7%{opacity:0}8%{opacity:1}10%{opacity:.3}11%{opacity:1}"
+    "59%{opacity:1}60%{opacity:.45}61%{opacity:1}76%{opacity:1}78%,100%{opacity:0}}"
+    " @keyframes boneRun{0%,6%{transform:translateX(0);opacity:0}7%{opacity:1}"
+    "26%{transform:translateX(-900px);opacity:1}"
+    "27%,100%{transform:translateX(-900px);opacity:0}}"
+    " @keyframes blasterIn{0%,49%{opacity:0;transform:translateY(-16px)}"
+    "52%{opacity:0;transform:translateY(-16px)}55%,74%{opacity:1;transform:translateY(0)}"
+    "77%,100%{opacity:0;transform:translateY(-10px)}}"
+    " @keyframes beamShot{0%,59.7%{stroke-dashoffset:100;opacity:0}"
+    "60%{stroke-dashoffset:0;opacity:1}65.4%{stroke-dashoffset:0;opacity:1}"
+    "66%,100%{stroke-dashoffset:0;opacity:0}}"
+    " @keyframes beamFlash{0%,59.7%{opacity:0}60.2%{opacity:.13}63%{opacity:.05}"
+    "66%,100%{opacity:0}}"
     "</style>"
 )
 
@@ -754,29 +956,52 @@ def activity():
     )
     last_x, last_y = points[-1]
 
-    # Undertale: the map itself is the floor. Frisk and the SOUL cross it, Sans keeps watch.
-    unit = 1.9
+    # Undertale: the map is the arena. Frisk and Sans stand on it with the game's own
+    # sprites, bones sweep the field, a Gaster Blaster drops in and the SOUL dives.
+    unit = 2.0
     grid_bottom = y0 + step * 6 + cell
-    frisk_x = -30
-    frisk_y = grid_bottom - 20 * unit
-    sans_x, sans_y = 96, grid_bottom - 22 * unit
-    soul_x, soul_y = frisk_x + 26, frisk_y - 16
+    frisk_x = 68
+    frisk_y = grid_bottom - 28 * unit
+    sans_unit = 1.9
+    sans_x, sans_y = 748, grid_bottom - 30 * sans_unit
+    eye_x = sans_x + 15.5 * sans_unit
+    eye_y = sans_y + 6.5 * sans_unit
+    soul_unit = 2.2
+    soul_x, soul_y = 300, y0 + 16
+    blaster_unit = 0.9
+    blaster_cx, blaster_cy = 21.5 * blaster_unit, 28.5 * blaster_unit
+    blaster_x = 596
+    beam_y = 110
+    blaster_y = beam_y - blaster_cy
+    beam_x = blaster_x + blaster_cx - blaster_cy
+    beam_len = beam_x - 128
+    bones = "".join(
+        f'<g transform="translate(812 {grid_bottom - 70:.1f})">'
+        f'<g class="bone" style="animation-delay:{delay}s"><use href="#boneSprite"/></g></g>'
+        for delay in (0.5, 1.3, 2.1, 8.6, 9.3)
+    )
 
     return (
         open_svg(
             height,
             f"Contribution map for axs-official with {DATA['total']} contributions across {DATA['activeDays']} active days, "
-            "plus the weekly rhythm over the last 52 weeks.",
+            "the weekly rhythm over the last 52 weeks, and Frisk and Sans duelling across the grid.",
             "Contributions",
             SCENE_CSS,
         )
         + f'''  <defs>
-    <filter id="spOut" x="-25%" y="-25%" width="150%" height="150%">
-      <feMorphology in="SourceAlpha" operator="dilate" radius="1.3" result="grown"/>
-      <feFlood flood-color="#080808" flood-opacity=".92"/>
-      <feComposite in2="grown" operator="in" result="outline"/>
-      <feMerge><feMergeNode in="outline"/><feMergeNode in="SourceGraphic"/></feMerge>
+    <filter id="spShadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="1.5" stdDeviation="1.1" flood-color="#000000" flood-opacity=".55"/>
     </filter>
+    <linearGradient id="beamFade" gradientUnits="userSpaceOnUse" x1="{blaster_x + blaster_cx:.1f}" y1="0" x2="{beam_x - beam_len:.1f}" y2="0">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity=".95"/>
+      <stop offset=".5" stop-color="#EAF7FF" stop-opacity=".8"/>
+      <stop offset="1" stop-color="#CFEFFF" stop-opacity="0"/>
+    </linearGradient>
+    <g id="boneSprite">
+      {sprite(BONE_PX, -0.5, -0.5, 0.76, {"#": "#080808"})}
+      {sprite(BONE_PX, 0, 0, 0.7, BONE_COLOURS)}
+    </g>
     <linearGradient id="rhythmFill" x1="0" y1="238" x2="0" y2="276" gradientUnits="userSpaceOnUse">
       <stop offset="0" stop-color="{BLUE}" stop-opacity=".28"/>
       <stop offset="1" stop-color="{BLUE}" stop-opacity="0"/>
@@ -791,6 +1016,7 @@ def activity():
     <text x="{x0 - 10:.1f}" y="{y0 + step * 5 + 9:.1f}" text-anchor="end">FRI</text>
   </g>
   {''.join(cells)}
+  <rect class="beamFlash" x="{x0 - 6}" y="{y0 - 6}" width="{step * 52 + cell + 12:.0f}" height="{step * 6 + cell + 12:.0f}" fill="#FFFFFF"/>
   <path d="M{PAD} 202H{W - PAD}" stroke="{LINE}"/>
   <text x="{PAD}" y="226" font-family="{MONO}" font-size="12" letter-spacing="1.6" fill="{MUTED}">WEEKLY RHYTHM</text>
   <path d="{area}" fill="url(#rhythmFill)" class="fade" style="animation-delay:.5s"/>
@@ -802,13 +1028,31 @@ def activity():
   {''.join(legend)}
   <text x="{PAD + 136}" y="317" font-family="{MONO}" font-size="12.5" letter-spacing="1.4" fill="{DIM}">MORE</text>
 
-  <!-- Undertale: Sans keeps watch on the map, Frisk and the SOUL walk across it. -->
-  <g class="breathe" filter="url(#spOut)">{sprite(SANS, sans_x, sans_y, unit, SANS_COLOURS)}</g>
-  <circle class="eyeglow" cx="{sans_x + 10 * unit:.1f}" cy="{sans_y + 5 * unit:.1f}" r="3" fill="#F2F2F2" opacity="0"/>
-  <g class="walker" filter="url(#spOut)">
-    <g class="walkA">{sprite(FRISK_A, frisk_x, frisk_y, unit, FRISK_COLOURS)}</g>
-    <g class="walkB">{sprite(FRISK_B, frisk_x, frisk_y, unit, FRISK_COLOURS)}</g>
-    <g class="soulhop"><g class="soulbob">{sprite(HEART, soul_x, soul_y, 2.4, SOUL_COLOURS)}</g></g>
+  <!-- Undertale: the map is the arena, drawn with the game's own sprites. -->
+  {bones}
+  <ellipse cx="{frisk_x + 17:.1f}" cy="{grid_bottom - 1.6:.1f}" rx="17" ry="3" fill="#000000" opacity=".45"/>
+  <ellipse cx="{sans_x + 21.8:.1f}" cy="{grid_bottom - 1.6:.1f}" rx="21" ry="3.4" fill="#000000" opacity=".45"/>
+  <g class="friskHop" filter="url(#spShadow)">{sprite(FRISK_PX, frisk_x, frisk_y, unit, FRISK_COLOURS)}</g>
+  <g class="sansBob" filter="url(#spShadow)">{sprite(SANS_PX, sans_x, sans_y, sans_unit, SANS_COLOURS)}</g>
+  <g class="eye">
+    <circle cx="{eye_x:.1f}" cy="{eye_y:.1f}" r="7.5" fill="#7FDBFF" opacity=".2"/>
+    <circle cx="{eye_x:.1f}" cy="{eye_y:.1f}" r="2.8" fill="#A6ECFF"/>
+  </g>
+  <g class="blasterWrap">
+    <g transform="translate({blaster_x} {blaster_y}) rotate(90 {blaster_cx:.2f} {blaster_cy:.2f})">
+      {sprite(BLASTER_PX, 0, 0, blaster_unit, BLASTER_COLOURS)}
+    </g>
+  </g>
+  <line class="beam" x1="{beam_x:.1f}" y1="{beam_y:.1f}" x2="{beam_x - beam_len:.1f}" y2="{beam_y:.1f}"
+        stroke="url(#beamFade)" stroke-width="12" stroke-linecap="round" stroke-opacity=".35" pathLength="100"/>
+  <line class="beam" x1="{beam_x:.1f}" y1="{beam_y:.1f}" x2="{beam_x - beam_len:.1f}" y2="{beam_y:.1f}"
+        stroke="url(#beamFade)" stroke-width="3.4" stroke-linecap="round" pathLength="100"/>
+  <circle class="beam" cx="{beam_x:.1f}" cy="{beam_y:.1f}" r="4.5" fill="#FFFFFF" opacity=".55"/>
+  <g class="soulWrap">
+    <g class="soulBob">
+      <ellipse cx="{soul_x + 17.6:.1f}" cy="{soul_y + 17.6:.1f}" rx="21" ry="16" fill="#FF3B3B" opacity=".16"/>
+      {sprite(HEART_PX, soul_x, soul_y, soul_unit, SOUL_COLOURS)}
+    </g>
   </g>
 </svg>'''
     )

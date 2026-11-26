@@ -112,8 +112,8 @@
   <rect x="32" y="189" width="220" height="1.5" fill="url(#rule)"/>
   <rect class="sweep" x="32" y="188.5" width="92" height="2" rx="1" fill="#FFFFFF" opacity=".9"/>
   <g class="rise" style="animation-delay:.18s">
-    <text x="32" y="234" font-family="('....kkkkkk....', '..kkkkkkkkkk..', '.kkkkkkkkkkkk.', '.kkkkkkkkkkkk.', '.kkeekkkkeekk.', '.kkeekkkkeekk.', '.kkkkkkkkkkkk.', '..kkkkkkkkkk..', '...kkkkkkkk...', '....kkkkkk....', '..jjjjjjjjjj..', '.jjjjwwwwjjjj.', '.jjjjwwwwjjjj.', '.jjjjwwwwjjjj.', '.jjjwwwwwwjjj.', '..jjjjjjjjjj..', '..nnnnnnnnnn..', '..nnnnnnnnnn..', '..kkk....kkk..', '..kkk....kkk..', '.pppp....pppp.', '.pppp....pppp.')" font-size="18" fill="#F5F5F5" fill-opacity=".94">Full-stack developer building privacy-first software.</text>
-    <text x="32" y="260" font-family="('....kkkkkk....', '..kkkkkkkkkk..', '.kkkkkkkkkkkk.', '.kkkkkkkkkkkk.', '.kkeekkkkeekk.', '.kkeekkkkeekk.', '.kkkkkkkkkkkk.', '..kkkkkkkkkk..', '...kkkkkkkk...', '....kkkkkk....', '..jjjjjjjjjj..', '.jjjjwwwwjjjj.', '.jjjjwwwwjjjj.', '.jjjjwwwwjjjj.', '.jjjwwwwwwjjj.', '..jjjjjjjjjj..', '..nnnnnnnnnn..', '..nnnnnnnnnn..', '..kkk....kkk..', '..kkk....kkk..', '.pppp....pppp.', '.pppp....pppp.')" font-size="15" fill="#A3A3A3">Web apps, automation and tools that leave your data alone.</text>
+    <text x="32" y="234" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="18" fill="#F5F5F5" fill-opacity=".94">Full-stack developer building privacy-first software.</text>
+    <text x="32" y="260" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="15" fill="#A3A3A3">Web apps, automation and tools that leave your data alone.</text>
   </g>
   <g font-family="'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace" font-size="12.5" letter-spacing="1.4" fill="#A3A3A3">
     <circle class="blink" cx="36" cy="291" r="3.4" fill="#4ADE80"/>
