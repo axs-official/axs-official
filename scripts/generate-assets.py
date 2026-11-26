@@ -919,22 +919,46 @@ def index_of(slug):
 
 # %%contact
 def contact():
-    height = 210
+    height = 244
+    # Right column: what each line is, then the value, flushed to the card edge.
+    links = [
+        ("GITHUB", "github.com/axs-official"),
+        ("SITE", "axs-official.github.io"),
+        ("MODE", "FULL-STACK · REMOTE"),
+    ]
+    rows = []
+    for index, (label, value) in enumerate(links):
+        y = 114 + index * 32
+        rows.append(
+            f'<g class="lift" style="animation-delay:{round(0.22 + index * 0.1, 2)}s">'
+            f'<text x="576" y="{y}" font-family="{MONO}" font-size="10.5" letter-spacing="2" '
+            f'fill="{DIM}">{label}</text>'
+            f'<text x="{W - PAD}" y="{y}" text-anchor="end" font-family="{MONO}" font-size="12.5" '
+            f'fill="{INK}" fill-opacity=".86">{esc(value)}</text>'
+            f"</g>"
+        )
+
     return (
         open_svg(
             height,
             f"Contact axs at {CONTACT_EMAIL} for paid work and business enquiries only. "
-            "Every other link lives at axs-official.github.io/links.",
+            "Questions and everything else: the links page at axs-official.github.io/links "
+            "carries my socials, so message me there.",
             "Contact",
             extra_css="<style>"
             " .lift{animation:lift .9s cubic-bezier(.22,1,.36,1) both}"
             " .pulse{transform-box:fill-box;transform-origin:center;"
             "animation:pulse 2.6s cubic-bezier(.2,.6,.3,1) infinite}"
             " .trail{animation:trail 7s cubic-bezier(.4,0,.2,1) 1.1s infinite}"
+            " .vtrail{animation:vtrail 8.4s cubic-bezier(.4,0,.2,1) .7s infinite}"
+            " .glow{animation:glow 4.4s ease-in-out .8s infinite}"
             " @keyframes lift{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:translateY(0)}}"
             " @keyframes pulse{0%{transform:scale(.55);opacity:.6}70%,100%{transform:scale(2.2);opacity:0}}"
             " @keyframes trail{0%{transform:translateX(0);opacity:0}9%{opacity:.85}"
             "58%{transform:translateX(724px);opacity:.1}59%,100%{transform:translateX(724px);opacity:0}}"
+            " @keyframes vtrail{0%{transform:translateY(0);opacity:0}12%{opacity:.8}"
+            "72%{transform:translateY(68px);opacity:.15}73%,100%{transform:translateY(68px);opacity:0}}"
+            " @keyframes glow{0%,100%{opacity:.3}50%{opacity:.75}}"
             "</style>",
         )
         + f'''  {frame(height)}
@@ -946,20 +970,25 @@ def contact():
   <circle class="lift" cx="674" cy="33.5" r="3.2" fill="{LIVE}" style="animation-delay:.16s"/>
   <path d="M{PAD} 52H{W - PAD}" stroke="{LINE}"/>
   <rect class="trail" x="{PAD}" y="51.4" width="84" height="1.6" rx=".8" fill="{BLUE}"/>
-  <g class="lift" style="animation-delay:.06s">
-    <text x="{PAD}" y="98" font-family="{SANS}" font-size="25" font-weight="500" fill="{INK}">{CONTACT_EMAIL}</text>
+
+  <text class="lift" x="{PAD}" y="84" font-family="{MONO}" font-size="10.5" letter-spacing="2" fill="{DIM}" style="animation-delay:.04s">EMAIL</text>
+  <g class="lift" style="animation-delay:.1s">
+    <text x="{PAD}" y="114" font-family="{SANS}" font-size="26" font-weight="500" fill="{INK}">{CONTACT_EMAIL}</text>
   </g>
-  <rect class="grow" x="{PAD}" y="107" width="356" height="1.6" rx="1" fill="{BLUE}" opacity=".5" style="animation-delay:.36s"/>
-  <text class="lift" x="{PAD}" y="132" font-family="{SANS}" font-size="15" fill="{MUTED}" style="animation-delay:.44s">Jobs you need built, fixed or automated.</text>
-  <text class="lift" x="{PAD}" y="155" font-family="{SANS}" font-size="13.5" fill="{DIM}" style="animation-delay:.52s">No free support — questions go in GitHub issues.</text>
-  <g class="lift" style="animation-delay:.3s">
-    <text x="{W - PAD}" y="96" text-anchor="end" font-family="{MONO}" font-size="12.5" fill="{MUTED}">github.com/axs-official</text>
-    <text x="{W - PAD}" y="120" text-anchor="end" font-family="{MONO}" font-size="12.5" fill="{DIM}">axs-official.github.io</text>
-    <text x="{W - PAD}" y="144" text-anchor="end" font-family="{MONO}" font-size="12" letter-spacing="1.2" fill="{DIM}">FULL-STACK · REMOTE</text>
-  </g>
-  <g class="lift" style="animation-delay:.58s">
-    <path d="M{PAD} 176H{W - PAD}" stroke="{LINE_SOFT}"/>
-    <text x="{PAD}" y="199" font-family="{MONO}" font-size="12.5" letter-spacing="1.2" fill="{DIM}">ALL LINKS · axs-official.github.io/links</text>
+  <rect class="grow" x="{PAD}" y="123" width="322" height="1.8" rx="1" fill="{BLUE}" opacity=".55" style="animation-delay:.34s"/>
+  <rect class="glow" x="{PAD}" y="123" width="322" height="1.8" rx="1" fill="{BLUE}" opacity=".4"/>
+  <text class="lift" x="{PAD}" y="150" font-family="{SANS}" font-size="15" fill="{MUTED}" style="animation-delay:.44s">Jobs you need built, fixed or automated.</text>
+  <text class="lift" x="{PAD}" y="174" font-family="{SANS}" font-size="13.5" fill="{DIM}" style="animation-delay:.52s">Questions? Go to the links page and message me on social media.</text>
+
+  <path d="M548 96V184" stroke="#303030" stroke-width="1.2"/>
+  <rect class="vtrail" x="547.2" y="96" width="1.6" height="20" rx=".8" fill="{BLUE}" opacity=".7"/>
+  {''.join(rows)}
+
+  <g class="lift" style="animation-delay:.62s">
+    <rect x="{PAD}" y="196" width="{W - 2 * PAD}" height="32" rx="8" fill="{PANEL}" stroke="{LINE}"/>
+    <circle class="blink" cx="{PAD + 18}" cy="212" r="3" fill="{LIVE}"/>
+    <text x="{PAD + 30}" y="216" font-family="{MONO}" font-size="10.5" letter-spacing="2" fill="{DIM}">ALL LINKS</text>
+    <text x="{W - PAD - 16}" y="216" text-anchor="end" font-family="{MONO}" font-size="12.5" fill="{INK}" fill-opacity=".9">axs-official.github.io/links  ↗</text>
   </g>
 </svg>'''
     )
