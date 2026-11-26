@@ -90,29 +90,29 @@
     <rect class="caret-blink" x="64" y="261" width="7.6" height="15" rx="1" fill="#F5F5F5" opacity=".9"/>
   </g>
 
-  <path d="M588 110V276" stroke="#1B1B1B"/>
+  <path d="M588 110V276" stroke="#2C2C2C"/>
   <g style="animation:lsession 9.6s linear infinite">
-    <text x="612" y="128" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace" font-size="10" letter-spacing="2.2" fill="#5E5E5E">SESSION</text>
+    <text x="612" y="128" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace" font-size="10.5" letter-spacing="2.2" fill="#8F8F8F">SESSION</text>
   </g>
-  <g font-family="'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace" font-size="11.5" letter-spacing=".6">
+  <g font-family="'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace" font-size="12" letter-spacing=".4">
     <g style="animation:lrow1 9.6s linear infinite">
-      <text x="612" y="156" fill="#6E6E6E">shell</text>
-      <text x="792" y="156" text-anchor="end" fill="#F5F5F5" fill-opacity=".78">zsh</text>
+      <text x="612" y="156" fill="#A8A8A8">shell</text>
+      <text x="792" y="156" text-anchor="end" fill="#F5F5F5" fill-opacity=".95">zsh</text>
     </g>
     <g style="animation:lrow2 9.6s linear infinite">
-      <text x="612" y="182" fill="#6E6E6E">bytes</text>
-      <text x="792" y="182" text-anchor="end" fill="#F5F5F5" fill-opacity=".78">7</text>
+      <text x="612" y="182" fill="#A8A8A8">bytes</text>
+      <text x="792" y="182" text-anchor="end" fill="#F5F5F5" fill-opacity=".95">7</text>
     </g>
     <g style="animation:lrow3 9.6s linear infinite">
-      <text x="612" y="208" fill="#6E6E6E">chars</text>
-      <text x="792" y="208" text-anchor="end" fill="#F5F5F5" fill-opacity=".78">12</text>
+      <text x="612" y="208" fill="#A8A8A8">chars</text>
+      <text x="792" y="208" text-anchor="end" fill="#F5F5F5" fill-opacity=".95">12</text>
     </g>
     <g style="animation:lrow4 9.6s linear infinite">
-      <text x="612" y="234" fill="#6E6E6E">trackers</text>
+      <text x="612" y="234" fill="#A8A8A8">trackers</text>
       <text x="792" y="234" text-anchor="end" fill="#4ADE80">0</text>
     </g>
     <g style="animation:lrow5 9.6s linear infinite">
-      <text x="612" y="260" fill="#6E6E6E">cookies</text>
+      <text x="612" y="260" fill="#A8A8A8">cookies</text>
       <text x="792" y="260" text-anchor="end" fill="#4ADE80">0</text>
     </g>
   </g>

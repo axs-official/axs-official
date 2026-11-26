@@ -525,29 +525,29 @@ def terminal():
     <rect class="caret-blink" x="{text_x}" y="261" width="7.6" height="15" rx="1" fill="{INK}" opacity=".9"/>
   </g>
 
-  <path d="M588 110V276" stroke="{LINE_SOFT}"/>
+  <path d="M588 110V276" stroke="#2C2C2C"/>
   <g {_play("lsession")}>
-    <text x="612" y="128" font-family="{MONO}" font-size="10" letter-spacing="2.2" fill="#5E5E5E">SESSION</text>
+    <text x="612" y="128" font-family="{MONO}" font-size="10.5" letter-spacing="2.2" fill="{DIM}">SESSION</text>
   </g>
-  <g font-family="{MONO}" font-size="11.5" letter-spacing=".6">
+  <g font-family="{MONO}" font-size="12" letter-spacing=".4">
     <g {_play("lrow1")}>
-      <text x="612" y="156" fill="#6E6E6E">shell</text>
-      <text x="{W - PAD - 16}" y="156" text-anchor="end" fill="{INK}" fill-opacity=".78">zsh</text>
+      <text x="612" y="156" fill="#A8A8A8">shell</text>
+      <text x="{W - PAD - 16}" y="156" text-anchor="end" fill="{INK}" fill-opacity=".95">zsh</text>
     </g>
     <g {_play("lrow2")}>
-      <text x="612" y="182" fill="#6E6E6E">bytes</text>
-      <text x="{W - PAD - 16}" y="182" text-anchor="end" fill="{INK}" fill-opacity=".78">7</text>
+      <text x="612" y="182" fill="#A8A8A8">bytes</text>
+      <text x="{W - PAD - 16}" y="182" text-anchor="end" fill="{INK}" fill-opacity=".95">7</text>
     </g>
     <g {_play("lrow3")}>
-      <text x="612" y="208" fill="#6E6E6E">chars</text>
-      <text x="{W - PAD - 16}" y="208" text-anchor="end" fill="{INK}" fill-opacity=".78">12</text>
+      <text x="612" y="208" fill="#A8A8A8">chars</text>
+      <text x="{W - PAD - 16}" y="208" text-anchor="end" fill="{INK}" fill-opacity=".95">12</text>
     </g>
     <g {_play("lrow4")}>
-      <text x="612" y="234" fill="#6E6E6E">trackers</text>
+      <text x="612" y="234" fill="#A8A8A8">trackers</text>
       <text x="{W - PAD - 16}" y="234" text-anchor="end" fill="{LIVE}">0</text>
     </g>
     <g {_play("lrow5")}>
-      <text x="612" y="260" fill="#6E6E6E">cookies</text>
+      <text x="612" y="260" fill="#A8A8A8">cookies</text>
       <text x="{W - PAD - 16}" y="260" text-anchor="end" fill="{LIVE}">0</text>
     </g>
   </g>
