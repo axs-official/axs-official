@@ -37,12 +37,12 @@
 
   <text class="lift" x="32" y="84" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace" font-size="10.5" letter-spacing="2" fill="#8F8F8F" style="animation-delay:.04s">EMAIL</text>
   <g class="lift" style="animation-delay:.1s">
-    <text x="32" y="114" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="26" font-weight="500" fill="#F5F5F5">axs.contact.me@gmail.com</text>
+    <text x="32" y="114" font-family="('....kkkkkk....', '..kkkkkkkkkk..', '.kkkkkkkkkkkk.', '.kkkkkkkkkkkk.', '.kkeekkkkeekk.', '.kkeekkkkeekk.', '.kkkkkkkkkkkk.', '..kkkkkkkkkk..', '...kkkkkkkk...', '....kkkkkk....', '..jjjjjjjjjj..', '.jjjjwwwwjjjj.', '.jjjjwwwwjjjj.', '.jjjjwwwwjjjj.', '.jjjwwwwwwjjj.', '..jjjjjjjjjj..', '..nnnnnnnnnn..', '..nnnnnnnnnn..', '..kkk....kkk..', '..kkk....kkk..', '.pppp....pppp.', '.pppp....pppp.')" font-size="26" font-weight="500" fill="#F5F5F5">axs.contact.me@gmail.com</text>
   </g>
   <rect class="grow" x="32" y="123" width="322" height="1.8" rx="1" fill="#FFFFFF" opacity=".55" style="animation-delay:.34s"/>
   <rect class="glow" x="32" y="123" width="322" height="1.8" rx="1" fill="#FFFFFF" opacity=".4"/>
-  <text class="lift" x="32" y="150" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="15" fill="#A3A3A3" style="animation-delay:.44s">Jobs you need built, fixed or automated.</text>
-  <text class="lift" x="32" y="174" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="13.5" fill="#8F8F8F" style="animation-delay:.52s">Questions? Go to the links page and message me on social media.</text>
+  <text class="lift" x="32" y="150" font-family="('....kkkkkk....', '..kkkkkkkkkk..', '.kkkkkkkkkkkk.', '.kkkkkkkkkkkk.', '.kkeekkkkeekk.', '.kkeekkkkeekk.', '.kkkkkkkkkkkk.', '..kkkkkkkkkk..', '...kkkkkkkk...', '....kkkkkk....', '..jjjjjjjjjj..', '.jjjjwwwwjjjj.', '.jjjjwwwwjjjj.', '.jjjjwwwwjjjj.', '.jjjwwwwwwjjj.', '..jjjjjjjjjj..', '..nnnnnnnnnn..', '..nnnnnnnnnn..', '..kkk....kkk..', '..kkk....kkk..', '.pppp....pppp.', '.pppp....pppp.')" font-size="15" fill="#A3A3A3" style="animation-delay:.44s">Jobs you need built, fixed or automated.</text>
+  <text class="lift" x="32" y="174" font-family="('....kkkkkk....', '..kkkkkkkkkk..', '.kkkkkkkkkkkk.', '.kkkkkkkkkkkk.', '.kkeekkkkeekk.', '.kkeekkkkeekk.', '.kkkkkkkkkkkk.', '..kkkkkkkkkk..', '...kkkkkkkk...', '....kkkkkk....', '..jjjjjjjjjj..', '.jjjjwwwwjjjj.', '.jjjjwwwwjjjj.', '.jjjjwwwwjjjj.', '.jjjwwwwwwjjj.', '..jjjjjjjjjj..', '..nnnnnnnnnn..', '..nnnnnnnnnn..', '..kkk....kkk..', '..kkk....kkk..', '.pppp....pppp.', '.pppp....pppp.')" font-size="13.5" fill="#8F8F8F" style="animation-delay:.52s">Questions? Go to the links page and message me on social media.</text>
 
   <path d="M548 96V184" stroke="#303030" stroke-width="1.2"/>
   <rect class="vtrail" x="547.2" y="96" width="1.6" height="20" rx=".8" fill="#FFFFFF" opacity=".7"/>

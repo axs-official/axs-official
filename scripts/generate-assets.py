@@ -555,6 +555,136 @@ def terminal():
     )
 
 
+# %% Undertale sprites
+# Hand-drawn pixel maps in the game's own palette: Frisk, Sans and the red SOUL.
+FRISK_COLOURS = {
+    "h": "#4E342E",
+    "H": "#6D4C41",
+    "s": "#F6D5B3",
+    "e": "#1F1512",
+    "p": "#8E5BB5",
+    "P": "#5E3A7A",
+    "d": "#33334D",
+    "b": "#151515",
+}
+SANS_COLOURS = {
+    "k": "#F2F2F2",
+    "e": "#111111",
+    "j": "#3A6EA5",
+    "w": "#F2F2F2",
+    "n": "#141414",
+    "p": "#E9A6B8",
+}
+SOUL_COLOURS = {"#": "#E5484D"}
+
+FRISK_A = (
+    "...hhhhhh...",
+    "..hhhhhhhh..",
+    ".hhhhhhhhhh.",
+    ".hhhhhhhhhh.",
+    ".hhsssssshh.",
+    ".hhsssssshh.",
+    ".hheesseehh.",
+    ".hhsssssshh.",
+    "..hssssssh..",
+    "...ssssss...",
+    "....ssss....",
+    "..pppppppp..",
+    ".spppppppps.",
+    ".spppPPppps.",
+    ".spppppppps.",
+    "..dddddddd..",
+    "..dddddddd..",
+    "...dd..dd...",
+    "...dd..dd...",
+    "..bbb..bbb..",
+)
+
+FRISK_B = FRISK_A[:17] + (
+    "...dd..dd...",
+    "..dd....dd..",
+    ".bbb....bbb.",
+)
+
+SANS = (
+    "....kkkkkk....",
+    "..kkkkkkkkkk..",
+    ".kkkkkkkkkkkk.",
+    ".kkkkkkkkkkkk.",
+    ".kkeekkkkeekk.",
+    ".kkeekkkkeekk.",
+    ".kkkkkkkkkkkk.",
+    "..kkkkkkkkkk..",
+    "...kkkkkkkk...",
+    "....kkkkkk....",
+    "..jjjjjjjjjj..",
+    ".jjjjwwwwjjjj.",
+    ".jjjjwwwwjjjj.",
+    ".jjjjwwwwjjjj.",
+    ".jjjwwwwwwjjj.",
+    "..jjjjjjjjjj..",
+    "..nnnnnnnnnn..",
+    "..nnnnnnnnnn..",
+    "..kkk....kkk..",
+    "..kkk....kkk..",
+    ".pppp....pppp.",
+    ".pppp....pppp.",
+)
+
+HEART = (
+    ".##.##.",
+    "#######",
+    "#######",
+    ".#####.",
+    "..###..",
+    "...#...",
+)
+
+
+def _pixel_row(row, r, unit, palette):
+    """One rect per run of identical pixels, so a sprite stays a few hundred bytes."""
+    out = []
+    start, current = 0, row[0]
+    for c in range(1, len(row) + 1):
+        ch = row[c] if c < len(row) else None
+        if ch != current:
+            if current != ".":
+                out.append(
+                    f'<rect x="{start * unit:.1f}" y="{r * unit:.1f}" '
+                    f'width="{(c - start) * unit:.1f}" height="{unit}" fill="{palette[current]}"/>'
+                )
+            start, current = c, ch
+    return "".join(out)
+
+
+def sprite(rows, x, y, unit, palette):
+    assert len({len(row) for row in rows}) == 1, "sprite rows must be equal width"
+    body = "".join(_pixel_row(row, r, unit, palette) for r, row in enumerate(rows))
+    return f'<g transform="translate({x:.1f} {y:.1f})" shape-rendering="crispEdges">{body}</g>'
+
+
+SCENE_CSS = (
+    "<style>"
+    " .walker{animation:walk 16s linear infinite}"
+    " .walkA{animation:stepA .62s steps(1) infinite}"
+    " .walkB{animation:stepB .62s steps(1) infinite}"
+    " .soulhop{animation:soulhop 2.2s cubic-bezier(.35,0,.25,1) infinite}"
+    " .soulbob{animation:soulbob 1.1s ease-in-out infinite}"
+    " .eyeglow{animation:eyeglow 4.6s ease-in-out 1.2s infinite}"
+    " .breathe{animation:breathe 3.6s ease-in-out infinite}"
+    " @keyframes walk{0%{transform:translateX(0);opacity:0}5%{opacity:1}"
+    "93%{opacity:1}100%{transform:translateX(880px);opacity:0}}"
+    " @keyframes stepA{0%,49%{opacity:1}50%,100%{opacity:0}}"
+    " @keyframes stepB{0%,49%{opacity:0}50%,100%{opacity:1}}"
+    " @keyframes soulhop{0%,64%{transform:translateY(0)}78%{transform:translateY(-14px)}"
+    "92%,100%{transform:translateY(0)}}"
+    " @keyframes soulbob{0%,100%{transform:translateY(0)}50%{transform:translateY(2.2px)}}"
+    " @keyframes eyeglow{0%,86%,100%{opacity:0}90%{opacity:.95}95%{opacity:0}}"
+    " @keyframes breathe{0%,100%{transform:translateY(0)}50%{transform:translateY(-1.6px)}}"
+    "</style>"
+)
+
+
 def activity():
     height = 322
     weeks = DATA["weeks"]
@@ -624,14 +754,29 @@ def activity():
     )
     last_x, last_y = points[-1]
 
+    # Undertale: the map itself is the floor. Frisk and the SOUL cross it, Sans keeps watch.
+    unit = 1.9
+    grid_bottom = y0 + step * 6 + cell
+    frisk_x = -30
+    frisk_y = grid_bottom - 20 * unit
+    sans_x, sans_y = 96, grid_bottom - 22 * unit
+    soul_x, soul_y = frisk_x + 26, frisk_y - 16
+
     return (
         open_svg(
             height,
             f"Contribution map for axs-official with {DATA['total']} contributions across {DATA['activeDays']} active days, "
             "plus the weekly rhythm over the last 52 weeks.",
             "Contributions",
+            SCENE_CSS,
         )
         + f'''  <defs>
+    <filter id="spOut" x="-25%" y="-25%" width="150%" height="150%">
+      <feMorphology in="SourceAlpha" operator="dilate" radius="1.3" result="grown"/>
+      <feFlood flood-color="#080808" flood-opacity=".92"/>
+      <feComposite in2="grown" operator="in" result="outline"/>
+      <feMerge><feMergeNode in="outline"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
     <linearGradient id="rhythmFill" x1="0" y1="238" x2="0" y2="276" gradientUnits="userSpaceOnUse">
       <stop offset="0" stop-color="{BLUE}" stop-opacity=".28"/>
       <stop offset="1" stop-color="{BLUE}" stop-opacity="0"/>
@@ -656,6 +801,15 @@ def activity():
   <text x="{PAD}" y="317" font-family="{MONO}" font-size="12.5" letter-spacing="1.4" fill="{DIM}">LESS</text>
   {''.join(legend)}
   <text x="{PAD + 136}" y="317" font-family="{MONO}" font-size="12.5" letter-spacing="1.4" fill="{DIM}">MORE</text>
+
+  <!-- Undertale: Sans keeps watch on the map, Frisk and the SOUL walk across it. -->
+  <g class="breathe" filter="url(#spOut)">{sprite(SANS, sans_x, sans_y, unit, SANS_COLOURS)}</g>
+  <circle class="eyeglow" cx="{sans_x + 10 * unit:.1f}" cy="{sans_y + 5 * unit:.1f}" r="3" fill="#F2F2F2" opacity="0"/>
+  <g class="walker" filter="url(#spOut)">
+    <g class="walkA">{sprite(FRISK_A, frisk_x, frisk_y, unit, FRISK_COLOURS)}</g>
+    <g class="walkB">{sprite(FRISK_B, frisk_x, frisk_y, unit, FRISK_COLOURS)}</g>
+    <g class="soulhop"><g class="soulbob">{sprite(HEART, soul_x, soul_y, 2.4, SOUL_COLOURS)}</g></g>
+  </g>
 </svg>'''
     )
 
