@@ -35,7 +35,7 @@ BLUE = "#FFFFFF"
 BLUE_SOFT = "#EDEDED"
 LIVE = "#4ADE80"
 ZERO = "#151515"
-RAMP = [ZERO, "#343434", "#5E5E5E", "#949494", "#EDEDED"]
+RAMP = [ZERO, "#166534", "#22C55E", "#F59E0B", "#EF4444"]
 
 SANS = "'Segoe UI', 'Helvetica Neue', Arial, sans-serif"
 SERIF = "Georgia, 'Times New Roman', 'Iowan Old Style', serif"
@@ -184,6 +184,10 @@ def hero():
             height,
             "A-XS, full-stack developer. Privacy-first software, built end to end.",
             "A-XS — profile",
+            extra_css='<style>'
+            ' .breathe{animation:breathe 7s ease-in-out infinite}'
+            ' @keyframes breathe{0%,100%{opacity:.10}50%{opacity:.28}}'
+            '</style>',
         )
         + f'''  <defs>
     <linearGradient id="name" x1="32" y1="112" x2="32" y2="176" gradientUnits="userSpaceOnUse">
@@ -204,16 +208,23 @@ def hero():
       <stop offset="0.42" stop-color="#8F8F8F"/>
       <stop offset="1" stop-color="#141414"/>
     </radialGradient>
+    <radialGradient id="halo" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity=".26"/>
+      <stop offset=".55" stop-color="#FFFFFF" stop-opacity=".06"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
+    </radialGradient>
     <clipPath id="pc"><circle cx="{cx}" cy="{cy}" r="45"/></clipPath>
   </defs>
   {frame(height)}
   {grid(height)}
   {stars(26, 812, height, avoid=[(24, 40, 470, 202), (24, 204, 534, 306), (632, 274, 820, 308)])}
   <circle cx="{cx}" cy="{cy}" r="196" fill="url(#glow)"/>
+  <circle class="breathe" cx="{cx}" cy="{cy}" r="132" fill="url(#halo)"/>
   <g>
     <circle class="spin-r" cx="{cx}" cy="{cy}" r="118" stroke="{ACCENT}" stroke-opacity=".16" stroke-width="1" stroke-dasharray="26 12"/>
     <circle class="spin" cx="{cx}" cy="{cy}" r="92" stroke="{LINE}" stroke-width="1" stroke-dasharray="2 6"/>
     <ellipse class="spin-r" cx="{cx}" cy="{cy}" rx="136" ry="36" stroke="{BLUE}" stroke-opacity=".6" stroke-width="1" transform="rotate(-24 {cx} {cy})"/>
+    <ellipse class="spin" cx="{cx}" cy="{cy}" rx="158" ry="54" stroke="{ACCENT}" stroke-opacity=".16" stroke-width="1" stroke-dasharray="1 8" transform="rotate(18 {cx} {cy})"/>
     <circle cx="{cx}" cy="{cy - 92}" r="2.4" fill="{ACCENT}" opacity=".8"/>
   </g>
   <g>
@@ -248,41 +259,43 @@ def hero():
     )
 
 
-def stats():
-    height = 282
-    week_avg = round(DATA["total"] / 52)
-    tiles = [
-        (f"{DATA['total']:,}", "CONTRIBUTIONS", 0.9),
-        (f"{DATA['activeDays']}", "ACTIVE DAYS", 0.76),
-        (f"{DATA['longestStreak']}", "BEST STREAK", 0.64),
-        ("13", "REPOSITORIES", 0.54),
-        ("2", "PUBLIC REPOS", 0.46),
-        (f"{week_avg}", "COMMITS / WEEK", 0.4),
-    ]
-    cw, ch, gap = 250, 88, 13
-    cards = []
-    for i, (value, label, strength) in enumerate(tiles):
-        col, row = i % 3, i // 3
-        x = PAD + col * (cw + gap)
-        y = 68 + row * (ch + 14)
-        cards.append(
-            f'''<g class="rise" style="animation-delay:{round(i * 0.07, 2)}s">
-      <rect x="{x}" y="{y}" width="{cw}" height="{ch}" rx="12" fill="{PANEL}" stroke="{LINE}"/>
-      <rect class="grow" x="{x + 14}" y="{y + 1}" width="{cw - 28}" height="2" rx="1" fill="{BLUE}" opacity="{strength}" style="animation-delay:{round(i * 0.07 + 0.1, 2)}s"/>
-      <text x="{x + 20}" y="{y + 28}" font-family="{MONO}" font-size="12.5" letter-spacing="1.4" fill="{MUTED}">{esc(label)}</text>
-      <text x="{x + 20}" y="{y + 71}" font-family="{SERIF}" font-size="40" letter-spacing="-0.5" fill="{INK}">{value}</text>
-    </g>'''
-        )
+def terminal():
+    """A shell that types a command, decodes it from ASCII, and answers:"""
+    height = 268
+    command = "echo 83 84 65 89 [80 82 73 86 65 84 69]"
     return (
         open_svg(
             height,
-            f"GitHub figures for axs-official: {DATA['total']} contributions, {DATA['activeDays']} active days, "
-            f"{DATA['longestStreak']} day best streak, 13 repositories.",
-            "GitHub activity",
+            "Terminal: the command echo 83 84 65 89 [80 82 73 86 65 84 69] is decoded from ASCII "
+            "into the words STAY PRIVATE.",
+            "Terminal",
+            extra_css='<style>'
+            ' .type{animation:type 1.8s steps(44,end) .4s both}'
+            ' .caret{animation:caret 1.1s steps(1,end) infinite}'
+            ' @keyframes type{from{transform:translateX(0)}to{transform:translateX(340px)}}'
+            ' @keyframes caret{0%,49%{opacity:1}50%,100%{opacity:0}}'
+            '</style>',
         )
         + f'''  {frame(height)}
-  {header("GITHUB", "LAST 12 MONTHS")}
-  {''.join(cards)}
+  {header("TERMINAL", "ASCII DECODE")}
+  <rect x="{PAD}" y="66" width="{W - PAD * 2}" height="178" rx="12" fill="#0C0C0C" stroke="{LINE}"/>
+  <circle cx="52" cy="86" r="4" fill="#2A2A2A"/>
+  <circle cx="68" cy="86" r="4" fill="#2A2A2A"/>
+  <circle cx="84" cy="86" r="4" fill="{LIVE}" opacity=".8"/>
+  <text x="106" y="90" font-family="{MONO}" font-size="11" letter-spacing="1.6" fill="{DIM}">axs — privacy shell</text>
+  <text x="{PAD + 12}" y="124" font-family="{MONO}" font-size="13" fill="{LIVE}">$</text>
+  <text x="{PAD + 26}" y="124" font-family="{MONO}" font-size="13" fill="{INK}">{esc(command)}</text>
+  <rect class="type" x="{PAD + 26}" y="111" width="330" height="17" fill="#0C0C0C"/>
+  <rect class="caret" x="{PAD + 378}" y="112" width="7" height="15" fill="{LIVE}" opacity=".85"/>
+  <g class="fade" style="animation-delay:2.1s">
+    <text x="{PAD + 12}" y="152" font-family="{MONO}" font-size="12" fill="{DIM}">&gt; ascii.dec(83 84 65 89) + ascii.dec(80 82 73 86 65 84 69)</text>
+  </g>
+  <g class="rise" style="animation-delay:2.4s">
+    <text x="{PAD + 12}" y="198" font-family="{SERIF}" font-size="34" letter-spacing="4" fill="{INK}">STAY PRIVATE</text>
+  </g>
+  <g class="fade" style="animation-delay:2.9s">
+    <text x="{PAD + 12}" y="226" font-family="{MONO}" font-size="11.5" fill="{MUTED}"># 7 bytes in, two words out. No analytics, no cookies, no trackers.</text>
+  </g>
 </svg>'''
     )
 
@@ -403,7 +416,7 @@ def activity():
 
 
 def about():
-    height = 268
+    height = 272
     facts = [
         ("ROLE", "Full-stack developer"),
         ("FOCUS", "Privacy-first software"),
@@ -411,71 +424,34 @@ def about():
     ]
     rows = []
     for index, (label, value) in enumerate(facts):
-        y = 92 + index * 56
+        y = 96 + index * 58
         rows.append(
-            f'<text x="560" y="{y}" font-family="{MONO}" font-size="12" letter-spacing="1.4" fill="{DIM}">{label}</text>'
-            f'<text x="560" y="{y + 23}" font-family="{SANS}" font-size="15.5" fill="{INK}" fill-opacity=".92">{value}</text>'
+            f'<text x="566" y="{y}" font-family="{MONO}" font-size="12" letter-spacing="1.4" fill="{DIM}">{label}</text>'
+            f'<text x="566" y="{y + 25}" font-family="{SANS}" font-size="16.5" fill="{INK}" fill-opacity=".94">{value}</text>'
+            f'<rect class="grow" x="566" y="{y + 39}" width="{W - PAD - 566}" height="1" fill="{LINE}" '
+            f'style="animation-delay:{round(0.3 + index * 0.14, 2)}s"/>'
         )
-        if index < len(facts) - 1:
-            rows.append(f'<path d="M560 {y + 34}H{W - PAD}" stroke="{LINE_SOFT}"/>')
 
     return (
         open_svg(
             height,
             "About A-XS: full-stack developer. Privacy-first software, built end to end. Open to paid work.",
             "About",
+            extra_css='<style>'
+            ' .bar{animation:bar 6s ease-in-out infinite}'
+            ' @keyframes bar{0%,100%{opacity:.18}50%{opacity:.8}}'
+            '</style>',
         )
         + f'''  {frame(height)}
-  {header("ABOUT")}
+  {header("ABOUT", "A-XS")}
+  <rect class="bar" x="{PAD - 12}" y="78" width="2" height="152" rx="1" fill="{BLUE}"/>
   <g class="fade">
-    {paragraph(PAD, 92, "I take a project end to end: database, API, interface and deploy. React and Next.js most days, Python when there is work worth automating.", size=15, chars=62)}
-    {paragraph(PAD, 178, "Privacy decides the shape: no analytics, no cookies, no trackers, no accounts you didn't ask for. Ask and I'll walk you through the code.", size=15, chars=62)}
+    {paragraph(PAD, 96, "I take a project end to end: database, API, interface and deploy. React and Next.js most days, Python when there is work worth automating.", size=15, chars=58)}
+    {paragraph(PAD, 170, "Privacy decides the shape: no analytics, no cookies, no trackers, no logins you didn't ask for. Ask and I'll walk you through the code.", size=15, chars=58)}
   </g>
-  {''.join(rows)}
-</svg>'''
-    )
-
-
-def work():
-    height = 326
-    items = [
-        (
-            "This site",
-            "NEXT.JS · THREE.JS · TAILWIND",
-            "The page you're on. 3D hero, my own contribution data, static build on GitHub Pages.",
-        ),
-        (
-            "GitHub profile",
-            "SVG · PYTHON",
-            "These cards. A Python script, animated with CSS inside the SVG.",
-        ),
-        (
-            "Everything else",
-            "PRIVATE",
-            "Scripts, private apps, half-finished ideas. Ask and I'll walk you through one.",
-        ),
-    ]
-    rows = []
-    for index, (title, tag, body) in enumerate(items):
-        y = 86 + index * 80
-        if index:
-            rows.append(f'<path d="M{PAD} {y - 24}H{W - PAD}" stroke="{LINE_SOFT}"/>')
-        rows.append(
-            f'''<g class="rise" style="animation-delay:{round(index * 0.08, 2)}s">
-      <text x="{PAD}" y="{y}" font-family="{SANS}" font-size="17" font-weight="600" fill="{INK}">{esc(title)}</text>
-      <text x="{PAD}" y="{y + 23}" font-family="{MONO}" font-size="12.5" letter-spacing="1.1" fill="{MUTED}">{esc(tag)}</text>
-      {paragraph(330, y - 1, body, size=14, chars=62, line_height=19, color=MUTED)}
-    </g>'''
-        )
-
-    return (
-        open_svg(
-            height,
-            "Things A-XS has built: this site, the GitHub profile cards, and private full-stack work.",
-            "Work",
-        )
-        + f'''  {frame(height)}
-  {header("WORK")}
+  <g class="fade" style="animation-delay:.45s">
+    <text x="{PAD}" y="242" font-family="{MONO}" font-size="11.5" letter-spacing="1.4" fill="{MUTED}">NO ANALYTICS · NO COOKIES · NO TRACKERS</text>
+  </g>
   {''.join(rows)}
 </svg>'''
     )
@@ -522,88 +498,119 @@ STACK_LABELS = {
     "rest": "REST APIs",
 }
 
-BRAND_PILL = {
-    "python":        "#3776AB",
-    "typescript":    "#3178C6",
-    "javascript":    "#F7DF1E",
-    "react":         "#61DAFB",
-    "nextjs":        "#000000",
-    "node":          "#5FA04E",
-    "tailwind":      "#06B6D4",
-    "three":         "#000000",
-    "rust":          "#000000",
-    "cpp":           "#00599C",
-    "sqlite":        "#003B57",
-    "git":           "#F03C2E",
-    "actions":       "#2088FF",
-    "linux":         "#FCC624",
-    "docker":        "#2496ED",
-    "figma":         "#F24E1E",
-    "rest":          "#8F8F8F",
+SHORT_LABEL = {
+    "python": "Python",
+    "typescript": "TypeScript",
+    "javascript": "JavaScript",
+    "react": "React",
+    "nextjs": "Next.js",
+    "node": "Node.js",
+    "tailwind": "Tailwind",
+    "three": "Three.js",
+    "rust": "Rust",
+    "cpp": "C++",
+    "sqlite": "SQLite",
+    "git": "Git",
+    "actions": "Actions",
+    "linux": "Linux",
+    "docker": "Docker",
+    "figma": "Figma",
+    "rest": "REST",
 }
 
-
-def chip(slug, x, y, w):
-    """Autofit monospace chip: name + small brand colour pill cap no wider than `w`."""
-    label = STACK_LABELS[slug]
-    color = BRAND_PILL[slug]
-    # measure approximate width of label at size 11.2 (monospace, ~6.5px/glyph)
-    est = len(label) * 6.6 + 14
-    use_w = min(w, est) if est > 0 else w
-    return (
-        f'<g class="rise" style="animation-delay:{(x / (W - PAD * 2)) * 0.18}s">'
-        f'<text x="{x + 6}" y="{y}" font-family="{MONO}" font-size="11.2" letter-spacing="0.2" fill="{INK}" fill-opacity="0.92">'
-        f"{esc(label)}"
-        f'</text>'
-        f'<rect x="{x + est - 3}" y="{y - 8}" width="3.2" height="9" rx="1.6" fill="{color}" opacity="0.85"/>'
-        f'</g>'
-    )
+REST_PATH = "M4 9h16M4 9l3.5-3.5M4 9l3.5 3.5M20 15H4M20 15l-3.5-3.5M20 15l-3.5 3.5"
 
 
 def stack():
-    """Compact toolchain panel: 2 columns of chips, one soft pulse accent."""
-    COLS = 2
-    GAP_X = 24
-    GAP_Y = 18
-    cell_w = (W - PAD * 2 - GAP_X) / COLS
-    top = 74
-    panels = []
-    for index, slug in enumerate(KIT):
-        col, row = index % COLS, index // COLS
-        x = PAD + col * (cell_w + GAP_X)
-        y = top + row * GAP_Y
-        panels.append(chip(slug, x, y, cell_w))
+    """Toolchain constellation: brand icons drifting on an animated mesh."""
+    height = 272
+    size = 44
+    rows = (KIT[:9], KIT[9:])
+    centres = (122, 208)
+    jitter = (-10, 7, -14, 3, -6, 12, -12, 5, -8)
+
+    def spread(count, inset=0.0):
+        left = PAD + size / 2 + inset
+        right = W - PAD - size / 2 - inset
+        if count == 1:
+            return [(left + right) / 2]
+        step = (right - left) / (count - 1)
+        return [left + i * step for i in range(count)]
+
+    top_x = spread(len(rows[0]))
+    bottom_x = spread(len(rows[1]), inset=(top_x[1] - top_x[0]) / 2)
+    first = [(x, centres[0] + jitter[i % len(jitter)]) for i, x in enumerate(top_x)]
+    second = [(x, centres[1] + jitter[(i + 1) % len(jitter)]) for i, x in enumerate(bottom_x)]
+
+    mesh = []
+    for line in (first, second):
+        for (ax, ay), (bx, by) in zip(line, line[1:]):
+            mesh.append(
+                f'<path class="flow" d="M{ax:.1f} {ay:.1f}L{bx:.1f} {by:.1f}" stroke="#3A3A3A" '
+                f'stroke-width="1" style="animation-delay:{round(-random.uniform(0, 5), 2)}s"/>'
+            )
+    for i, (bx, by) in enumerate(second):
+        for j in (i - 1, i, i + 1):
+            if 0 <= j < len(first):
+                ax, ay = first[j]
+                mesh.append(
+                    f'<path class="flow" d="M{ax:.1f} {ay:.1f}L{bx:.1f} {by:.1f}" stroke="#2F2F2F" '
+                    f'stroke-width="1" stroke-opacity=".9" '
+                    f'style="animation-delay:{round(-random.uniform(0, 5), 2)}s"/>'
+                )
+
+    nodes = []
+    for line, slugs in zip((first, second), rows):
+        for (cx, cy), slug in zip(line, slugs):
+            if slug in ICONS:
+                colour = brand(ICONS[slug]["hex"])
+                icon = f'<path d="{ICONS[slug]["path"]}" fill="{colour}"/>'
+            else:
+                colour = "#C4C4C4"
+                icon = (
+                    f'<path d="{REST_PATH}" fill="none" stroke="{colour}" stroke-width="1.5" '
+                    f'stroke-linecap="round" stroke-linejoin="round"/>'
+                )
+            label = SHORT_LABEL.get(slug, STACK_LABELS[slug])
+            label_w = len(label) * 6.3 + 10
+            nodes.append(
+                f'<g class="node" style="animation-delay:{round(-random.uniform(0, 7.5), 2)}s">'
+                f'<rect x="{cx - size / 2:.1f}" y="{cy - size / 2:.1f}" width="{size}" height="{size}" '
+                f'rx="13" fill="{PANEL}" stroke="{LINE}"/>'
+                f'<rect x="{cx - size / 2:.1f}" y="{cy - size / 2:.1f}" width="{size}" height="{size}" '
+                f'rx="13" fill="{colour}" opacity=".09"/>'
+                f'<g transform="translate({cx - 11:.1f} {cy - 11:.1f}) scale(.92)">{icon}</g>'
+                f'</g>'
+                f'<rect x="{cx - label_w / 2:.1f}" y="{cy + size / 2 + 7:.1f}" width="{label_w:.1f}" '
+                f'height="15" rx="4" fill="{BG}" opacity=".9"/>'
+                f'<text x="{cx:.1f}" y="{cy + size / 2 + 19:.1f}" text-anchor="middle" '
+                f'font-family="{MONO}" font-size="10.5" letter-spacing=".4" fill="{MUTED}">{esc(label)}</text>'
+            )
 
     listing = ", ".join(STACK_LABELS[slug] for slug in KIT)
-    rows = (len(KIT) + COLS - 1) // COLS
 
     return (
         open_svg(
-            74 + rows * GAP_Y + 30,
+            height,
             f"Toolchain: {listing}.",
             "Toolchain",
             extra_css='<style>'
-            ' .pulse{animation:pulse 6s cubic-bezier(.5,0,.2,1) infinite}'
-            ' @keyframes pulse{'
-            ' 0%,100%{opacity:.12;stroke-width:1}'
-            ' 50%{opacity:.55;stroke-width:1.6}'
-            ' }'
+            ' .flow{stroke-dasharray:3 9;animation:flow 5s linear infinite}'
+            ' .node{animation:drift 7.5s ease-in-out infinite}'
+            ' @keyframes flow{to{stroke-dashoffset:-48}}'
+            ' @keyframes drift{0%,100%{transform:translateY(-2.5px)}50%{transform:translateY(2.5px)}}'
             '</style>',
         )
-        + f'''  {frame(74 + rows * GAP_Y + 30)}
-  {grid(74 + rows * GAP_Y + 30, 60, 0.05)}
-  <text x="{PAD}" y="54" font-family="{MONO}" font-size="13" letter-spacing="2.6" fill="{BLUE_SOFT}">TOOLCHAIN</text>
-  <text x="{W - PAD}" y="54" text-anchor="end" font-family="{MONO}" font-size="12" letter-spacing="1.2" fill="{DIM}">{len(KIT)} TOOLS</text>
-  <path d="M{PAD} 66H{W - PAD}" stroke="{LINE}"/>
-  {''.join(panels)}
-  <rect x="{PAD}" y="{74 + rows * GAP_Y + 8}" width="{W - PAD * 2}" height="1.4" class="pulse" fill="none" stroke="{BLUE}" stroke-opacity="0.4"/>
-</svg>
-    '''
+        + f'''  {frame(height)}
+  {header("TOOLCHAIN", f"{len(KIT)} TOOLS")}
+  {''.join(mesh)}
+  {''.join(nodes)}
+</svg>'''
     )
 
 
 def contact():
-    height = 194
+    height = 210
     return (
         open_svg(
             height,
@@ -612,17 +619,18 @@ def contact():
             "Contact",
         )
         + f'''  {frame(height)}
-  <text x="{PAD}" y="34" font-family="{MONO}" font-size="13" letter-spacing="2.6" fill="{INK}">CONTACT</text>
-  <text x="{W - PAD}" y="34" text-anchor="end" font-family="{MONO}" font-size="12" letter-spacing="1.4" fill="{BLUE_SOFT}">PAID WORK ONLY</text>
-  <path d="M{PAD} 48H{W - PAD}" stroke="{LINE}"/>
-  <text x="{PAD}" y="92" font-family="{SANS}" font-size="22" font-weight="500" fill="{INK}">{CONTACT_EMAIL}</text>
-  <text x="{PAD}" y="118" font-family="{SANS}" font-size="14.5" fill="{MUTED}">Jobs you need built, fixed or automated.</text>
-  <text x="{PAD}" y="140" font-family="{SANS}" font-size="13.5" fill="{DIM}">No free support — questions go in GitHub issues.</text>
-  <text x="{W - PAD}" y="92" text-anchor="end" font-family="{MONO}" font-size="12.5" fill="{MUTED}">github.com/axs-official</text>
-  <text x="{W - PAD}" y="116" text-anchor="end" font-family="{MONO}" font-size="12.5" fill="{DIM}">axs-official.github.io</text>
-  <text x="{W - PAD}" y="140" text-anchor="end" font-family="{MONO}" font-size="12" letter-spacing="1.2" fill="{DIM}">FULL-STACK · REMOTE</text>
-  <path d="M{PAD} 162H{W - PAD}" stroke="{LINE_SOFT}"/>
-  <text x="{PAD}" y="184" font-family="{MONO}" font-size="12.5" letter-spacing="1.2" fill="{DIM}">ALL LINKS · axs-official.github.io/links</text>
+  <text x="{PAD}" y="38" font-family="{MONO}" font-size="13" letter-spacing="2.6" fill="{BLUE_SOFT}">CONTACT</text>
+  <text x="{W - PAD}" y="38" text-anchor="end" font-family="{MONO}" font-size="12" letter-spacing="1.4" fill="{INK}">PAID WORK ONLY</text>
+  <path d="M{PAD} 52H{W - PAD}" stroke="{LINE}"/>
+  <text x="{PAD}" y="98" font-family="{SANS}" font-size="25" font-weight="500" fill="{INK}">{CONTACT_EMAIL}</text>
+  <rect class="grow" x="{PAD}" y="107" width="356" height="1.6" rx="1" fill="{BLUE}" opacity=".5" style="animation-delay:.4s"/>
+  <text x="{PAD}" y="132" font-family="{SANS}" font-size="15" fill="{MUTED}">Jobs you need built, fixed or automated.</text>
+  <text x="{PAD}" y="155" font-family="{SANS}" font-size="13.5" fill="{DIM}">No free support — questions go in GitHub issues.</text>
+  <text x="{W - PAD}" y="96" text-anchor="end" font-family="{MONO}" font-size="12.5" fill="{MUTED}">github.com/axs-official</text>
+  <text x="{W - PAD}" y="120" text-anchor="end" font-family="{MONO}" font-size="12.5" fill="{DIM}">axs-official.github.io</text>
+  <text x="{W - PAD}" y="144" text-anchor="end" font-family="{MONO}" font-size="12" letter-spacing="1.2" fill="{DIM}">FULL-STACK · REMOTE</text>
+  <path d="M{PAD} 176H{W - PAD}" stroke="{LINE_SOFT}"/>
+  <text x="{PAD}" y="199" font-family="{MONO}" font-size="12.5" letter-spacing="1.2" fill="{DIM}">ALL LINKS · axs-official.github.io/links</text>
 </svg>'''
     )
 
@@ -635,10 +643,9 @@ def write(name, content):
 
 
 write("hero-dark.svg", hero())
-write("stats.svg", stats())
+write("terminal.svg", terminal())
 write("activity.svg", activity())
 write("about.svg", about())
-write("work.svg", work())
 write("stack.svg", stack())
 write("contact.svg", contact())
 

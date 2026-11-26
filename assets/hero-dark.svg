@@ -26,7 +26,7 @@
     @keyframes dash{to{stroke-dashoffset:-240}}
     @keyframes scan{0%{transform:translateX(0);opacity:0}12%{opacity:1}82%{opacity:1}100%{transform:translateX(744px);opacity:0}}
     @keyframes draw{to{stroke-dashoffset:0}}
-  </style>
+  </style><style> .breathe{animation:breathe 7s ease-in-out infinite} @keyframes breathe{0%,100%{opacity:.10}50%{opacity:.28}}</style>
   <defs>
     <linearGradient id="name" x1="32" y1="112" x2="32" y2="176" gradientUnits="userSpaceOnUse">
       <stop offset="0" stop-color="#FFFFFF"/>
@@ -46,16 +46,23 @@
       <stop offset="0.42" stop-color="#8F8F8F"/>
       <stop offset="1" stop-color="#141414"/>
     </radialGradient>
+    <radialGradient id="halo" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity=".26"/>
+      <stop offset=".55" stop-color="#FFFFFF" stop-opacity=".06"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
+    </radialGradient>
     <clipPath id="pc"><circle cx="660" cy="152" r="45"/></clipPath>
   </defs>
   <rect x="0.5" y="0.5" width="839" height="319" rx="16" fill="#0A0A0A" stroke="#262626"/>
   <g stroke="#FFFFFF" stroke-width="1" opacity="0.03"><path d="M0 0V320"/><path d="M40 0V320"/><path d="M80 0V320"/><path d="M120 0V320"/><path d="M160 0V320"/><path d="M200 0V320"/><path d="M240 0V320"/><path d="M280 0V320"/><path d="M320 0V320"/><path d="M360 0V320"/><path d="M400 0V320"/><path d="M440 0V320"/><path d="M480 0V320"/><path d="M520 0V320"/><path d="M560 0V320"/><path d="M600 0V320"/><path d="M640 0V320"/><path d="M680 0V320"/><path d="M720 0V320"/><path d="M760 0V320"/><path d="M800 0V320"/><path d="M840 0V320"/><path d="M0 0H840"/><path d="M0 40H840"/><path d="M0 80H840"/><path d="M0 120H840"/><path d="M0 160H840"/><path d="M0 200H840"/><path d="M0 240H840"/><path d="M0 280H840"/><path d="M0 320H840"/></g>
   <circle class="star" cx="752.7" cy="151.2" r="1.5" fill="#FFFFFF" opacity="0.64" style="animation-delay:5.13s;animation-duration:4.18s"/><circle class="star" cx="726.3" cy="199.5" r="1.5" fill="#FFFFFF" opacity="0.56" style="animation-delay:5.89s;animation-duration:7.36s"/><circle class="star" cx="511.4" cy="63.0" r="0.7" fill="#FFFFFF" opacity="0.22" style="animation-delay:4.99s;animation-duration:3.66s"/><circle class="star" cx="717.8" cy="189.5" r="1.2" fill="#FFFFFF" opacity="0.31" style="animation-delay:1.96s;animation-duration:5.82s"/><circle class="star" cx="542.1" cy="134.3" r="1.5" fill="#FFFFFF" opacity="0.59" style="animation-delay:5.97s;animation-duration:6.84s"/><circle class="star" cx="256.0" cy="38.1" r="0.7" fill="#FFFFFF" opacity="0.41" style="animation-delay:2.4s;animation-duration:6.87s"/><circle class="star" cx="779.2" cy="260.3" r="0.7" fill="#FFFFFF" opacity="0.23" style="animation-delay:1.28s;animation-duration:7.2s"/><circle class="star" cx="751.7" cy="56.5" r="0.7" fill="#FFFFFF" opacity="0.47" style="animation-delay:0.07s;animation-duration:5.31s"/><circle class="star" cx="563.4" cy="71.9" r="1.5" fill="#FFFFFF" opacity="0.27" style="animation-delay:1.14s;animation-duration:6.4s"/><circle class="star" cx="533.4" cy="51.3" r="1.2" fill="#FFFFFF" opacity="0.68" style="animation-delay:5.94s;animation-duration:3.4s"/><circle class="star" cx="792.3" cy="187.5" r="0.7" fill="#FFFFFF" opacity="0.67" style="animation-delay:1.26s;animation-duration:5.02s"/><circle class="star" cx="531.9" cy="46.7" r="0.8" fill="#FFFFFF" opacity="0.62" style="animation-delay:1.28s;animation-duration:4.46s"/><circle class="star" cx="485.7" cy="87.5" r="1.5" fill="#FFFFFF" opacity="0.27" style="animation-delay:2.21s;animation-duration:5.95s"/><circle class="star" cx="520.5" cy="106.9" r="0.8" fill="#FFFFFF" opacity="0.3" style="animation-delay:4.91s;animation-duration:4.42s"/><circle class="star" cx="608.2" cy="287.0" r="0.8" fill="#FFFFFF" opacity="0.47" style="animation-delay:4.12s;animation-duration:4.99s"/><circle class="star" cx="91.4" cy="31.6" r="0.7" fill="#FFFFFF" opacity="0.33" style="animation-delay:0.23s;animation-duration:7.35s"/><circle class="star" cx="581.0" cy="91.5" r="1.5" fill="#FFFFFF" opacity="0.71" style="animation-delay:2.95s;animation-duration:5.53s"/><circle class="star" cx="794.2" cy="54.2" r="1.2" fill="#FFFFFF" opacity="0.54" style="animation-delay:3.36s;animation-duration:6.89s"/><circle class="star" cx="189.5" cy="22.7" r="1.0" fill="#FFFFFF" opacity="0.23" style="animation-delay:2.47s;animation-duration:4.42s"/><circle class="star" cx="790.9" cy="44.4" r="0.8" fill="#FFFFFF" opacity="0.56" style="animation-delay:5.35s;animation-duration:7.42s"/><circle class="star" cx="570.5" cy="185.1" r="0.8" fill="#FFFFFF" opacity="0.46" style="animation-delay:3.54s;animation-duration:7.19s"/><circle class="star" cx="88.5" cy="37.2" r="1.0" fill="#FFFFFF" opacity="0.24" style="animation-delay:1.91s;animation-duration:7.5s"/><circle class="star" cx="734.0" cy="228.8" r="0.8" fill="#FFFFFF" opacity="0.39" style="animation-delay:4.76s;animation-duration:7.15s"/><circle class="star" cx="565.8" cy="275.6" r="1.2" fill="#FFFFFF" opacity="0.47" style="animation-delay:5.67s;animation-duration:3.52s"/><circle class="star" cx="326.5" cy="21.6" r="0.7" fill="#FFFFFF" opacity="0.75" style="animation-delay:0.48s;animation-duration:6.02s"/><circle class="star" cx="718.0" cy="226.3" r="1.2" fill="#FFFFFF" opacity="0.45" style="animation-delay:5.61s;animation-duration:6.25s"/>
   <circle cx="660" cy="152" r="196" fill="url(#glow)"/>
+  <circle class="breathe" cx="660" cy="152" r="132" fill="url(#halo)"/>
   <g>
     <circle class="spin-r" cx="660" cy="152" r="118" stroke="#FFFFFF" stroke-opacity=".16" stroke-width="1" stroke-dasharray="26 12"/>
     <circle class="spin" cx="660" cy="152" r="92" stroke="#262626" stroke-width="1" stroke-dasharray="2 6"/>
     <ellipse class="spin-r" cx="660" cy="152" rx="136" ry="36" stroke="#FFFFFF" stroke-opacity=".6" stroke-width="1" transform="rotate(-24 660 152)"/>
+    <ellipse class="spin" cx="660" cy="152" rx="158" ry="54" stroke="#FFFFFF" stroke-opacity=".16" stroke-width="1" stroke-dasharray="1 8" transform="rotate(18 660 152)"/>
     <circle cx="660" cy="60" r="2.4" fill="#FFFFFF" opacity=".8"/>
   </g>
   <g>
