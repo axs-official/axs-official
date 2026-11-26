@@ -848,6 +848,7 @@ SCENE_CSS = (
     " .soulHop{animation:soulHop 12s linear infinite}"
     " .soulBob{animation:soulBob 1.5s ease-in-out infinite}"
     " .bone{animation:boneSlide 12s linear infinite;opacity:0}"
+    " .boneL{animation:boneSlideL 12s linear infinite;opacity:0}"
     " .blasterWrap{animation:blasterIn 12s linear infinite;opacity:0}"
     " .beam{animation:beamShot 12s linear infinite;opacity:0;stroke-dasharray:100}"
     " .beamFlash{animation:beamFlash 12s linear infinite;opacity:0}"
@@ -863,7 +864,10 @@ SCENE_CSS = (
     "30.8%{transform:translateY(-8px)}31.8%,33%{transform:translateY(0)}"
     "34%{transform:translateY(-8px)}35%{transform:translateY(-20px)}"
     "36.5%{transform:translateY(-20px)}37.5%{transform:translateY(-8px)}"
-    "38.5%,87%{transform:translateY(0)}88%{transform:translateY(-8px)}"
+    "38.5%,80%{transform:translateY(0)}81%{transform:translateY(-8px)}"
+    "82%{transform:translateY(-20px)}83.5%{transform:translateY(-20px)}"
+    "84.5%{transform:translateY(-8px)}85.5%,87%{transform:translateY(0)}"
+    "88%{transform:translateY(-8px)}"
     "89%{transform:translateY(-20px)}90.5%{transform:translateY(-20px)}"
     "91.5%{transform:translateY(-8px)}92.5%,100%{transform:translateY(0)}}"
     " @keyframes soulSlide{0%,36%{transform:translateX(0)}"
@@ -877,6 +881,9 @@ SCENE_CSS = (
     " @keyframes boneSlide{0%,6%{transform:translateX(0);opacity:0}7%{opacity:1}"
     "26%{transform:translateX(-662px);opacity:1}"
     "27%,100%{transform:translateX(-662px);opacity:0}}"
+    " @keyframes boneSlideL{0%,6%{transform:translateX(0);opacity:0}7%{opacity:1}"
+    "26%{transform:translateX(662px);opacity:1}"
+    "27%,100%{transform:translateX(662px);opacity:0}}"
     " @keyframes blasterIn{0%,44%{opacity:0;transform:translateY(-14px)}"
     "47%{opacity:0;transform:translateY(-14px)}50%,64%{opacity:1;transform:translateY(0)}"
     "68%,100%{opacity:0;transform:translateY(-8px)}}"
@@ -985,6 +992,11 @@ def activity():
         f'<g class="bone" style="animation-delay:{delay}s">'
         f'<g transform="rotate(90)"><use href="#boneSprite"/></g></g></g>'
         for delay in (0.9, 1.7, 2.5, 9.0)
+    ) + "".join(
+        f'<g transform="translate(128 {grid_bottom - 13:.1f})">'
+        f'<g class="boneL" style="animation-delay:{delay}s">'
+        f'<g transform="rotate(-90)"><use href="#boneSprite"/></g></g></g>'
+        for delay in (8.4,)
     )
 
     return (
