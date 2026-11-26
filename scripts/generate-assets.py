@@ -34,8 +34,9 @@ ACCENT = "#FFFFFF"
 BLUE = "#FFFFFF"
 BLUE_SOFT = "#EDEDED"
 LIVE = "#4ADE80"
-ZERO = "#151515"
-RAMP = [ZERO, "#166534", "#22C55E", "#F59E0B", "#EF4444"]
+ZERO = "#171717"
+# One hue, four intensities: the map reads as volume, not as a colour code.
+RAMP = [ZERO, "#0E4429", "#12723A", "#22A34A", "#3FD863"]
 
 SANS = "'Segoe UI', 'Helvetica Neue', Arial, sans-serif"
 SERIF = "Georgia, 'Times New Roman', 'Iowan Old Style', serif"
@@ -57,7 +58,6 @@ BASE_CSS = """<style>
     .fade{animation:fade 1.4s ease-out both}
     .float{animation:float 7s ease-in-out infinite}
     .dash{animation:dash 24s linear infinite}
-    .scan{animation:scan 7.5s cubic-bezier(.45,0,.25,1) infinite}
     .draw{animation:draw 3.2s cubic-bezier(.4,0,.2,1) .3s both}
     @keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
     @keyframes grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
@@ -69,7 +69,6 @@ BASE_CSS = """<style>
     @keyframes fade{from{opacity:0}to{opacity:1}}
     @keyframes float{0%,100%{transform:translateY(-3.5px)}50%{transform:translateY(3.5px)}}
     @keyframes dash{to{stroke-dashoffset:-240}}
-    @keyframes scan{0%{transform:translateX(0);opacity:0}12%{opacity:1}82%{opacity:1}100%{transform:translateX(744px);opacity:0}}
     @keyframes draw{to{stroke-dashoffset:0}}
   </style>"""
 
@@ -176,18 +175,74 @@ def paragraph(x, y, text, size=15, chars=62, line_height=22, color=MUTED):
     )
 
 
+def ring_point(cx, cy, rx, ry, deg, tilt):
+    """A point on an ellipse rotated by `tilt`, in SVG (y-down) space."""
+    a = math.radians(deg)
+    phi = math.radians(tilt)
+    x = cx + rx * math.cos(a) * math.cos(phi) - ry * math.sin(a) * math.sin(phi)
+    y = cy + rx * math.cos(a) * math.sin(phi) + ry * math.sin(a) * math.cos(phi)
+    return x, y
+
+
+def orbit_css(name, cx, cy, rx, ry, tilt, steps=24, back=0.3):
+    """Keyframe track that walks a satellite around a tilted ellipse, dimming it behind."""
+    frames = []
+    for i in range(steps):
+        deg = i * 360.0 / steps
+        x, y = ring_point(cx, cy, rx, ry, deg, tilt)
+        opacity = 1 if math.sin(math.radians(deg)) > 0 else back
+        frames.append(
+            f"{i * 100 / steps:.2f}%{{transform:translate({x - cx:.1f}px,{y - cy:.1f}px);opacity:{opacity}}}"
+        )
+    return f"@keyframes {name}:" + ",".join(frames)
+
+
 def hero():
     height = 320
     cx, cy = 660, 152
+
+    ring_rx, ring_ry, ring_tilt = 150, 40, -22
+    sx, sy = ring_point(cx, cy, ring_rx, ring_ry, 0, ring_tilt)
+    ex, ey = ring_point(cx, cy, ring_rx, ring_ry, 180, ring_tilt)
+    ring_back = f"M{sx:.1f} {sy:.1f}A{ring_rx} {ring_ry} {ring_tilt} 0 0 {ex:.1f} {ey:.1f}"
+    ring_front = f"M{sx:.1f} {sy:.1f}A{ring_rx} {ring_ry} {ring_tilt} 0 1 {ex:.1f} {ey:.1f}"
+
+    outer_rx, outer_ry, outer_tilt = 174, 60, 16
+    osx, osy = ring_point(cx, cy, outer_rx, outer_ry, 0, outer_tilt)
+    oex, oey = ring_point(cx, cy, outer_rx, outer_ry, 180, outer_tilt)
+    outer_back = f"M{osx:.1f} {osy:.1f}A{outer_rx} {outer_ry} {outer_tilt} 0 0 {oex:.1f} {oey:.1f}"
+    outer_front = f"M{osx:.1f} {osy:.1f}A{outer_rx} {outer_ry} {outer_tilt} 0 1 {oex:.1f} {oey:.1f}"
+
+    meridians = "".join(
+        f'<ellipse cx="{cx + dx}" cy="{cy}" rx="12" ry="45"/>' for dx in range(-66, 67, 22)
+    )
+    latitudes = "".join(
+        f'<path d="M{cx - math.sqrt(45 ** 2 - dy ** 2):.1f} {cy + dy}'
+        f'H{cx + math.sqrt(45 ** 2 - dy ** 2):.1f}"/>'
+        for dy in (-30, -15, 0, 15, 30)
+    )
+
+    moon_css = (
+        orbit_css("moonA", cx, cy, ring_rx, ring_ry, ring_tilt, 24, 0.28)
+        + orbit_css("moonB", cx, cy, outer_rx, outer_ry, outer_tilt, 24, 0.2)
+    )
+
     return (
         open_svg(
             height,
             "A-XS, full-stack developer. Privacy-first software, built end to end.",
             "A-XS — profile",
-            extra_css='<style>'
-            ' .breathe{animation:breathe 7s ease-in-out infinite}'
-            ' @keyframes breathe{0%,100%{opacity:.10}50%{opacity:.28}}'
-            '</style>',
+            extra_css="<style>"
+            " .breathe{animation:breathe 7s ease-in-out infinite}"
+            " .ringflow{animation:ringflow 11s linear infinite}"
+            " .surface{animation:surface 26s linear infinite}"
+            " .moonA{animation:moonA 26s linear infinite}"
+            " .moonB{animation:moonB 58s linear infinite}"
+            " @keyframes breathe{0%,100%{opacity:.10}50%{opacity:.26}}"
+            " @keyframes ringflow{to{stroke-dashoffset:-120}}"
+            " @keyframes surface{to{transform:translateX(-22px)}}"
+            + moon_css
+            + "</style>",
         )
         + f'''  <defs>
     <linearGradient id="name" x1="32" y1="112" x2="32" y2="176" gradientUnits="userSpaceOnUse">
@@ -198,15 +253,28 @@ def hero():
       <stop offset="0" stop-color="#FFFFFF" stop-opacity=".85"/>
       <stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
     </linearGradient>
+    <linearGradient id="rim" x1="{cx - 42}" y1="{cy - 44}" x2="{cx + 26}" y2="{cy + 40}" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity=".6"/>
+      <stop offset=".62" stop-color="#FFFFFF" stop-opacity="0"/>
+    </linearGradient>
     <radialGradient id="glow" cx="0.5" cy="0.5" r="0.5">
       <stop offset="0" stop-color="#FFFFFF" stop-opacity=".13"/>
       <stop offset="0.6" stop-color="#FFFFFF" stop-opacity=".03"/>
       <stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
     </radialGradient>
-    <radialGradient id="planet" cx="0.32" cy="0.26" r="0.92">
-      <stop offset="0" stop-color="#F2F2F2"/>
-      <stop offset="0.42" stop-color="#8F8F8F"/>
-      <stop offset="1" stop-color="#141414"/>
+    <radialGradient id="planet" cx="0.33" cy="0.27" r="0.9">
+      <stop offset="0" stop-color="#F4F4F4"/>
+      <stop offset="0.35" stop-color="#A8A8A8"/>
+      <stop offset="0.72" stop-color="#4A4A4A"/>
+      <stop offset="1" stop-color="#101010"/>
+    </radialGradient>
+    <radialGradient id="term" cx="0.76" cy="0.8" r="0.62">
+      <stop offset="0" stop-color="#000000" stop-opacity=".62"/>
+      <stop offset="1" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="spec" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity=".5"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
     </radialGradient>
     <radialGradient id="halo" cx="0.5" cy="0.5" r="0.5">
       <stop offset="0" stop-color="#FFFFFF" stop-opacity=".26"/>
@@ -217,24 +285,41 @@ def hero():
   </defs>
   {frame(height)}
   {grid(height)}
-  {stars(26, 812, height, avoid=[(24, 40, 470, 202), (24, 204, 534, 306), (632, 274, 820, 308)])}
+  {stars(26, 812, height, avoid=[(24, 40, 470, 202), (24, 204, 534, 306), (470, 60, 830, 250)])}
   <circle cx="{cx}" cy="{cy}" r="196" fill="url(#glow)"/>
   <circle class="breathe" cx="{cx}" cy="{cy}" r="132" fill="url(#halo)"/>
-  <g>
-    <circle class="spin-r" cx="{cx}" cy="{cy}" r="118" stroke="{ACCENT}" stroke-opacity=".16" stroke-width="1" stroke-dasharray="26 12"/>
-    <circle class="spin" cx="{cx}" cy="{cy}" r="92" stroke="{LINE}" stroke-width="1" stroke-dasharray="2 6"/>
-    <ellipse class="spin-r" cx="{cx}" cy="{cy}" rx="136" ry="36" stroke="{BLUE}" stroke-opacity=".6" stroke-width="1" transform="rotate(-24 {cx} {cy})"/>
-    <ellipse class="spin" cx="{cx}" cy="{cy}" rx="158" ry="54" stroke="{ACCENT}" stroke-opacity=".16" stroke-width="1" stroke-dasharray="1 8" transform="rotate(18 {cx} {cy})"/>
-    <circle cx="{cx}" cy="{cy - 92}" r="2.4" fill="{ACCENT}" opacity=".8"/>
+  <circle class="spin-r" cx="{cx}" cy="{cy}" r="122" stroke="{ACCENT}" stroke-opacity=".14" stroke-width="1" stroke-dasharray="26 14"/>
+  <circle class="spin" cx="{cx}" cy="{cy}" r="96" stroke="{LINE}" stroke-width="1" stroke-dasharray="2 6"/>
+  <path class="ringflow" d="{outer_back}" stroke="{ACCENT}" stroke-opacity=".18" stroke-width="1" stroke-dasharray="2 9"/>
+  <path class="ringflow" d="{ring_back}" stroke="{ACCENT}" stroke-opacity=".22" stroke-width="1.4"/>
+  <path class="ringflow" d="{ring_back}" stroke="{ACCENT}" stroke-opacity=".5" stroke-width="1" stroke-dasharray="7 13"/>
+  <g transform="translate({cx} {cy})">
+    <g class="moonB">
+      <circle r="6" fill="{ACCENT}" opacity=".14"/>
+      <circle r="1.9" fill="{ACCENT}"/>
+    </g>
   </g>
   <g>
-    <circle cx="{cx}" cy="{cy}" r="45" fill="url(#planet)" stroke="{ACCENT}" stroke-opacity=".35"/>
-    <g clip-path="url(#pc)" stroke="{ACCENT}" stroke-opacity=".18" stroke-width="1">
-      <path d="M{cx - 45} {cy - 15}H{cx + 45}"/>
-      <path d="M{cx - 45} {cy}H{cx + 45}"/>
-      <path d="M{cx - 45} {cy + 15}H{cx + 45}"/>
-      <ellipse cx="{cx}" cy="{cy}" rx="15" ry="45"/>
-      <ellipse cx="{cx}" cy="{cy}" rx="30" ry="45"/>
+    <circle cx="{cx}" cy="{cy}" r="47" fill="none" stroke="{ACCENT}" stroke-opacity=".05" stroke-width="9"/>
+    <circle cx="{cx}" cy="{cy}" r="45" fill="url(#planet)"/>
+    <g clip-path="url(#pc)">
+      <g class="surface" stroke="{ACCENT}" stroke-opacity=".16" stroke-width="1" fill="none">
+        {meridians}
+      </g>
+      <g stroke="{ACCENT}" stroke-opacity=".10" stroke-width="1" fill="none">
+        {latitudes}
+      </g>
+      <circle cx="{cx}" cy="{cy}" r="45" fill="url(#term)"/>
+    </g>
+    <ellipse cx="{cx - 16}" cy="{cy - 19}" rx="14" ry="8.5" fill="url(#spec)" transform="rotate(-28 {cx - 16} {cy - 19})"/>
+    <circle cx="{cx}" cy="{cy}" r="45" fill="none" stroke="url(#rim)" stroke-width="1.1"/>
+  </g>
+  <path class="ringflow" d="{outer_front}" stroke="{ACCENT}" stroke-opacity=".22" stroke-width="1" stroke-dasharray="2 9"/>
+  <path d="{ring_front}" stroke="{BLUE}" stroke-opacity=".7" stroke-width="1.3"/>
+  <g transform="translate({cx} {cy})">
+    <g class="moonA">
+      <circle r="9" fill="{ACCENT}" opacity=".16"/>
+      <circle r="3" fill="{ACCENT}"/>
     </g>
   </g>
   <g class="rise">
@@ -260,41 +345,120 @@ def hero():
 
 
 def terminal():
-    """A shell that types a command, decodes it from ASCII, and answers:"""
-    height = 268
+    """A shell that types the command, decodes it byte by byte, and answers."""
+    height = 306
     command = "echo 83 84 65 89 [80 82 73 86 65 84 69]"
+    chars = len(command)
+    size = 13
+    advance = 7.8
+    text_x = 64
+    run = round(chars * advance, 1)  # forced with textLength, so the mask lines up exactly
+    panel_y, panel_h = 64, 228
+    panel_bottom = panel_y + panel_h
+
     return (
         open_svg(
             height,
             "Terminal: the command echo 83 84 65 89 [80 82 73 86 65 84 69] is decoded from ASCII "
             "into the words STAY PRIVATE.",
             "Terminal",
-            extra_css='<style>'
-            ' .type{animation:type 1.8s steps(44,end) .4s both}'
-            ' .caret{animation:caret 1.1s steps(1,end) infinite}'
-            ' @keyframes type{from{transform:translateX(0)}to{transform:translateX(340px)}}'
-            ' @keyframes caret{0%,49%{opacity:1}50%,100%{opacity:0}}'
-            '</style>',
+            extra_css="<style>"
+            " .typed{transform-box:fill-box;transform-origin:left center;"
+            f"animation:typein 1.7s steps({chars},end) .5s both}}"
+            f" .caret{{animation:caretslide 1.7s steps({chars},end) .5s both}}"
+            " .caret-hide{animation:carethide 1ms linear 2.24s forwards}"
+            " .caret-blink{animation:caretblink 1.05s steps(1,end) 2.3s infinite}"
+            " @keyframes typein{from{transform:scaleX(0)}to{transform:scaleX(1)}}"
+            f" @keyframes caretslide{{from{{transform:translateX(0)}}to{{transform:translateX({run}px)}}}}"
+            " @keyframes carethide{to{opacity:0}}"
+            " @keyframes caretblink{0%,49%{opacity:1}50%,100%{opacity:0}}"
+            "</style>",
         )
-        + f'''  {frame(height)}
+        + f'''  <defs>
+    <linearGradient id="bar" x1="0" y1="{panel_y}" x2="0" y2="{panel_y + 34}" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#161616"/>
+      <stop offset="1" stop-color="#101010"/>
+    </linearGradient>
+  </defs>
+  {frame(height)}
   {header("TERMINAL", "ASCII DECODE")}
-  <rect x="{PAD}" y="66" width="{W - PAD * 2}" height="178" rx="12" fill="#0C0C0C" stroke="{LINE}"/>
-  <circle cx="52" cy="86" r="4" fill="#2A2A2A"/>
-  <circle cx="68" cy="86" r="4" fill="#2A2A2A"/>
-  <circle cx="84" cy="86" r="4" fill="{LIVE}" opacity=".8"/>
-  <text x="106" y="90" font-family="{MONO}" font-size="11" letter-spacing="1.6" fill="{DIM}">axs — privacy shell</text>
-  <text x="{PAD + 12}" y="124" font-family="{MONO}" font-size="13" fill="{LIVE}">$</text>
-  <text x="{PAD + 26}" y="124" font-family="{MONO}" font-size="13" fill="{INK}">{esc(command)}</text>
-  <rect class="type" x="{PAD + 26}" y="111" width="330" height="17" fill="#0C0C0C"/>
-  <rect class="caret" x="{PAD + 378}" y="112" width="7" height="15" fill="{LIVE}" opacity=".85"/>
-  <g class="fade" style="animation-delay:2.1s">
-    <text x="{PAD + 12}" y="152" font-family="{MONO}" font-size="12" fill="{DIM}">&gt; ascii.dec(83 84 65 89) + ascii.dec(80 82 73 86 65 84 69)</text>
+  <rect x="{PAD}" y="{panel_y}" width="{W - PAD * 2}" height="{panel_h}" rx="12" fill="#0B0B0B" stroke="{LINE}"/>
+  <rect x="{PAD}" y="{panel_y}" width="{W - PAD * 2}" height="32" rx="12" fill="url(#bar)"/>
+  <rect x="{PAD}" y="{panel_y + 20}" width="{W - PAD * 2}" height="12" fill="url(#bar)"/>
+  <path d="M{PAD} {panel_y + 32}H{W - PAD}" stroke="{LINE_SOFT}"/>
+
+  <g>
+    <circle cx="54" cy="{panel_y + 16}" r="7.4" fill="#FF5F57" opacity=".16"/>
+    <circle cx="54" cy="{panel_y + 16}" r="4.4" fill="#FF5F57"/>
+    <circle cx="72" cy="{panel_y + 16}" r="7.4" fill="#FEBC2E" opacity=".16"/>
+    <circle cx="72" cy="{panel_y + 16}" r="4.4" fill="#FEBC2E"/>
+    <circle cx="90" cy="{panel_y + 16}" r="7.4" fill="#28C840" opacity=".16"/>
+    <circle cx="90" cy="{panel_y + 16}" r="4.4" fill="#28C840"/>
   </g>
-  <g class="rise" style="animation-delay:2.4s">
-    <text x="{PAD + 12}" y="198" font-family="{SERIF}" font-size="34" letter-spacing="4" fill="{INK}">STAY PRIVATE</text>
+  <text x="110" y="{panel_y + 20}" font-family="{MONO}" font-size="11.5" letter-spacing=".6" fill="{DIM}">axs — privacy shell</text>
+  <text x="{W - PAD - 12}" y="{panel_y + 20}" text-anchor="end" font-family="{MONO}" font-size="10.5" letter-spacing="1.6" fill="#5E5E5E">TTY / 01</text>
+
+  <text x="46" y="124" font-family="{MONO}" font-size="{size}" font-weight="700" fill="{LIVE}">$</text>
+  <text x="{text_x}" y="124" font-family="{MONO}" font-size="{size}" fill="{INK}"
+        textLength="{run}" lengthAdjust="spacing">{esc(command)}</text>
+  <rect class="typed" x="{text_x}" y="111" width="{run}" height="18" fill="#0B0B0B"/>
+  <g class="caret">
+    <g class="caret-hide">
+      <rect class="caret-blink" x="{text_x}" y="112" width="7.6" height="14.5" rx="1" fill="{LIVE}"/>
+    </g>
   </g>
+
+  <g class="fade" style="animation-delay:2.42s">
+    <text x="46" y="152" font-family="{MONO}" font-size="12.5" fill="#4A4A4A">├</text>
+    <text x="{text_x}" y="152" font-family="{MONO}" font-size="12.5" fill="{DIM}">83 84 65 89</text>
+    <text x="164" y="152" font-family="{MONO}" font-size="12.5" fill="#4A4A4A">→</text>
+    <text x="184" y="152" font-family="{MONO}" font-size="12.5" letter-spacing="3" fill="{INK}" fill-opacity=".92">S T A Y</text>
+  </g>
+  <g class="fade" style="animation-delay:2.56s">
+    <text x="46" y="172" font-family="{MONO}" font-size="12.5" fill="#4A4A4A">└</text>
+    <text x="{text_x}" y="172" font-family="{MONO}" font-size="12.5" fill="{DIM}">80 82 73 86 65 84 69</text>
+    <text x="228" y="172" font-family="{MONO}" font-size="12.5" fill="#4A4A4A">→</text>
+    <text x="248" y="172" font-family="{MONO}" font-size="12.5" letter-spacing="3" fill="{INK}" fill-opacity=".92">P R I V A T E</text>
+  </g>
+
+  <g class="rise" style="animation-delay:2.72s">
+    <text x="46" y="218" font-family="{SERIF}" font-size="34" letter-spacing="4.5" fill="{INK}">STAY PRIVATE</text>
+  </g>
+  <rect class="grow" x="46" y="229" width="292" height="1.4" fill="url(#rule)" style="animation-delay:2.98s"/>
+
+  <g class="fade" style="animation-delay:3.15s">
+    <text x="46" y="252" font-family="{MONO}" font-size="11.5" fill="{MUTED}"># 7 bytes in, two words out. No analytics, no cookies, no trackers.</text>
+  </g>
+  <g class="fade" style="animation-delay:3.4s">
+    <text x="46" y="274" font-family="{MONO}" font-size="{size}" font-weight="700" fill="{LIVE}">$</text>
+    <rect class="caret-blink" x="{text_x}" y="261" width="7.6" height="15" rx="1" fill="{INK}" opacity=".9"/>
+  </g>
+
+  <path d="M588 110V276" stroke="{LINE_SOFT}"/>
   <g class="fade" style="animation-delay:2.9s">
-    <text x="{PAD + 12}" y="226" font-family="{MONO}" font-size="11.5" fill="{MUTED}"># 7 bytes in, two words out. No analytics, no cookies, no trackers.</text>
+    <text x="612" y="128" font-family="{MONO}" font-size="10" letter-spacing="2.2" fill="#5E5E5E">SESSION</text>
+  </g>
+  <g font-family="{MONO}" font-size="11.5" letter-spacing=".6">
+    <g class="fade" style="animation-delay:3s">
+      <text x="612" y="156" fill="#6E6E6E">shell</text>
+      <text x="{W - PAD - 16}" y="156" text-anchor="end" fill="{INK}" fill-opacity=".78">zsh</text>
+    </g>
+    <g class="fade" style="animation-delay:3.08s">
+      <text x="612" y="182" fill="#6E6E6E">bytes</text>
+      <text x="{W - PAD - 16}" y="182" text-anchor="end" fill="{INK}" fill-opacity=".78">7</text>
+    </g>
+    <g class="fade" style="animation-delay:3.16s">
+      <text x="612" y="208" fill="#6E6E6E">chars</text>
+      <text x="{W - PAD - 16}" y="208" text-anchor="end" fill="{INK}" fill-opacity=".78">12</text>
+    </g>
+    <g class="fade" style="animation-delay:3.24s">
+      <text x="612" y="234" fill="#6E6E6E">trackers</text>
+      <text x="{W - PAD - 16}" y="234" text-anchor="end" fill="{LIVE}">0</text>
+    </g>
+    <g class="fade" style="animation-delay:3.32s">
+      <text x="612" y="260" fill="#6E6E6E">cookies</text>
+      <text x="{W - PAD - 16}" y="260" text-anchor="end" fill="{LIVE}">0</text>
+    </g>
   </g>
 </svg>'''
     )
@@ -320,7 +484,6 @@ def activity():
     step = 14.3
     cell = 12
     y0 = 84
-    width = step * len(weeks)
     cells = []
     for wi, week in enumerate(weeks):
         for day in week:
@@ -349,7 +512,7 @@ def activity():
         previous_month = month
 
     legend = []
-    lx = PAD + 38
+    lx = PAD + 44
     for shade in RAMP:
         legend.append(f'<rect x="{lx}" y="306" width="11" height="11" rx="2.5" fill="{shade}"/>')
         lx += 16
@@ -401,7 +564,7 @@ def activity():
   <circle cx="{last_x:.1f}" cy="{last_y:.1f}" r="7" stroke="{BLUE}" stroke-opacity=".35"/>
   <text x="{PAD}" y="317" font-family="{MONO}" font-size="12.5" letter-spacing="1.4" fill="{DIM}">LESS</text>
   {''.join(legend)}
-  <text x="{PAD + 130}" y="317" font-family="{MONO}" font-size="12.5" letter-spacing="1.4" fill="{DIM}">MORE</text>
+  <text x="{PAD + 136}" y="317" font-family="{MONO}" font-size="12.5" letter-spacing="1.4" fill="{DIM}">MORE</text>
 </svg>'''
     )
 
@@ -485,7 +648,7 @@ STACK_LABELS = {
     "sqlite": "SQLite",
     "docker": "Docker",
     "cpp": "C++",
-            "figma": "Figma",
+    "figma": "Figma",
     "rest": "REST APIs",
 }
 
@@ -513,12 +676,13 @@ REST_PATH = "M4 9h16M4 9l3.5-3.5M4 9l3.5 3.5M20 15H4M20 15l-3.5-3.5M20 15l-3.5 3
 
 
 def stack():
-    """Toolchain constellation: brand icons drifting on an animated mesh."""
+    """Toolchain constellation: icons float on a mesh with light running the wires."""
     height = 272
-    size = 44
+    size = 46
     rows = (KIT[:9], KIT[9:])
-    centres = (122, 208)
-    jitter = (-10, 7, -14, 3, -6, 12, -12, 5, -8)
+    centres = (120, 212)
+    # Small enough that no plate can ever meet the label of the row above it.
+    jitter = (-7, 5, -6, 3, -4, 7, -6, 4, -5)
 
     def spread(count, inset=0.0):
         left = PAD + size / 2 + inset
@@ -530,29 +694,33 @@ def stack():
 
     top_x = spread(len(rows[0]))
     bottom_x = spread(len(rows[1]), inset=(top_x[1] - top_x[0]) / 2)
-    first = [(x, centres[0] + jitter[i % len(jitter)]) for i, x in enumerate(top_x)]
+    first = [(x, centres[0] + jitter[i]) for i, x in enumerate(top_x)]
     second = [(x, centres[1] + jitter[(i + 1) % len(jitter)]) for i, x in enumerate(bottom_x)]
 
-    mesh = []
+    edges = []
     for line in (first, second):
-        for (ax, ay), (bx, by) in zip(line, line[1:]):
-            mesh.append(
-                f'<path class="flow" d="M{ax:.1f} {ay:.1f}L{bx:.1f} {by:.1f}" stroke="#3A3A3A" '
-                f'stroke-width="1" style="animation-delay:{round(-random.uniform(0, 5), 2)}s"/>'
-            )
-    for i, (bx, by) in enumerate(second):
+        for a, b in zip(line, line[1:]):
+            edges.append((a, b))
+    for i, b in enumerate(second):
         for j in (i - 1, i, i + 1):
             if 0 <= j < len(first):
-                ax, ay = first[j]
-                mesh.append(
-                    f'<path class="flow" d="M{ax:.1f} {ay:.1f}L{bx:.1f} {by:.1f}" stroke="#2F2F2F" '
-                    f'stroke-width="1" stroke-opacity=".9" '
-                    f'style="animation-delay:{round(-random.uniform(0, 5), 2)}s"/>'
-                )
+                edges.append((first[j], b))
+
+    wires = []
+    packets = []
+    for index, ((ax, ay), (bx, by)) in enumerate(edges):
+        path = f"M{ax:.1f} {ay:.1f}L{bx:.1f} {by:.1f}"
+        wires.append(f'<path class="wire" d="{path}" stroke="#3A3A3A" stroke-width="1"/>')
+        colour = LIVE if index % 6 == 3 else "#E8E8E8"
+        packets.append(
+            f'<path class="packet" d="{path}" pathLength="100" stroke="{colour}" stroke-width="1.5" '
+            f'stroke-linecap="round" style="animation-duration:{round(2.6 + (index % 5) * 0.42, 2)}s;'
+            f'animation-delay:-{round(0.4 + index * 0.31, 2)}s"/>'
+        )
 
     nodes = []
-    for line, slugs in zip((first, second), rows):
-        for (cx, cy), slug in zip(line, slugs):
+    for row_index, (line, slugs) in enumerate(zip((first, second), rows)):
+        for column, ((cx, cy), slug) in enumerate(zip(line, slugs)):
             if slug in ICONS:
                 colour = brand(ICONS[slug]["hex"])
                 icon = f'<path d="{ICONS[slug]["path"]}" fill="{colour}"/>'
@@ -563,19 +731,27 @@ def stack():
                     f'stroke-linecap="round" stroke-linejoin="round"/>'
                 )
             label = SHORT_LABEL.get(slug, STACK_LABELS[slug])
-            label_w = len(label) * 6.3 + 10
+            label_w = len(label) * 6.2 + 10
+            float_duration = round(5.6 + ((index_of(slug) * 7) % 11) * 0.28, 2)
+            float_delay = round(-((index_of(slug) * 13) % 19) * 0.37, 2)
+            appear = round(0.34 + (row_index * 9 + column) * 0.045, 2)
             nodes.append(
-                f'<g class="node" style="animation-delay:{round(-random.uniform(0, 7.5), 2)}s">'
+                f'<g class="node" style="animation-duration:{float_duration}s;animation-delay:{float_delay}s">'
+                f'<g class="plate" style="animation-delay:{appear}s">'
                 f'<rect x="{cx - size / 2:.1f}" y="{cy - size / 2:.1f}" width="{size}" height="{size}" '
-                f'rx="13" fill="{PANEL}" stroke="{LINE}"/>'
+                f'rx="14" fill="{PANEL}" stroke="{LINE}"/>'
                 f'<rect x="{cx - size / 2:.1f}" y="{cy - size / 2:.1f}" width="{size}" height="{size}" '
-                f'rx="13" fill="{colour}" opacity=".09"/>'
-                f'<g transform="translate({cx - 11:.1f} {cy - 11:.1f}) scale(.92)">{icon}</g>'
-                f'</g>'
-                f'<rect x="{cx - label_w / 2:.1f}" y="{cy + size / 2 + 7:.1f}" width="{label_w:.1f}" '
+                f'rx="14" fill="{colour}" opacity=".07"/>'
+                f'<rect x="{cx - size / 2:.1f}" y="{cy - size / 2:.1f}" width="{size}" height="{size}" '
+                f'rx="14" fill="url(#sheen)"/>'
+                f'<rect x="{cx - size / 2 + 0.5:.1f}" y="{cy - size / 2 + 0.5:.1f}" width="{size - 1}" '
+                f'height="{size - 1}" rx="13.5" fill="none" stroke="{colour}" stroke-opacity=".22"/>'
+                f'<g transform="translate({cx - 10:.1f} {cy - 10:.1f}) scale(.83)">{icon}</g>'
+                f'<rect x="{cx - label_w / 2:.1f}" y="{cy + size / 2 + 6:.1f}" width="{label_w:.1f}" '
                 f'height="15" rx="4" fill="{BG}" opacity=".9"/>'
-                f'<text x="{cx:.1f}" y="{cy + size / 2 + 19:.1f}" text-anchor="middle" '
+                f'<text x="{cx:.1f}" y="{cy + size / 2 + 18:.1f}" text-anchor="middle" '
                 f'font-family="{MONO}" font-size="10.5" letter-spacing=".4" fill="{MUTED}">{esc(label)}</text>'
+                f'</g></g>'
             )
 
     listing = ", ".join(STACK_LABELS[slug] for slug in KIT)
@@ -585,19 +761,37 @@ def stack():
             height,
             f"Toolchain: {listing}.",
             "Toolchain",
-            extra_css='<style>'
-            ' .flow{stroke-dasharray:3 9;animation:flow 5s linear infinite}'
-            ' .node{animation:drift 7.5s ease-in-out infinite}'
-            ' @keyframes flow{to{stroke-dashoffset:-48}}'
-            ' @keyframes drift{0%,100%{transform:translateY(-2.5px)}50%{transform:translateY(2.5px)}}'
-            '</style>',
+            extra_css="<style>"
+            " .wire{stroke-dasharray:3 6;animation:wire 13s linear infinite}"
+            " .packet{stroke-dasharray:12 88;animation:packet 3.4s linear infinite;opacity:.9}"
+            " .node{animation:drift 7s ease-in-out infinite}"
+            " .plate{transform-box:fill-box;transform-origin:center;"
+            "animation:nodein .9s cubic-bezier(.22,1,.36,1) both}"
+            " @keyframes wire{to{stroke-dashoffset:-108}}"
+            " @keyframes packet{from{stroke-dashoffset:0}to{stroke-dashoffset:-100}}"
+            " @keyframes drift{0%,100%{transform:translate(0,-3.5px)}"
+            "40%{transform:translate(1.5px,1px)}65%{transform:translate(-1.5px,2.5px)}}"
+            " @keyframes nodein{from{opacity:0;transform:translateY(10px) scale(.86)}"
+            "to{opacity:1;transform:translateY(0) scale(1)}}"
+            "</style>",
         )
-        + f'''  {frame(height)}
+        + f'''  <defs>
+    <linearGradient id="sheen" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity=".06"/>
+      <stop offset=".55" stop-color="#FFFFFF" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  {frame(height)}
   {header("TOOLCHAIN", f"{len(KIT)} TOOLS")}
-  {''.join(mesh)}
+  {''.join(wires)}
+  {''.join(packets)}
   {''.join(nodes)}
 </svg>'''
     )
+
+
+def index_of(slug):
+    return KIT.index(slug)
 
 
 def contact():

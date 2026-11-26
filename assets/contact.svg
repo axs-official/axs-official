@@ -12,7 +12,6 @@
     .fade{animation:fade 1.4s ease-out both}
     .float{animation:float 7s ease-in-out infinite}
     .dash{animation:dash 24s linear infinite}
-    .scan{animation:scan 7.5s cubic-bezier(.45,0,.25,1) infinite}
     .draw{animation:draw 3.2s cubic-bezier(.4,0,.2,1) .3s both}
     @keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
     @keyframes grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
@@ -24,7 +23,6 @@
     @keyframes fade{from{opacity:0}to{opacity:1}}
     @keyframes float{0%,100%{transform:translateY(-3.5px)}50%{transform:translateY(3.5px)}}
     @keyframes dash{to{stroke-dashoffset:-240}}
-    @keyframes scan{0%{transform:translateX(0);opacity:0}12%{opacity:1}82%{opacity:1}100%{transform:translateX(744px);opacity:0}}
     @keyframes draw{to{stroke-dashoffset:0}}
   </style>
   <rect x="0.5" y="0.5" width="839" height="209" rx="16" fill="#0A0A0A" stroke="#262626"/>
