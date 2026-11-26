@@ -847,51 +847,64 @@ SCENE_CSS = (
     " .soulSlide{animation:soulSlide 12s linear infinite}"
     " .soulHop{animation:soulHop 12s linear infinite}"
     " .soulBob{animation:soulBob 1.5s ease-in-out infinite}"
+    " .soulHurt{animation:soulHurt 12s linear infinite;opacity:0}"
     " .bone{animation:boneSlide 12s linear infinite;opacity:0}"
     " .boneL{animation:boneSlideL 12s linear infinite;opacity:0}"
     " .blasterWrap{animation:blasterIn 12s linear infinite;opacity:0}"
     " .beam{animation:beamShot 12s linear infinite;opacity:0;stroke-dasharray:100}"
     " .beamFlash{animation:beamFlash 12s linear infinite;opacity:0}"
-    " @keyframes friskHop{0%,50%{transform:translateY(0)}"
-    "51.5%{transform:translateY(-6px)}53%{transform:translateY(-18px)}"
-    "55%{transform:translateY(-18px)}56.5%{transform:translateY(-6px)}"
-    "58%,100%{transform:translateY(0)}}"
-    " @keyframes soulHop{0%,19.5%{transform:translateY(0)}"
-    "20.5%{transform:translateY(-8px)}21.5%{transform:translateY(-20px)}"
-    "23%{transform:translateY(-20px)}24%{transform:translateY(-8px)}"
-    "25%,26.3%{transform:translateY(0)}27.3%{transform:translateY(-8px)}"
-    "28.3%{transform:translateY(-20px)}29.8%{transform:translateY(-20px)}"
-    "30.8%{transform:translateY(-8px)}31.8%,33%{transform:translateY(0)}"
-    "34%{transform:translateY(-8px)}35%{transform:translateY(-20px)}"
-    "36.5%{transform:translateY(-20px)}37.5%{transform:translateY(-8px)}"
-    "38.5%,80%{transform:translateY(0)}81%{transform:translateY(-8px)}"
-    "82%{transform:translateY(-20px)}83.5%{transform:translateY(-20px)}"
-    "84.5%{transform:translateY(-8px)}85.5%,87%{transform:translateY(0)}"
-    "88%{transform:translateY(-8px)}"
-    "89%{transform:translateY(-20px)}90.5%{transform:translateY(-20px)}"
-    "91.5%{transform:translateY(-8px)}92.5%,100%{transform:translateY(0)}}"
-    " @keyframes soulSlide{0%,36%{transform:translateX(0)}"
-    "39%{transform:translateX(-14px)}42%{transform:translateX(-72px)}"
-    "70%{transform:translateX(-72px)}74%{transform:translateX(-40px)}"
-    "78%,100%{transform:translateX(0)}}"
+    " .hpBar{animation:hpBar 12s linear infinite;transform-box:fill-box;transform-origin:0 50%}"
+    " .hpN1{animation:hpN1 12s linear infinite}"
+    " .hpN2{animation:hpN2 12s linear infinite;opacity:0}"
+    " .hpN3{animation:hpN3 12s linear infinite;opacity:0}"
+    " .hpN4{animation:hpN4 12s linear infinite;opacity:0}"
+    " @keyframes friskHop{0%,50.5%{transform:translateY(0)}"
+    "52%{transform:translateY(-6px)}53.5%{transform:translateY(-16px)}"
+    "55.5%{transform:translateY(-16px)}57%{transform:translateY(-6px)}"
+    "58.5%,100%{transform:translateY(0)}}"
+    " @keyframes soulHop{0%,14%{transform:translateY(0)}"
+    "15%{transform:translateY(-10px)}16.5%{transform:translateY(-20px)}"
+    "19.5%{transform:translateY(-20px)}20.5%{transform:translateY(-10px)}"
+    "21.5%,22.5%{transform:translateY(0)}"
+    "23.5%{transform:translateY(-20px)}26%{transform:translateY(-20px)}"
+    "27%{transform:translateY(-8px)}28%,100%{transform:translateY(0)}}"
+    " @keyframes soulSlide{0%,29.6%{transform:translateX(0)}"
+    "30.2%{transform:translateX(-6px)}32.4%{transform:translateX(-6px)}"
+    "34%{transform:translateX(0)}51.6%{transform:translateX(0)}"
+    "52.2%{transform:translateX(-8px)}54%{transform:translateX(-8px)}"
+    "56.5%,83.4%{transform:translateX(0)}84%{transform:translateX(6px)}"
+    "86%{transform:translateX(6px)}88%,100%{transform:translateX(0)}}"
+    " @keyframes soulHurt{0%,29.6%{opacity:0}"
+    "30%{opacity:.95}31%{opacity:0}31.6%{opacity:.9}32.6%{opacity:0}"
+    "51.7%{opacity:0}52.1%{opacity:.95}53.1%{opacity:0}53.7%{opacity:.9}54.7%{opacity:0}"
+    "83.4%{opacity:0}83.9%{opacity:.95}84.9%{opacity:0}85.5%{opacity:.9}86.5%{opacity:0}"
+    "100%{opacity:0}}"
     " @keyframes soulBob{0%,100%{transform:translateY(0)}50%{transform:translateY(1.6px)}}"
     " @keyframes sansBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-1.4px)}}"
     " @keyframes eye{0%,6%{opacity:0}7%{opacity:1}9%{opacity:.3}10%{opacity:1}"
-    "68%{opacity:1}70%,100%{opacity:0}}"
+    "65%{opacity:1}67%,100%{opacity:0}}"
     " @keyframes boneSlide{0%,6%{transform:translateX(0);opacity:0}7%{opacity:1}"
     "26%{transform:translateX(-662px);opacity:1}"
     "27%,100%{transform:translateX(-662px);opacity:0}}"
     " @keyframes boneSlideL{0%,6%{transform:translateX(0);opacity:0}7%{opacity:1}"
     "26%{transform:translateX(662px);opacity:1}"
     "27%,100%{transform:translateX(662px);opacity:0}}"
-    " @keyframes blasterIn{0%,44%{opacity:0;transform:translateY(-14px)}"
-    "47%{opacity:0;transform:translateY(-14px)}50%,64%{opacity:1;transform:translateY(0)}"
-    "68%,100%{opacity:0;transform:translateY(-8px)}}"
-    " @keyframes beamShot{0%,51.6%{stroke-dashoffset:100;opacity:0}"
-    "52%{stroke-dashoffset:0;opacity:1}61%{stroke-dashoffset:0;opacity:1}"
-    "62%,100%{stroke-dashoffset:0;opacity:0}}"
-    " @keyframes beamFlash{0%,51.7%{opacity:0}52.2%{opacity:.12}55%{opacity:.05}"
-    "62%,100%{opacity:0}}"
+    " @keyframes blasterIn{0%,40%{opacity:0;transform:translateY(-12px)}"
+    "43%{opacity:0;transform:translateY(-12px)}46%,62%{opacity:1;transform:translateY(0)}"
+    "66%,100%{opacity:0;transform:translateY(-8px)}}"
+    " @keyframes beamShot{0%,51.4%{stroke-dashoffset:100;opacity:0}"
+    "51.8%{stroke-dashoffset:0;opacity:1}58.6%{stroke-dashoffset:0;opacity:1}"
+    "59.4%,100%{stroke-dashoffset:0;opacity:0}}"
+    " @keyframes beamFlash{0%,51.7%{opacity:0}52.2%{opacity:.16}54%{opacity:.07}"
+    "58%,100%{opacity:0}}"
+    " @keyframes hpBar{0%,29.9%{transform:scaleX(1)}30.2%{transform:scaleX(.76)}"
+    "51.9%{transform:scaleX(.76)}52.2%{transform:scaleX(.52)}"
+    "83.9%{transform:scaleX(.52)}84.2%{transform:scaleX(.28)}"
+    "96.5%{transform:scaleX(.28)}97.5%,100%{transform:scaleX(1)}}"
+    " @keyframes hpN1{0%,29.9%{opacity:1}30%,96.9%{opacity:0}97%,100%{opacity:1}}"
+    " @keyframes hpN2{0%,29.9%{opacity:0}30%,51.9%{opacity:1}52%,100%{opacity:0}}"
+    " @keyframes hpN3{0%,51.9%{opacity:0}52%,83.9%{opacity:1}84%,100%{opacity:0}}"
+    " @keyframes hpN4{0%,83.9%{opacity:0}84%,96.9%{opacity:1}97%,100%{opacity:0}}"
     "</style>"
 )
 
@@ -965,13 +978,10 @@ def activity():
     )
     last_x, last_y = points[-1]
 
-    # Undertale: the map is the arena. A bullet board sits on the grid, Frisk and Sans
-    # stand either side of it, bones sweep through it and a blaster fires into it.
+    # Undertale: the map is the arena. Frisk and Sans stand on it, bones sweep across,
+    # two Gaster Blasters fire an X through it, and the SOUL takes real hits.
     unit = 2.0
     grid_bottom = y0 + step * 6 + cell
-    board_x, board_y = 128, y0 + 40
-    board_w = 572
-    board_h = grid_bottom - board_y
     frisk_x = 68
     frisk_y = grid_bottom - 28 * unit
     sans_unit = 1.9
@@ -979,24 +989,42 @@ def activity():
     eye_x = sans_x + 15.5 * sans_unit
     eye_y = sans_y + 6.5 * sans_unit
     soul_unit = 1.75
-    soul_x = 382
-    soul_y = grid_bottom - 16 * soul_unit - 8
-    blaster_unit = 0.75
-    blaster_cx = 21.5 * blaster_unit
-    blaster_x = 384
-    blaster_y = board_y - 57 * blaster_unit + 4
-    beam_x = blaster_x + blaster_cx
-    beam_top = blaster_y + 57 * blaster_unit - 2
+    soul_x = 450
+    soul_y = grid_bottom - 16 * soul_unit - 9
+    blaster_unit = 0.72
+
+    def aimed_blaster(x1, y1, x2, y2):
+        """A blaster sitting on the start of a shot, rotated so its mouth points down the line."""
+        dx, dy = x2 - x1, y2 - y1
+        ang = math.degrees(math.atan2(-dx, dy))
+        t = math.radians(ang)
+        r = 28.5 * blaster_unit
+        bx, by = x1 + r * math.sin(t), y1 - r * math.cos(t)
+        w, h = 43 * blaster_unit, 57 * blaster_unit
+        return (
+            f'<g transform="translate({bx:.1f} {by:.1f}) rotate({ang:.1f})">'
+            f"{sprite(BLASTER_PX, -w / 2, -h / 2, blaster_unit, BLASTER_COLOURS)}</g>"
+        )
+
+    x_shots = ((255, 104, 604, 181), (604, 129, 255, 181))
+    x_beams = "".join(
+        f'<line class="beam" x1="{x1}" y1="{y1}" x2="{x2}" y2="{y2}" stroke="#DFF3FF" '
+        f'stroke-width="9" stroke-linecap="round" stroke-opacity=".22" pathLength="100"/>'
+        f'<line class="beam" x1="{x1}" y1="{y1}" x2="{x2}" y2="{y2}" stroke="#FFFFFF" '
+        f'stroke-width="2.6" stroke-linecap="round" pathLength="100"/>'
+        for x1, y1, x2, y2 in x_shots
+    )
+    x_blasters = "".join(aimed_blaster(*shot) for shot in x_shots)
     bones = "".join(
         f'<g transform="translate(720 {grid_bottom - 20:.1f})">'
         f'<g class="bone" style="animation-delay:{delay}s">'
         f'<g transform="rotate(90)"><use href="#boneSprite"/></g></g></g>'
-        for delay in (0.9, 1.7, 2.5, 9.0)
+        for delay in (0.6, 1.4, 2.2)
     ) + "".join(
-        f'<g transform="translate(128 {grid_bottom - 13:.1f})">'
+        f'<g transform="translate(64 {grid_bottom - 13:.1f})">'
         f'<g class="boneL" style="animation-delay:{delay}s">'
         f'<g transform="rotate(-90)"><use href="#boneSprite"/></g></g></g>'
-        for delay in (8.4,)
+        for delay in (8.2,)
     )
 
     return (
@@ -1011,13 +1039,11 @@ def activity():
     <filter id="spShadow" x="-30%" y="-30%" width="160%" height="160%">
       <feDropShadow dx="0" dy="1.5" stdDeviation="1.1" flood-color="#000000" flood-opacity=".55"/>
     </filter>
-    <linearGradient id="beamFade" gradientUnits="userSpaceOnUse" x1="0" y1="{beam_top:.1f}" x2="0" y2="{grid_bottom:.1f}">
-      <stop offset="0" stop-color="#FFFFFF" stop-opacity=".95"/>
-      <stop offset=".6" stop-color="#EAF7FF" stop-opacity=".8"/>
-      <stop offset="1" stop-color="#CFEFFF" stop-opacity="0"/>
-    </linearGradient>
-    <clipPath id="boardClip">
-      <rect x="{board_x}" y="{board_y:.1f}" width="{board_w}" height="{board_h:.1f}" rx="3"/>
+    <filter id="soulSoft" x="-70%" y="-70%" width="240%" height="240%">
+      <feGaussianBlur stdDeviation="3.4"/>
+    </filter>
+    <clipPath id="arenaClip">
+      <rect x="{x0 - 2}" y="{y0 - 2}" width="{step * 52 + cell + 4:.1f}" height="{step * 6 + cell + 4:.1f}"/>
     </clipPath>
     <g id="boneSprite">
       {sprite(BONE_PX, -0.5, -0.5, 0.76, {"#": "#080808"})}
@@ -1030,6 +1056,19 @@ def activity():
   </defs>
   {frame(height)}
   {header("CONTRIBUTIONS", "LAST 12 MONTHS")}
+
+  <g>
+    <text x="186" y="42" font-family="{MONO}" font-size="11" letter-spacing="1.4" fill="{MUTED}">HP</text>
+    <rect x="208" y="33" width="92" height="10" rx="1" fill="#151515" stroke="#3A3A3A"/>
+    <g transform="translate(210 35)">
+      <rect class="hpBar" x="0" y="0" width="88" height="6" fill="#F2E14C"/>
+    </g>
+    <text class="hpN1" x="306" y="42" font-family="{MONO}" font-size="11" fill="#F2E14C">92</text>
+    <text class="hpN2" x="306" y="42" font-family="{MONO}" font-size="11" fill="#F2E14C">70</text>
+    <text class="hpN3" x="306" y="42" font-family="{MONO}" font-size="11" fill="#F2E14C">48</text>
+    <text class="hpN4" x="306" y="42" font-family="{MONO}" font-size="11" fill="#F2E14C">26</text>
+    <text x="336" y="42" font-family="{MONO}" font-size="10" letter-spacing="1.2" fill="#C9B458" fill-opacity=".75">KR</text>
+  </g>
   {''.join(labels)}
   <g font-family="{MONO}" font-size="12.5" letter-spacing="1" fill="{DIM}">
     <text x="{x0 - 10:.1f}" y="{y0 + step + 9:.1f}" text-anchor="end">MON</text>
@@ -1049,13 +1088,8 @@ def activity():
   {''.join(legend)}
   <text x="{PAD + 136}" y="317" font-family="{MONO}" font-size="12.5" letter-spacing="1.4" fill="{DIM}">MORE</text>
 
-  <!-- Undertale: the bullet board sits on the map. Bones sweep through it, the SOUL
-       hops them, and a Gaster Blaster drops in to fire a beam it has to slide out of. -->
-  <rect x="{board_x}" y="{board_y:.1f}" width="{board_w}" height="{board_h:.1f}" rx="3"
-        fill="#0A0A0A" fill-opacity=".26"/>
-  <g clip-path="url(#boardClip)">{bones}</g>
-  <rect x="{board_x}" y="{board_y:.1f}" width="{board_w}" height="{board_h:.1f}" rx="3"
-        fill="none" stroke="#EDEDED" stroke-opacity=".82" stroke-width="1.6"/>
+  <!-- Undertale: attacks sweep the map, the SOUL takes hits and the HP bar drops. -->
+  <g clip-path="url(#arenaClip)">{bones}{x_beams}</g>
   <ellipse cx="{frisk_x + 17:.1f}" cy="{grid_bottom - 1.6:.1f}" rx="17" ry="3" fill="#000000" opacity=".45"/>
   <ellipse cx="{sans_x + 21.8:.1f}" cy="{grid_bottom - 1.6:.1f}" rx="21" ry="3.4" fill="#000000" opacity=".45"/>
   <g class="friskHop" filter="url(#spShadow)">{sprite(FRISK_PX, frisk_x, frisk_y, unit, FRISK_COLOURS)}</g>
@@ -1064,23 +1098,15 @@ def activity():
     <circle cx="{eye_x:.1f}" cy="{eye_y:.1f}" r="7.5" fill="#7FDBFF" opacity=".2"/>
     <circle cx="{eye_x:.1f}" cy="{eye_y:.1f}" r="2.8" fill="#A6ECFF"/>
   </g>
-  <g class="blasterWrap">
-    <g transform="translate({blaster_x} {blaster_y:.1f})">
-      {sprite(BLASTER_PX, 0, 0, blaster_unit, BLASTER_COLOURS)}
-    </g>
-  </g>
-  <g clip-path="url(#boardClip)">
-    <line class="beam" x1="{beam_x:.1f}" y1="{beam_top:.1f}" x2="{beam_x:.1f}" y2="{grid_bottom:.1f}"
-          stroke="url(#beamFade)" stroke-width="12" stroke-linecap="round" stroke-opacity=".35" pathLength="100"/>
-    <line class="beam" x1="{beam_x:.1f}" y1="{beam_top:.1f}" x2="{beam_x:.1f}" y2="{grid_bottom:.1f}"
-          stroke="url(#beamFade)" stroke-width="3.4" stroke-linecap="round" pathLength="100"/>
-  </g>
-  <circle class="beam" cx="{beam_x:.1f}" cy="{beam_top:.1f}" r="4.6" fill="#FFFFFF" opacity=".55"/>
+  <g class="blasterWrap">{x_blasters}</g>
   <g class="soulSlide">
     <g class="soulHop">
       <g class="soulBob">
-        <ellipse cx="{soul_x + 14:.1f}" cy="{soul_y + 14:.1f}" rx="18" ry="14" fill="#FF3B3B" opacity=".16"/>
+        <ellipse cx="{soul_x + 14:.1f}" cy="{soul_y + 14:.1f}" rx="24" ry="21" fill="#000000"
+                 opacity=".5" filter="url(#soulSoft)"/>
+        <ellipse cx="{soul_x + 14:.1f}" cy="{soul_y + 14:.1f}" rx="18" ry="14" fill="#FF3B3B" opacity=".18"/>
         {sprite(HEART_PX, soul_x, soul_y, soul_unit, SOUL_COLOURS)}
+        <g class="soulHurt">{sprite(HEART_PX, soul_x, soul_y, soul_unit, {"a": "#FFFFFF"})}</g>
       </g>
     </g>
   </g>
