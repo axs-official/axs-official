@@ -35,8 +35,8 @@ BLUE = "#FFFFFF"
 BLUE_SOFT = "#EDEDED"
 LIVE = "#4ADE80"
 ZERO = "#171717"
-# One hue, four intensities: the map reads as volume, not as a colour code.
-RAMP = [ZERO, "#0E4429", "#12723A", "#22A34A", "#3FD863"]
+# Quiet days sit in red, the busiest days turn green: the warm end is the low end.
+RAMP = [ZERO, "#8B2C2C", "#C2410C", "#E0A020", "#3FD863"]
 
 SANS = "'Segoe UI', 'Helvetica Neue', Arial, sans-serif"
 SERIF = "Georgia, 'Times New Roman', 'Iowan Old Style', serif"
@@ -344,8 +344,48 @@ def hero():
     )
 
 
+# %%terminal
+LOOP = 9.6  # one full run of the terminal, seconds
+OUT_START = 8.4  # output starts clearing
+OUT_END = 9.0  # output gone
+
+
+def _frames(name, stops):
+    body = "".join(f"{round(at, 2):g}%{{{decl}}}" for at, decl in stops)
+    return f" @keyframes {name}{{{body}}}"
+
+
+def _at(seconds):
+    return round(seconds / LOOP * 100, 2)
+
+
+def _fade(name, start, dur=0.36, rise=0):
+    """A block that appears at `start` and clears before the loop restarts."""
+    if rise:
+        hidden = f"opacity:0;transform:translateY({rise}px)"
+        shown = "opacity:1;transform:translateY(0)"
+        gone = "opacity:0;transform:translateY(0)"
+    else:
+        hidden, shown, gone = "opacity:0", "opacity:1", "opacity:0"
+    return _frames(
+        name,
+        [
+            (0, hidden),
+            (_at(start), hidden),
+            (_at(start + dur), shown),
+            (_at(OUT_START), shown),
+            (_at(OUT_END), gone),
+            (100, gone),
+        ],
+    )
+
+
+def _play(name, easing="linear"):
+    return f'style="animation:{name} {LOOP}s {easing} infinite"'
+
+
 def terminal():
-    """A shell that types the command, decodes it byte by byte, and answers."""
+    """A shell that types the command, presses Enter, decodes it — then runs again."""
     height = 306
     command = "echo 83 84 65 89 [80 82 73 86 65 84 69]"
     chars = len(command)
@@ -354,7 +394,60 @@ def terminal():
     text_x = 64
     run = round(chars * advance, 1)  # forced with textLength, so the mask lines up exactly
     panel_y, panel_h = 64, 228
-    panel_bottom = panel_y + panel_h
+    type_start, type_end = 0.6, 2.3
+
+    css = [
+        # The cover slides right in character-sized steps, uncovering the line; the caret
+        # rides its left edge. At the reset it slides back and wipes the command.
+        _frames(
+            "tmove",
+            [
+                (0, "transform:translateX(0)"),
+                (_at(type_start), "transform:translateX(0)"),
+                (_at(type_end), f"transform:translateX({run}px)"),
+                (_at(9.0), f"transform:translateX({run}px)"),
+                (_at(9.05), "transform:translateX(0)"),
+                (100, "transform:translateX(0)"),
+            ],
+        ),
+        # Solid while typing, gone once Enter lands.
+        _frames(
+            "tbar",
+            [
+                (0, "opacity:1"),
+                (_at(type_end + 0.02), "opacity:1"),
+                (_at(type_end + 0.08), "opacity:0"),
+                (_at(9.02), "opacity:0"),
+                (_at(9.04), "opacity:1"),
+                (100, "opacity:1"),
+            ],
+        ),
+        _frames(
+            "lrule",
+            [
+                (0, "transform:scaleX(0)"),
+                (_at(3.02), "transform:scaleX(0)"),
+                (_at(3.32), "transform:scaleX(1)"),
+                (_at(OUT_START), "transform:scaleX(1)"),
+                (_at(OUT_END), "transform:scaleX(0)"),
+            ],
+        ),
+    ]
+    for name, start in (
+        ("ld1", 2.5),
+        ("ld2", 2.68),
+        ("lhead", 2.86),
+        ("lnote", 3.16),
+        ("lprompt", 3.34),
+        ("lsession", 2.94),
+        ("lrow1", 3.02),
+        ("lrow2", 3.1),
+        ("lrow3", 3.18),
+        ("lrow4", 3.26),
+        ("lrow5", 3.34),
+    ):
+        css.append(_fade(name, start))
+    css.append(_fade("lenter", 2.34, dur=0.18))
 
     return (
         open_svg(
@@ -363,16 +456,9 @@ def terminal():
             "into the words STAY PRIVATE.",
             "Terminal",
             extra_css="<style>"
-            " .typed{transform-box:fill-box;transform-origin:left center;"
-            f"animation:typein 1.7s steps({chars},end) .5s both}}"
-            f" .caret{{animation:caretslide 1.7s steps({chars},end) .5s both}}"
-            " .caret-hide{animation:carethide 1ms linear 2.24s forwards}"
-            " .caret-blink{animation:caretblink 1.05s steps(1,end) 2.3s infinite}"
-            " @keyframes typein{from{transform:scaleX(0)}to{transform:scaleX(1)}}"
-            f" @keyframes caretslide{{from{{transform:translateX(0)}}to{{transform:translateX({run}px)}}}}"
-            " @keyframes carethide{to{opacity:0}}"
-            " @keyframes caretblink{0%,49%{opacity:1}50%,100%{opacity:0}}"
-            "</style>",
+            + "".join(css)
+            + " .mg{transform-box:fill-box;transform-origin:left center}"
+            + "</style>",
         )
         + f'''  <defs>
     <linearGradient id="bar" x1="0" y1="{panel_y}" x2="0" y2="{panel_y + 34}" gradientUnits="userSpaceOnUse">
@@ -401,61 +487,66 @@ def terminal():
   <text x="46" y="124" font-family="{MONO}" font-size="{size}" font-weight="700" fill="{LIVE}">$</text>
   <text x="{text_x}" y="124" font-family="{MONO}" font-size="{size}" fill="{INK}"
         textLength="{run}" lengthAdjust="spacing">{esc(command)}</text>
-  <rect class="typed" x="{text_x}" y="111" width="{run}" height="18" fill="#0B0B0B"/>
-  <g class="caret">
-    <g class="caret-hide">
-      <rect class="caret-blink" x="{text_x}" y="112" width="7.6" height="14.5" rx="1" fill="{LIVE}"/>
+  <g style="animation:tmove {LOOP}s steps({chars},end) infinite">
+    <rect x="{text_x}" y="111" width="{run}" height="18" fill="#0B0B0B"/>
+    <g style="animation:tbar {LOOP}s linear infinite">
+      <rect x="{text_x}" y="112" width="7.6" height="14.5" rx="1" fill="{LIVE}"/>
     </g>
   </g>
+  <g {_play("lenter")}>
+    <rect x="382" y="113" width="24" height="17" rx="4" fill="#151515" stroke="#2E2E2E"/>
+    <text x="394" y="125.5" text-anchor="middle" font-family="{MONO}" font-size="11.5" fill="{DIM}">↵</text>
+  </g>
 
-  <g class="fade" style="animation-delay:2.42s">
+  <g {_play("ld1")}>
     <text x="46" y="152" font-family="{MONO}" font-size="12.5" fill="#4A4A4A">├</text>
     <text x="{text_x}" y="152" font-family="{MONO}" font-size="12.5" fill="{DIM}">83 84 65 89</text>
     <text x="164" y="152" font-family="{MONO}" font-size="12.5" fill="#4A4A4A">→</text>
     <text x="184" y="152" font-family="{MONO}" font-size="12.5" letter-spacing="3" fill="{INK}" fill-opacity=".92">S T A Y</text>
   </g>
-  <g class="fade" style="animation-delay:2.56s">
+  <g {_play("ld2")}>
     <text x="46" y="172" font-family="{MONO}" font-size="12.5" fill="#4A4A4A">└</text>
     <text x="{text_x}" y="172" font-family="{MONO}" font-size="12.5" fill="{DIM}">80 82 73 86 65 84 69</text>
     <text x="228" y="172" font-family="{MONO}" font-size="12.5" fill="#4A4A4A">→</text>
     <text x="248" y="172" font-family="{MONO}" font-size="12.5" letter-spacing="3" fill="{INK}" fill-opacity=".92">P R I V A T E</text>
   </g>
 
-  <g class="rise" style="animation-delay:2.72s">
+  <g {_play("lhead")}>
     <text x="46" y="218" font-family="{SERIF}" font-size="34" letter-spacing="4.5" fill="{INK}">STAY PRIVATE</text>
   </g>
-  <rect class="grow" x="46" y="229" width="292" height="1.4" fill="url(#rule)" style="animation-delay:2.98s"/>
+  <rect class="mg" x="46" y="229" width="292" height="1.4" fill="url(#rule)"
+        style="animation:lrule {LOOP}s linear infinite"/>
 
-  <g class="fade" style="animation-delay:3.15s">
+  <g {_play("lnote")}>
     <text x="46" y="252" font-family="{MONO}" font-size="11.5" fill="{MUTED}"># 7 bytes in, two words out. No analytics, no cookies, no trackers.</text>
   </g>
-  <g class="fade" style="animation-delay:3.4s">
+  <g {_play("lprompt")}>
     <text x="46" y="274" font-family="{MONO}" font-size="{size}" font-weight="700" fill="{LIVE}">$</text>
     <rect class="caret-blink" x="{text_x}" y="261" width="7.6" height="15" rx="1" fill="{INK}" opacity=".9"/>
   </g>
 
   <path d="M588 110V276" stroke="{LINE_SOFT}"/>
-  <g class="fade" style="animation-delay:2.9s">
+  <g {_play("lsession")}>
     <text x="612" y="128" font-family="{MONO}" font-size="10" letter-spacing="2.2" fill="#5E5E5E">SESSION</text>
   </g>
   <g font-family="{MONO}" font-size="11.5" letter-spacing=".6">
-    <g class="fade" style="animation-delay:3s">
+    <g {_play("lrow1")}>
       <text x="612" y="156" fill="#6E6E6E">shell</text>
       <text x="{W - PAD - 16}" y="156" text-anchor="end" fill="{INK}" fill-opacity=".78">zsh</text>
     </g>
-    <g class="fade" style="animation-delay:3.08s">
+    <g {_play("lrow2")}>
       <text x="612" y="182" fill="#6E6E6E">bytes</text>
       <text x="{W - PAD - 16}" y="182" text-anchor="end" fill="{INK}" fill-opacity=".78">7</text>
     </g>
-    <g class="fade" style="animation-delay:3.16s">
+    <g {_play("lrow3")}>
       <text x="612" y="208" fill="#6E6E6E">chars</text>
       <text x="{W - PAD - 16}" y="208" text-anchor="end" fill="{INK}" fill-opacity=".78">12</text>
     </g>
-    <g class="fade" style="animation-delay:3.24s">
+    <g {_play("lrow4")}>
       <text x="612" y="234" fill="#6E6E6E">trackers</text>
       <text x="{W - PAD - 16}" y="234" text-anchor="end" fill="{LIVE}">0</text>
     </g>
-    <g class="fade" style="animation-delay:3.32s">
+    <g {_play("lrow5")}>
       <text x="612" y="260" fill="#6E6E6E">cookies</text>
       <text x="{W - PAD - 16}" y="260" text-anchor="end" fill="{LIVE}">0</text>
     </g>
@@ -569,6 +660,7 @@ def activity():
     )
 
 
+# %%about
 def about():
     height = 272
     facts = [
@@ -580,33 +672,64 @@ def about():
     for index, (label, value) in enumerate(facts):
         y = 96 + index * 58
         rows.append(
+            f'<g class="rise" style="animation-delay:{round(0.5 + index * 0.18, 2)}s">'
             f'<text x="566" y="{y}" font-family="{MONO}" font-size="12" letter-spacing="1.4" fill="{DIM}">{label}</text>'
             f'<text x="566" y="{y + 25}" font-family="{SANS}" font-size="16.5" fill="{INK}" fill-opacity=".94">{value}</text>'
+            f"</g>"
             f'<rect class="grow" x="566" y="{y + 39}" width="{W - PAD - 566}" height="1" fill="{LINE}" '
-            f'style="animation-delay:{round(0.3 + index * 0.14, 2)}s"/>'
+            f'style="animation-delay:{round(0.62 + index * 0.18, 2)}s"/>'
         )
+
+    copy = []
+    for block, text in enumerate(
+        (
+            "I take a project end to end: database, API, interface and deploy. React and Next.js "
+            "most days, Python when there is work worth automating.",
+            "Privacy decides the shape: no analytics, no cookies, no trackers, no logins you didn't "
+            "ask for. Ask and I'll walk you through the code.",
+        )
+    ):
+        for line, text_line in enumerate(textwrap.wrap(text, 58)):
+            copy.append(
+                f'<text class="rise" x="{PAD}" y="{96 + block * 74 + line * 22}" font-family="{SANS}" '
+                f'font-size="15" fill="{MUTED}" '
+                f'style="animation-delay:{round(0.14 + (block * 3 + line) * 0.09, 2)}s">{esc(text_line)}</text>'
+            )
 
     return (
         open_svg(
             height,
             "About A-XS: full-stack developer. Privacy-first software, built end to end. Open to paid work.",
             "About",
-            extra_css='<style>'
-            ' .bar{animation:bar 6s ease-in-out infinite}'
-            ' @keyframes bar{0%,100%{opacity:.18}50%{opacity:.8}}'
-            '</style>',
+            extra_css="<style>"
+            " .bar{animation:barflow 6.6s cubic-bezier(.45,0,.55,1) infinite}"
+            " .sheen{animation:sheen 9.5s cubic-bezier(.4,0,.2,1) 1.2s infinite}"
+            " @keyframes barflow{0%{transform:translateY(0);opacity:0}"
+            "10%{opacity:1}88%{opacity:1}100%{transform:translateY(96px);opacity:0}}"
+            " @keyframes sheen{0%{transform:translateX(0)}58%,100%{transform:translateX(1180px)}}"
+            "</style>",
         )
-        + f'''  {frame(height)}
+        + f'''  <defs>
+    <clipPath id="aboutClip">
+      <rect x="0.5" y="0.5" width="{W - 1}" height="{height - 1}" rx="16"/>
+    </clipPath>
+    <linearGradient id="sheenGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity="0"/>
+      <stop offset=".5" stop-color="#FFFFFF" stop-opacity=".05"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  {frame(height)}
   {header("ABOUT", "A-XS")}
-  <rect class="bar" x="{PAD - 12}" y="78" width="2" height="152" rx="1" fill="{BLUE}"/>
-  <g class="fade">
-    {paragraph(PAD, 96, "I take a project end to end: database, API, interface and deploy. React and Next.js most days, Python when there is work worth automating.", size=15, chars=58)}
-    {paragraph(PAD, 170, "Privacy decides the shape: no analytics, no cookies, no trackers, no logins you didn't ask for. Ask and I'll walk you through the code.", size=15, chars=58)}
-  </g>
-  <g class="fade" style="animation-delay:.45s">
-    <text x="{PAD}" y="242" font-family="{MONO}" font-size="11.5" letter-spacing="1.4" fill="{MUTED}">NO ANALYTICS · NO COOKIES · NO TRACKERS</text>
-  </g>
+  <rect x="{PAD - 12}" y="78" width="2" height="152" rx="1" fill="#1F1F1F"/>
+  <rect class="bar" x="{PAD - 12}" y="78" width="2" height="56" rx="1" fill="{BLUE}"/>
+  {''.join(copy)}
+  <text class="rise" x="{PAD}" y="242" font-family="{MONO}" font-size="11.5" letter-spacing="1.4"
+        fill="{MUTED}" style="animation-delay:.72s">NO ANALYTICS · NO COOKIES · NO TRACKERS</text>
   {''.join(rows)}
+  <g clip-path="url(#aboutClip)">
+    <rect class="sheen" x="-260" y="0" width="260" height="{height}" fill="url(#sheenGrad)"/>
+  </g>
 </svg>'''
     )
 
@@ -794,6 +917,7 @@ def index_of(slug):
     return KIT.index(slug)
 
 
+# %%contact
 def contact():
     height = 210
     return (
@@ -802,20 +926,41 @@ def contact():
             f"Contact axs at {CONTACT_EMAIL} for paid work and business enquiries only. "
             "Every other link lives at axs-official.github.io/links.",
             "Contact",
+            extra_css="<style>"
+            " .lift{animation:lift .9s cubic-bezier(.22,1,.36,1) both}"
+            " .pulse{transform-box:fill-box;transform-origin:center;"
+            "animation:pulse 2.6s cubic-bezier(.2,.6,.3,1) infinite}"
+            " .trail{animation:trail 7s cubic-bezier(.4,0,.2,1) 1.1s infinite}"
+            " @keyframes lift{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:translateY(0)}}"
+            " @keyframes pulse{0%{transform:scale(.55);opacity:.6}70%,100%{transform:scale(2.2);opacity:0}}"
+            " @keyframes trail{0%{transform:translateX(0);opacity:0}9%{opacity:.85}"
+            "58%{transform:translateX(724px);opacity:.1}59%,100%{transform:translateX(724px);opacity:0}}"
+            "</style>",
         )
         + f'''  {frame(height)}
   <text x="{PAD}" y="38" font-family="{MONO}" font-size="13" letter-spacing="2.6" fill="{BLUE_SOFT}">CONTACT</text>
-  <text x="{W - PAD}" y="38" text-anchor="end" font-family="{MONO}" font-size="12" letter-spacing="1.4" fill="{INK}">PAID WORK ONLY</text>
+  <g class="lift" style="animation-delay:.16s">
+    <text x="{W - PAD}" y="38" text-anchor="end" font-family="{MONO}" font-size="12" letter-spacing="1.4" fill="{INK}">PAID WORK ONLY</text>
+  </g>
+  <circle class="pulse" cx="674" cy="33.5" r="4" fill="{LIVE}"/>
+  <circle class="lift" cx="674" cy="33.5" r="3.2" fill="{LIVE}" style="animation-delay:.16s"/>
   <path d="M{PAD} 52H{W - PAD}" stroke="{LINE}"/>
-  <text x="{PAD}" y="98" font-family="{SANS}" font-size="25" font-weight="500" fill="{INK}">{CONTACT_EMAIL}</text>
-  <rect class="grow" x="{PAD}" y="107" width="356" height="1.6" rx="1" fill="{BLUE}" opacity=".5" style="animation-delay:.4s"/>
-  <text x="{PAD}" y="132" font-family="{SANS}" font-size="15" fill="{MUTED}">Jobs you need built, fixed or automated.</text>
-  <text x="{PAD}" y="155" font-family="{SANS}" font-size="13.5" fill="{DIM}">No free support — questions go in GitHub issues.</text>
-  <text x="{W - PAD}" y="96" text-anchor="end" font-family="{MONO}" font-size="12.5" fill="{MUTED}">github.com/axs-official</text>
-  <text x="{W - PAD}" y="120" text-anchor="end" font-family="{MONO}" font-size="12.5" fill="{DIM}">axs-official.github.io</text>
-  <text x="{W - PAD}" y="144" text-anchor="end" font-family="{MONO}" font-size="12" letter-spacing="1.2" fill="{DIM}">FULL-STACK · REMOTE</text>
-  <path d="M{PAD} 176H{W - PAD}" stroke="{LINE_SOFT}"/>
-  <text x="{PAD}" y="199" font-family="{MONO}" font-size="12.5" letter-spacing="1.2" fill="{DIM}">ALL LINKS · axs-official.github.io/links</text>
+  <rect class="trail" x="{PAD}" y="51.4" width="84" height="1.6" rx=".8" fill="{BLUE}"/>
+  <g class="lift" style="animation-delay:.06s">
+    <text x="{PAD}" y="98" font-family="{SANS}" font-size="25" font-weight="500" fill="{INK}">{CONTACT_EMAIL}</text>
+  </g>
+  <rect class="grow" x="{PAD}" y="107" width="356" height="1.6" rx="1" fill="{BLUE}" opacity=".5" style="animation-delay:.36s"/>
+  <text class="lift" x="{PAD}" y="132" font-family="{SANS}" font-size="15" fill="{MUTED}" style="animation-delay:.44s">Jobs you need built, fixed or automated.</text>
+  <text class="lift" x="{PAD}" y="155" font-family="{SANS}" font-size="13.5" fill="{DIM}" style="animation-delay:.52s">No free support — questions go in GitHub issues.</text>
+  <g class="lift" style="animation-delay:.3s">
+    <text x="{W - PAD}" y="96" text-anchor="end" font-family="{MONO}" font-size="12.5" fill="{MUTED}">github.com/axs-official</text>
+    <text x="{W - PAD}" y="120" text-anchor="end" font-family="{MONO}" font-size="12.5" fill="{DIM}">axs-official.github.io</text>
+    <text x="{W - PAD}" y="144" text-anchor="end" font-family="{MONO}" font-size="12" letter-spacing="1.2" fill="{DIM}">FULL-STACK · REMOTE</text>
+  </g>
+  <g class="lift" style="animation-delay:.58s">
+    <path d="M{PAD} 176H{W - PAD}" stroke="{LINE_SOFT}"/>
+    <text x="{PAD}" y="199" font-family="{MONO}" font-size="12.5" letter-spacing="1.2" fill="{DIM}">ALL LINKS · axs-official.github.io/links</text>
+  </g>
 </svg>'''
     )
 
