@@ -378,12 +378,6 @@ def activity():
             "Contributions",
         )
         + f'''  <defs>
-    <clipPath id="heatClip"><rect x="{x0 - 2:.1f}" y="{y0 - 2}" width="{width + 4:.1f}" height="{step * 7 + 4:.1f}" rx="4"/></clipPath>
-    <linearGradient id="scanGrad" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0" stop-color="{BLUE_SOFT}" stop-opacity="0"/>
-      <stop offset="0.5" stop-color="{BLUE_SOFT}" stop-opacity=".22"/>
-      <stop offset="1" stop-color="{BLUE_SOFT}" stop-opacity="0"/>
-    </linearGradient>
     <linearGradient id="rhythmFill" x1="0" y1="238" x2="0" y2="276" gradientUnits="userSpaceOnUse">
       <stop offset="0" stop-color="{BLUE}" stop-opacity=".28"/>
       <stop offset="1" stop-color="{BLUE}" stop-opacity="0"/>
@@ -398,9 +392,6 @@ def activity():
     <text x="{x0 - 10:.1f}" y="{y0 + step * 5 + 9:.1f}" text-anchor="end">FRI</text>
   </g>
   {''.join(cells)}
-  <g clip-path="url(#heatClip)">
-    <rect class="scan" x="{x0 - 34:.1f}" y="{y0 - 2}" width="68" height="{step * 7 + 4:.1f}" fill="url(#scanGrad)"/>
-  </g>
   <path d="M{PAD} 202H{W - PAD}" stroke="{LINE}"/>
   <text x="{PAD}" y="226" font-family="{MONO}" font-size="12" letter-spacing="1.6" fill="{MUTED}">WEEKLY RHYTHM</text>
   <path d="{area}" fill="url(#rhythmFill)" class="fade" style="animation-delay:.5s"/>
