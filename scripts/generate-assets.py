@@ -992,6 +992,7 @@ def activity():
     soul_x = 450
     soul_y = grid_bottom - 16 * soul_unit - 9
     blaster_unit = 0.72
+    blaster_w, blaster_h = 43 * blaster_unit, 57 * blaster_unit
 
     def aimed_blaster(x1, y1, x2, y2):
         """A blaster sitting on the start of a shot, rotated so its mouth points down the line."""
@@ -1000,11 +1001,8 @@ def activity():
         t = math.radians(ang)
         r = 28.5 * blaster_unit
         bx, by = x1 + r * math.sin(t), y1 - r * math.cos(t)
-        w, h = 43 * blaster_unit, 57 * blaster_unit
-        return (
-            f'<g transform="translate({bx:.1f} {by:.1f}) rotate({ang:.1f})">'
-            f"{sprite(BLASTER_PX, -w / 2, -h / 2, blaster_unit, BLASTER_COLOURS)}</g>"
-        )
+        return f'<g transform="translate({bx:.1f} {by:.1f}) rotate({ang:.1f})"><use href="#blasterSprite"/></g>'
+
 
     x_shots = ((255, 104, 604, 181), (604, 129, 255, 181))
     x_beams = "".join(
@@ -1045,6 +1043,7 @@ def activity():
     <clipPath id="arenaClip">
       <rect x="{x0 - 2}" y="{y0 - 2}" width="{step * 52 + cell + 4:.1f}" height="{step * 6 + cell + 4:.1f}"/>
     </clipPath>
+    <g id="blasterSprite">{sprite(BLASTER_PX, -blaster_w / 2, -blaster_h / 2, blaster_unit, BLASTER_COLOURS)}</g>
     <g id="boneSprite">
       {sprite(BONE_PX, -0.5, -0.5, 0.76, {"#": "#080808"})}
       {sprite(BONE_PX, 0, 0, 0.7, BONE_COLOURS)}
