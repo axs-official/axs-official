@@ -882,14 +882,84 @@ SANS_BODY_PX = (
     "......#########aaaa...........aaaaaaa###########....",
     "......##########a##...........######a##########.....",
 )
+SANS_ATTACK_PX = (
+    ".............................############.............................",
+    "..........................##################..........................",
+    "........................######################........................",
+    ".......................########################.......................",
+    "......................##########################......................",
+    ".....................############################.....................",
+    ".....................############################.....................",
+    "....................##############################....................",
+    "....................##############################....................",
+    "....................#####aaaaaa########aaaaaa#####....................",
+    "....................###aaaaaaaaa######aaaaaaaaa###....................",
+    "....................##aaaaaaaaaa######aaaaaaaaaa##....................",
+    "....................##aaaaa##aaa######aaa##aaaaa##....................",
+    "....................##aaaaa##aaa######aaa##aaaaa##....................",
+    ".....................##aaaaaaaa###aa###aaaaaaaa##.....................",
+    ".....................####aaaaaa###aa###aaaaaa####.....................",
+    ".....................a#######a###aaaa###a#######a.....................",
+    ".....................a#####aa####aaaa####aa#####a.....................",
+    ".....................####a#######aaaa#######a####.....................",
+    ".....................####aa#################aa###.....................",
+    ".....................##aaa#aa#############aaaaa##.....................",
+    ".....................####a#a#aaaaaaaaaaaaa#aa####.....................",
+    ".....................a####aa###a##a###a##a#a####a.....................",
+    ".....................a#####aa##a##a###a##aa#####aa###.......#####.....",
+    ".....#####.......###aaa######aaa##a###a#aa#####aa#####aaaaa#######....",
+    "....#######aaaaa#####aaa#######aaaaaaaaa######aa####aaaaaa#########aaa",
+    "aaa#########aaaaaa####aaaa##################aaa####aa#aaaaa########aaa",
+    "aaa########aaaaa#aa#####aaaaa############aaaaaa###aaaa#aaa#aa######aaa",
+    "aaa######aa#aaa#aaaaaa###aaaaaaaaaaaaaaaaaaaaa###aaaaa##aa########....",
+    "....########aa##aaaaaaa###aaaaa#aaaaa#aaaaaa####aaaaaaa##aa#######....",
+    "....#######aa##aaaaaaaaaa###aaa#######aaaaa####aaaa#aaaa##aaaaaaa#....",
+    "....#aaaaaaa##aaaaa#aaaaaa####aa#####aaa####aaaaaa#aaaaa#aaaaaaaa#....",
+    "....#aaaaaaaa#aaaaa#aaaaaa#aa##aa####a####aaaaaaaa#aaaaa#aaaaaaa#.....",
+    ".....#aaaaaaa#aaaaa#aaaaaa#aa#aaaaaaaaa#a#aaaaaaaa#aaaa#aaaaaaaa#.....",
+    ".....#aaaaaaa#aaaaa#aaaaaa#aa#aa####aaa#a#aaaaaaa##aaaaaaaaaaaa#......",
+    "......#aaaaaaaaaaaa#aaaaaa####aa#####a####aaaaaa###aaaaaaaaaaaa#......",
+    "......#aaaaaaaaaaaa##a#####aa#aa#####a##a#aaaa###a#aaaaaaaaaaa#.......",
+    ".......#aaaaaaaaaaa###aaaaa#aa#a#####a#aa#aa###aaa#aaaaaaaaaa#........",
+    "........#aaaaaaaaaa#aaaaaaa#a##a#####a####a#aaaaaa##aaaaaaaa#.........",
+    ".........#aaaaaaaa#aaaaaaaa##a#a#####a#aa#a#aaaaaaa###aaaa##..........",
+    "..........##aaaa###aaaaaaaa#aa#a#####a#aa#a#aaaaaaa#a#####............",
+    "............#####a#aaaaaaaa#a##a#####a###a#aaaaaaaa#..................",
+    "..................#aaaaaaaaa#a#a#####a#a#a#aaaaaaaa#..................",
+    "..................#aaaaaaaaa#a#a#####a#a##aaaaaaaaa#..................",
+    "..................#aaaaaaaaa#a#aaaaaaa#a#aaaaaaaaa##..................",
+    "..................###aaaaaaa#############aaaaaaaa###..................",
+    "..................####aaaaaa#####aaaaaa############...................",
+    "...................#########aaaaaaaaaaaaaaaaaaaaa##...................",
+    "......................................................................",
+    "...................aaaaaaaaaaaaaaaaaaaaaaa##aaaaa#a...................",
+    "...................a#aa##aaaaaaaaaaaaaaaaa##aaaaa#a...................",
+    "...................#aaa##aaaaaaaaaaaaaaaaa##aaaaaa#...................",
+    "...................#aa##aaaaaaaaaa#aaaaaaa##aaaaaa#...................",
+    "...................#aa##aaaaaaaaa#a#aaaaaa##aaaaaa#...................",
+    "...................#aa##aaaaaaaaa#a#aaaaaa###aaaaa#...................",
+    "...................#aa##aaaaaaaaa#a#aaaaaa###aaaaaa#..................",
+    "..................#aa##aaaaaaaaaa#aa#aaaaa###aaaaaa#..................",
+    "..................#aa##aaaaaaaaa##aa#aaaaa###aaaaaa#..................",
+    "..................#aa##aaaaaaaaa#aaa#aaaaaa##aaaaaa#..................",
+    "..................#aa##aaaaaaaaa#aaa#aaaaaa##aaaaaa#..................",
+    "..................#aa##aaaaaaaaa#aaa#aaaaaa##aaaaaa#..................",
+    "..................#####aaaaaaaaa#aaa#aaaaaa###aa####..................",
+    "..................aaaaa#########aaaaa###########aaaa..................",
+    "......................................................................",
+    "..................aaaaaaaaaa...........aa#aaaaaaaaaa..................",
+    ".................####aa####a...........aa#######aaa###................",
+    "................#######a###a...........a#######aa#######..............",
+    "...............#########a##a...........a######a##########.............",
+    "...............#########aaaa...........aaaaaaa###########.............",
+    "...............##########a##...........######a##########..............",
+)
 
 
 SCENE_CSS = (
     "<style>"
-    " .friskIdle{animation:friskIdle 2.3s ease-in-out infinite}"
-    " .friskHit{animation:friskHit 12s linear infinite}"
+    " .friskHit{animation:friskHit 12s steps(1,end) infinite}"
     " .friskFlash{animation:friskFlash 12s linear infinite;opacity:0}"
-    " .sansBob{animation:sansBob 3.8s ease-in-out infinite}"
     " .eye{animation:eye 12s linear infinite;opacity:0}"
     " .soulSlide{animation:soulSlide 12s ease-in-out infinite}"
     " .soulHop{animation:soulHop 12s linear infinite}"
@@ -907,17 +977,16 @@ SCENE_CSS = (
     " .hpN2{animation:hpN2 12s linear infinite;opacity:0}"
     " .hpN3{animation:hpN3 12s linear infinite;opacity:0}"
     " .hpN4{animation:hpN4 12s linear infinite;opacity:0}"
-    # Frisk breathes the whole time and is knocked about only when a bone lands.
-    " @keyframes friskIdle{0%,100%{transform:translateY(0)}50%{transform:translateY(-1.6px)}}"
+    # Frisk only moves when something lands on her, in whole sprite pixels.
     " @keyframes friskHit{0%,23.4%{transform:translateX(0)}"
-    "23.8%{transform:translateX(2.6px)}24.3%{transform:translateX(-2.6px)}"
-    "24.8%{transform:translateX(2px)}25.3%{transform:translateX(-1.6px)}"
+    "23.8%{transform:translateX(4px)}24.3%{transform:translateX(-4px)}"
+    "24.8%{transform:translateX(2px)}25.3%{transform:translateX(-2px)}"
     "25.8%,51.8%{transform:translateX(0)}"
-    "52.2%{transform:translateX(2.6px)}52.7%{transform:translateX(-2.6px)}"
-    "53.2%{transform:translateX(2px)}53.7%{transform:translateX(-1.6px)}"
+    "52.2%{transform:translateX(4px)}52.7%{transform:translateX(-4px)}"
+    "53.2%{transform:translateX(2px)}53.7%{transform:translateX(-2px)}"
     "54.2%,91.2%{transform:translateX(0)}"
-    "91.6%{transform:translateX(2.6px)}92.1%{transform:translateX(-2.6px)}"
-    "92.6%{transform:translateX(2px)}93.1%{transform:translateX(-1.6px)}"
+    "91.6%{transform:translateX(4px)}92.1%{transform:translateX(-4px)}"
+    "92.6%{transform:translateX(2px)}93.1%{transform:translateX(-2px)}"
     "93.6%,100%{transform:translateX(0)}}"
     " @keyframes friskFlash{0%,23.5%{opacity:0}23.8%{opacity:.92}24.6%{opacity:0}"
     "25%{opacity:.8}25.8%,51.9%{opacity:0}52.2%{opacity:.92}53%{opacity:0}"
@@ -929,23 +998,24 @@ SCENE_CSS = (
     "12.5%{transform:translateY(-11px)}13.5%{transform:translateY(-21px)}"
     "17%{transform:translateY(-21px)}18%{transform:translateY(-9px)}"
     "19.2%{transform:translateY(0)}"
-    "26%{transform:translateY(-9px)}27.6%{transform:translateY(0)}"
-    "36%,38%{transform:translateY(0)}"
-    "39.4%{transform:translateY(-12px)}40.8%{transform:translateY(0)}"
-    "47%{transform:translateY(-10px)}49%{transform:translateY(0)}"
+    "25.4%{transform:translateY(-8px)}27%{transform:translateY(0)}"
+    "38%,40%{transform:translateY(0)}"
+    "41%{transform:translateY(-10px)}42.4%{transform:translateY(0)}"
+    "47%{transform:translateY(-9px)}48.6%{transform:translateY(0)}"
     "55%{transform:translateY(-8px)}57%{transform:translateY(0)}"
     "69%{transform:translateY(-10px)}70.5%{transform:translateY(-23px)}"
     "83.5%{transform:translateY(-23px)}85%{transform:translateY(-12px)}"
     "86.5%,96%{transform:translateY(0)}"
     "97.4%{transform:translateY(-9px)}98.6%{transform:translateY(0)}"
     "100%{transform:translateY(0)}}"
-    " @keyframes soulSlide{0%,3%{transform:translateX(-60px)}"
-    "10%,18%{transform:translateX(110px)}"
-    "23.5%{transform:translateX(0)}"
-    "24.2%{transform:translateX(-8px)}26%,34%{transform:translateX(0)}"
-    "40%{transform:translateX(120px)}46%{transform:translateX(0)}"
-    "49%{transform:translateX(22px)}51.6%{transform:translateX(0)}"
-    "52.4%{transform:translateX(-10px)}54%,62%{transform:translateX(0)}"
+    # It never slides along with a bone: it holds its ground through the hit, then
+    # leaves in the direction the bone came from.
+    " @keyframes soulSlide{0%,4%{transform:translateX(-60px)}"
+    "10%,24.4%{transform:translateX(110px)}"
+    "24.9%{transform:translateX(118px)}25.8%,31%{transform:translateX(112px)}"
+    "36.5%,42%{transform:translateX(0)}"
+    "48%{transform:translateX(120px)}52%{transform:translateX(0)}"
+    "52.6%{transform:translateX(-10px)}54%,62%{transform:translateX(0)}"
     "69%{transform:translateX(-120px)}72%{transform:translateX(-60px)}"
     "80%{transform:translateX(-20px)}83%,90.6%{transform:translateX(0)}"
     "91.4%{transform:translateX(0)}92%{transform:translateX(7px)}"
@@ -956,20 +1026,27 @@ SCENE_CSS = (
     "91%{opacity:0}91.4%{opacity:.95}92.4%{opacity:0}93%{opacity:.9}94%{opacity:0}"
     "100%{opacity:0}}"
     # Blue attacks only hurt a SOUL that moves, so the cue says: stay put.
-    " @keyframes soulBlue{0%,29%{opacity:0}30%{opacity:.32}34%{opacity:.32}"
-    "35.5%,100%{opacity:0}}"
+    " @keyframes soulBlue{0%,35.5%{opacity:0}36.5%{opacity:.32}39.5%{opacity:.32}"
+    "40.5%,100%{opacity:0}}"
     " @keyframes soulBob{0%,100%{transform:translateY(0)}50%{transform:translateY(1.6px)}}"
-    " @keyframes sansBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-1.4px)}}"
+    # Hands in his pockets between attacks, fists up while he is throwing.
+    " .sF1{animation:sF1 12s linear infinite}"
+    " .sF2{animation:sF2 12s linear infinite;opacity:0}"
+    " @keyframes sF1{0%,7%{opacity:1}8%,36%{opacity:0}37%,40.8%{opacity:1}"
+    "41.8%,62.2%{opacity:0}63%,64.6%{opacity:1}65.6%,87%{opacity:0}88%,100%{opacity:1}}"
+    " @keyframes sF2{0%,7%{opacity:0}8%,36%{opacity:1}37%,40.8%{opacity:0}"
+    "41.8%,62.2%{opacity:1}63%,64.6%{opacity:0}65.6%,87%{opacity:1}88%,100%{opacity:0}}"
     # Arm down -> arm out -> arm up, the way his battle sprite moves when he attacks.
     " @keyframes eye{0%,5%{opacity:0}6%{opacity:1}8%{opacity:.3}9%{opacity:1}"
     "34%{opacity:1}36%,100%{opacity:0}}"
-    # Bones fade out well clear of Frisk: they only ever reach the SOUL's lane.
+    # A bone dies a third of a second after its tip clears the SOUL, so it can never
+    # sit on the heart and travel along with it.
     " @keyframes boneSlide{0%,6%{transform:translateX(0);opacity:0}7%{opacity:1}"
-    "21.7%{transform:translateX(-520px);opacity:1}"
-    "23.5%,100%{transform:translateX(-520px);opacity:0}}"
+    "16.3%{transform:translateX(-340px);opacity:1}"
+    "18.6%,100%{transform:translateX(-340px);opacity:0}}"
     " @keyframes boneSlideL{0%,6%{transform:translateX(0);opacity:0}7%{opacity:1}"
-    "21.7%{transform:translateX(520px);opacity:1}"
-    "23.5%,100%{transform:translateX(520px);opacity:0}}"
+    "16.3%{transform:translateX(340px);opacity:1}"
+    "18.6%,100%{transform:translateX(340px);opacity:0}}"
     # The wall of bones from above and below, with one gap to slip through.
     " @keyframes wallSweep{0%,63%{transform:translateX(620px);opacity:0}"
     "64%{opacity:1}84%{transform:translateX(236px);opacity:1}"
@@ -1124,9 +1201,9 @@ def activity():
         )
 
     # White bones to jump, one blue bone to stand still under, then a bone off the floor.
-    # Timed so the first bone clears the SOUL as it hops, the second lands on it at the
-    # 23.5% hit, and the blue one passes while it holds still.
-    bones = hbone(0.44) + hbone(1.12) + hbone(2.26, "#7CD4FF") + left_bone(9.36)
+    # Timed so the first bone passes under the hop, the second lands on the 23.5% hit
+    # while the SOUL is standing still, and the blue one crosses a still SOUL at 38%.
+    bones = hbone(0.44) + hbone(1.79) + hbone(2.86, "#7CD4FF") + left_bone(9.43)
 
     # The wall is packed bone against bone, top and floor, the way the game's is, with
     # one ragged gap running through it for the SOUL to rise into.
@@ -1204,16 +1281,16 @@ def activity():
   {header("CONTRIBUTIONS", "LAST 12 MONTHS")}
 
   <g>
-    <text x="186" y="42" font-family="{MONO}" font-size="11" letter-spacing="1.4" fill="{MUTED}">HP</text>
-    <rect x="208" y="33" width="92" height="10" rx="1" fill="#151515" stroke="#3A3A3A"/>
-    <g transform="translate(210 35)">
+    <text x="{W - PAD - 138}" y="226" text-anchor="end" font-family="{MONO}" font-size="11" letter-spacing="1.4" fill="{MUTED}">HP</text>
+    <rect x="{W - PAD - 130}" y="217" width="92" height="10" rx="1" fill="#151515" stroke="#3A3A3A"/>
+    <g transform="translate({W - PAD - 128} 219)">
       <rect class="hpBar" x="0" y="0" width="88" height="6" fill="#F2E14C"/>
     </g>
-    <text class="hpN1" x="306" y="42" font-family="{MONO}" font-size="11" fill="#F2E14C">92</text>
-    <text class="hpN2" x="306" y="42" font-family="{MONO}" font-size="11" fill="#F2E14C">70</text>
-    <text class="hpN3" x="306" y="42" font-family="{MONO}" font-size="11" fill="#F2E14C">48</text>
-    <text class="hpN4" x="306" y="42" font-family="{MONO}" font-size="11" fill="#F2E14C">26</text>
-    <text x="336" y="42" font-family="{MONO}" font-size="10" letter-spacing="1.2" fill="#C9B458" fill-opacity=".75">KR</text>
+    <text class="hpN1" x="{W - PAD - 22}" y="226" text-anchor="end" font-family="{MONO}" font-size="11" fill="#F2E14C">92</text>
+    <text class="hpN2" x="{W - PAD - 22}" y="226" text-anchor="end" font-family="{MONO}" font-size="11" fill="#F2E14C">70</text>
+    <text class="hpN3" x="{W - PAD - 22}" y="226" text-anchor="end" font-family="{MONO}" font-size="11" fill="#F2E14C">48</text>
+    <text class="hpN4" x="{W - PAD - 22}" y="226" text-anchor="end" font-family="{MONO}" font-size="11" fill="#F2E14C">26</text>
+    <text x="{W - PAD}" y="226" text-anchor="end" font-family="{MONO}" font-size="10" letter-spacing="1.2" fill="#C9B458" fill-opacity=".75">KR</text>
   </g>
   {''.join(labels)}
   <g font-family="{MONO}" font-size="12.5" letter-spacing="1" fill="{DIM}">
@@ -1238,7 +1315,7 @@ def activity():
   <g clip-path="url(#arenaClip)">{bones}{wall}{x_beams}</g>
   <ellipse cx="{frisk_x + 17:.1f}" cy="{grid_bottom - 1.6:.1f}" rx="17" ry="3" fill="#000000" opacity=".45"/>
   <ellipse cx="{sans_x + 25:.1f}" cy="{grid_bottom - 1.6:.1f}" rx="25" ry="3.4" fill="#000000" opacity=".45"/>
-  <g class="friskIdle" filter="url(#spShadow)">
+  <g filter="url(#spShadow)">
     <g class="friskHit">
       {sprite(FRISK_PX, frisk_x, frisk_y, unit, FRISK_COLOURS)}
       <g class="friskFlash">
@@ -1246,8 +1323,9 @@ def activity():
       </g>
     </g>
   </g>
-  <g class="sansBob" filter="url(#spShadow)">
-    {sprite(SANS_BODY_PX, sans_x, sans_y, sans_unit, SANS_COLOURS)}
+  <g filter="url(#spShadow)">
+    <g class="sF1">{sprite(SANS_BODY_PX, sans_x, sans_y, sans_unit, SANS_COLOURS)}</g>
+    <g class="sF2">{sprite(SANS_ATTACK_PX, sans_x - 9 * sans_unit, sans_y, sans_unit, SANS_COLOURS)}</g>
   </g>
   <g class="eye">
     <circle cx="{eye_x:.1f}" cy="{eye_y:.1f}" r="3.6" fill="#7FDBFF" opacity=".22"/>
