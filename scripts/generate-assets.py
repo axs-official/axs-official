@@ -590,39 +590,272 @@ FRISK_PX = (
     ".....aaaa..aaa...",
 )
 
-SANS_COLOURS = {"a": "#000000", "b": "#FFFFFF", "c": "#4782C9", "d": "#BDC0C9"}
-SANS_PX = (
-    ".......aaaaaaaaa.......",
-    ".....aabbbbbbbbbaa.....",
-    "....abbbbbbbbbbbbba....",
-    "....abbbbbbbbbbbbba....",
-    "...abbbbbbbbbbbbbbba...",
-    "...abbaaabbbbbaaabba...",
-    "...abbaaabbbbbaaabba...",
-    "...abbaaabbabbaaabba...",
-    "....abbbbbaaabbbbba....",
-    "...aababbbbbbbbbabaa...",
-    "...abbaaaaaaaaaaabba...",
-    "...abbbabababababbba...",
-    "....aabbaaaaaaabbaa....",
-    "...aaaaabbbbbbbaaaaa...",
-    "..acaaaaaaaaaaaaaaaca..",
-    ".aacaddabbbabbbaddacaa.",
-    ".acccaddaaabaaaddaccca.",
-    "accaacaaabbabbaaacaacca",
-    "accccaccabbbbbaccacccca",
-    "acccccacaabbbaacaccccca",
-    ".acccaccabbbbbaccaccca.",
-    "..aacaccaaaaaaaccacaa..",
-    "...aaaccaaaaaaaccaaa...",
-    "....aaaaaaaaaaaaaaa....",
-    "....aaaaaaaaaaaaaaa....",
-    ".....aaaaaaaaaaaaa.....",
-    ".....addddaaaaaaaa.....",
-    "....addddaa.abbbba.....",
-    "....aaaaaa..abbbbba....",
-    "............aaaaaaa....",
+SANS_DOWN_PX = (
+    ".............................aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    ".............................aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    ".............................aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    ".............................aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    ".............................aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    ".............................aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    ".............................aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    ".............................aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    ".............................aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    ".............................aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    ".............................aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    ".............................aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    ".............................aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    ".............................aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    ".............................aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    ".............................aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    ".............................aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    ".............................aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    ".............................aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    ".............................aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    ".............................aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    ".............................aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    ".............................aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    ".............................aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    ".............................aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    ".............................aaaaaaaaaaaaaaabbbaaaaaaaaaaaaaaaa",
+    "aaaaaaaaaaabbbaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbbbaaaaaaaaaaaaaaa",
+    "aaaaaaaaaabbbbbaaaaaaaaaaaaaaaaaaaaaaaaaaabbbbaaabaaaaaaaaaaaaa",
+    "aaaaaaaaaabbbbbbaaaaaaaaaaaaaaaaaaaaaaaaabbbbaaaabaaaaaaaaaaaaa",
+    "aaaaaaaaabaaabbbbbaaaaaaaaaaaaaaaaaaaaaaabbbaaaaaabaaaaaaaaaaaa",
+    "aaaaaaaaaaaaaaaabbbaaaaaaaaaaaaaaaaaaaaabbbaaaaaaabaaaaaaaaaaaa",
+    "aaaaaaaaaaaaaaaaabbbaaaaabaaaaabaaaaaabbbbaaaaaaaaabaaaaaaaaaaa",
+    "aaaaaaaabaaaaaaaaaabbbaaabbbbbbbaaaaabbbbaaaabaaaaabaaaaaaaaaaa",
+    "aaaaaaabaaaaabaaaaaabbbbaabbbbbaaabbbbaaaaaabaaaaaaabaaaaaaaaaa",
+    "aaaaaabaaaaaabaaaaaabaabbaabbbbabbbbaaaaaaaabaaaaaaabaaaaaaaaaa",
+    "aaaaabaaaaaaabaaaaaabaabaaaaaaaaababaaaaaaaabaaaaaaaabaaaaaaaaa",
+    "aaaaabaaaaaaabaaaaaabaabaabbbbaaababaaaaaaabbaaaaaaaabaaaaaaaaa",
+    "aaaabaaaaaaaabaaaaaabbbbaabbbbbabbbbaaaaaabbbaaaaaaaabaaaaaaaaa",
+    "aaaabaaaaaaaabbabbbbbaabaabbbbbabbabaaaabbbabaaaaaaaabaaaaaaaaa",
+    "aaabbaaaaaaaabbbaaaaabaababbbbbabaabaabbbaaabaaaaaaaaabaaaaaaaa",
+    "aaabbaaaaaaaabaaaaaaababbabbbbbabbbbabaaaaaabbaaaaaaaabaaaaaaaa",
+    "aaabbaaaaaaabaaaaaaaabbababbbbbabaababaaaaaaabaaaaaaaabaaaaaaaa",
+    "aaaabbaaaaaabaaaaaaaabaababbbbbabaababaaaaaaabaaaaaaaabaaaaaaaa",
+    "aaaaabbaaaaabaaaaaaaababbabbbbbabbbabaaaaaaaabaaaaaaaaabaaaaaaa",
+    "aaaaaabbaaaabaaaaaaaaabababbbbbabababaaaaaaaabaaaaaaaaabaaaaaaa",
+    "aaaaaaabbbaabaaaaaaaaabababbbbbababbaaaaaaaaabaaaaaaaaabaaaaaaa",
+    "aaaaaaaabbaabaaaaaaaaababaaaaaaababaaaaaaaaabbaaaaaaaaabaaaaaaa",
+    "aaaaaaaaabaabbbaaaaaaabbbbbbbbbbbbbaaaaaaaabbbaaaaaaaaabaaaaaaa",
+    "aaaaaaaaaaabbbbbaaaaaabbbbbaaaaaabbbbbbbbbbbbaaaaaaaaaabaaaaaaa",
+    "aaaaaaaaaaaaabbbbbbbbbaaaaaaaaaaaaaaaaaaaaabbaabaaaaaaabaaaaaaa",
+    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaabaaaaaaa",
+    "aaaaaaaaaaaaabaabbaaaaaaaaaabaaaaaaabbaaaaabaaabaaaaabbbaaaaaaa",
+    "aaaaaaaaaaaaabaabbaaaaaaaaababaaaaaabbaaaaabaaabbbbbbbbbbaaaaaa",
+    "aaaaaaaaaaaaabaabbaaaaaaaaababaaaaaabbaaaaaabaaabbbbbbbbbbaaaaa",
+    "aaaaaaaaaaaaabaabbaaaaaaaaababaaaaaabbaaaaaabaabbbbbbbbbbbbaaaa",
+    "aaaaaaaaaaaabaabbaaaaaaaaaabaabaaaaabbbaaaaabaabbbaaabbbbbbbaaa",
+    "aaaaaaaaaaaabaabbaaaaaaaaabbaabaaaaabbbaaaaabaaaaaaaaabbbbbbaaa",
+    "aaaaaaaaaaaabaabbaaaaaaaaabaaabaaaaabbbaaaaaabaaaaaaaaaabbbaaaa",
+    "aaaaaaaaaaaabaabbaaaaaaaaabaaabaaaaaabbaaaaaabaaaaaaaaaaaaaaaaa",
+    "aaaaaaaaaaaabaabbaaaaaaaaabaaabaaaaaabbaaaaaabaaaaaaaaaaaaaaaaa",
+    "aaaaaaaaaaaabbbbbaaaaaaaaabaaabaaaaaabbbaabbbbaaaaaaaaaaaaaaaaa",
+    "aaaaaaaaaaaaaaaaabbbbbbbbbaaaaabbbbbbbbbbbaaaaaaaaaaaaaaaaaaaaa",
+    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "aaaaaaaaaaabbbbaabbbbaaaaaaaaaaaaaabbbbbbbaaabbbaaaaaaaaaaaaaaa",
+    "aaaaaaaaaabbbbbbbabbbaaaaaaaaaaaaabbbbbbbaabbbbbbbaaaaaaaaaaaaa",
+    "aaaaaaaaabbbbbbbbbabbaaaaaaaaaaaaabbbbbbabbbbbbbbbbaaaaaaaaaaaa",
+    "aaaaaaaaabbbbbbbbbaaaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbaaaaaaaaaaaa",
+    "aaaaaaaaabbbbbbbbbbabbaaaaaaaaaaabbbbbbabbbbbbbbbbaaaaaaaaaaaaa",
+    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "aaaaaaaa...........................aaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "aaaaaaaa...........................aaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "aaaaaaaa...........................aaaaaaaaaaaaaaaaaaaaaaaaaaaa",
 )
+
+SANS_DOWN_COLOURS = {"a": "#000000", "b": "#FFFFFF"}
+
+SANS_OUT_PX = (
+    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbaaaaaaaaaaaaaaaa",
+    "aaaaaaaaaaaabbbaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbbbaaaaaaaaaaaaaaa",
+    "aaaaaaaaaaabbbbbaaaaaaaaaaaaaaaaaaaaaaaaaaabbbbaaabaaaaaaaaaaaaa",
+    "aaaaaaaaaaabbbbbbaaaaaaaaaaaaaaaaaaaaaaaaabbbbaaaabaaaaaaaaaaaaa",
+    "aaaaaaaaaabaaabbbbbaaaaaaaaaaaaaaaaaaaaaaabbbaaaaaabaaaaaaaaaaaa",
+    "aaaaaaaaaaaaaaaaabbbaaaaaaaaaaaaaaaaaaaaabbbaaaaaaabaaaaaaaaaaaa",
+    "aaaaaaaaaaaaaaaaaabbbaaaaabaaaaabaaaaaabbbbaaaaaaaaabaaaaaaaaaaa",
+    "aaaaaaaaabaaaaaaaaaabbbaaabbbbbbbaaaaabbbbaaaabaaaaabaaaaaaaaaaa",
+    "aaaaaaaabaaaaabaaaaaabbbbaabbbbbaaabbbbaaaaaabaaaaaaabaaaaaaaaaa",
+    "aaaaaaabaaaaaabaaaaaabaabbaabbbbabbbbaaaaaaaabaaaaaaabaaaaaaaaaa",
+    "aaaaaabaaaaaaabaaaaaabaabaaaaaaaaababaaaaaaaabaaaaaaaabaaaaaaaaa",
+    "aaaaaabaaaaaaabaaaaaabaabaabbbbaaababaaaaaaabbaaaaaaaabaaaaaaaaa",
+    "aaaaabaaaaaaaabaaaaaabbbbaabbbbbabbbbaaaaaabbbaaaaaaaabaaaaaaaaa",
+    "aaaaabaaaaaaaabbabbbbbaabaabbbbbabbabaaaabbbabaaaaaaaabaaaaaaaaa",
+    "aaaabbaaaaaaaabbbaaaaabaababbbbbabaabaabbbaaabaaaaaaaaabaaaaaaaa",
+    "aaaabbaaaaaaaabaaaaaaababbabbbbbabbbbabaaaaaabbaaaaaaaabaaaaaaaa",
+    "aaaabbaaaaaaabaaaaaaaabbababbbbbabaababaaaaaaabaaaaaaaabaaaaaaaa",
+    "aaaaabbaaaaaabaaaaaaaabaababbbbbabaababaaaaaaabaaaaaaaabaaaaaaaa",
+    "aaaaaabbaaaaabaaaaaaaababbabbbbbabbbabaaaaaaaabaaaaaaaaabaaaaaaa",
+    "aaaaaaabbaaaabaaaaaaaaabababbbbbabababaaaaaaaabaaaaaaaaabaaaaaaa",
+    "aaaaaaaabbbaabaaaaaaaaabababbbbbababbaaaaaaaaabaaaaaaaaabaaaaaaa",
+    "aaaaaaaaabbaabaaaaaaaaababaaaaaaababaaaaaaaaabbaaaaaaaaabaaaaaaa",
+    "aaaaaaaaaabaabbbaaaaaaabbbbbbbbbbbbbaaaaaaaabbbaaaaaaaaabaaaaaaa",
+    "aaaaaaaaaaaabbbbbaaaaaabbbbbaaaaaabbbbbbbbbbbbaaaaaaaaaabaaaaaaa",
+    "aaaaaaaaaaaaaabbbbbbbbbaaaaaaaaaaaaaaaaaaaaabbaabaaaaaaabaaaaaaa",
+    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaabaaaaaaa",
+    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaabbbaaaaaaa",
+    "aaaaaaaaaaaaaabaabbaaaaaaaaaabaaaaaaabbaaaaabaaabbbbbbbbbbaaaaaa",
+    "aaaaaaaaaaaaaabaabbaaaaaaaaababaaaaaabbaaaaabaaaabbbbbbbbbbaaaaa",
+    "aaaaaaaaaaaaaabaabbaaaaaaaaababaaaaaabbaaaaaabaabbbbbbbbbbbbaaaa",
+    "aaaaaaaaaaaaaabaabbaaaaaaaaababaaaaaabbaaaaaabaabbbaaabbbbbbbaaa",
+    "aaaaaaaaaaaaabaabbaaaaaaaaaabaabaaaaabbbaaaaabaaaaaaaaabbbbbbaaa",
+    "aaaaaaaaaaaaabaabbaaaaaaaaabbaabaaaaabbbaaaaabaaaaaaaaaaabbbaaaa",
+    "aaaaaaaaaaaaabaabbaaaaaaaaabaaabaaaaabbbaaaaaabaaaaaaaaaaaaaaaaa",
+    "aaaaaaaaaaaaabaabbaaaaaaaaabaaabaaaaaabbaaaaaabaaaaaaaaaaaaaaaaa",
+    "aaaaaaaaaaaaabaabbaaaaaaaaabaaabaaaaaabbaaaaaabaaaaaaaaaaaaaaaaa",
+    "aaaaaaaaaaaaabbbbbaaaaaaaaabaaabaaaaaabbbaabbbbaaaaaaaaaaaaaaaaa",
+    "aaaaaaaaaaaaaaaaaabbbbbbbbbaaaaabbbbbbbbbbbaaaaaaaaaaaaaaaaaaaaa",
+    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "aaaaaaaaaaaabbbbaabbbbaaaaaaaaaaaaaabbbbbbbaaabbbaaaaaaaaaaaaaaa",
+    "aaaaaaaaaaabbbbbbbabbbaaaaaaaaaaaaabbbbbbbaabbbbbbbaaaaaaaaaaaaa",
+    "aaaaaaaaaabbbbbbbbbabbaaaaaaaaaaaaabbbbbbabbbbbbbbbbaaaaaaaaaaaa",
+    "aaaaaaaaaabbbbbbbbbaaaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbaaaaaaaaaaaa",
+    "aaaaaaaaaabbbbbbbbbbabbaaaaaaaaaaabbbbbbabbbbbbbbbbaaaaaaaaaaaaa",
+    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+)
+
+SANS_OUT_COLOURS = {"a": "#000000", "b": "#FFFFFF"}
+
+SANS_UP_PX = (
+    "..............................aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "..............................aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "..............................aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "..............................aaaaaaaaaaaaaaaaaaaaaaaabbbaaaaaaa",
+    "..............................aaaaaaaaaaaaaaaaaaaaaaabbbbbaaaaaa",
+    "..............................aaaaaaaaaaaaaaaaaaaaaabbbbbbbaaaaa",
+    "..............................aaaaaaaaaaaaaaaaaaaaaabbbbbbbaaaaa",
+    "..............................aaaaaaaaaaaaaaaaaaaababbbbbbbaaaaa",
+    "..............................aaaaaaaaaaaaaaaaaaaabbabbbbbbaaaaa",
+    "..............................aaaaaaaaaaaaaaaaaaaabbbbbbbbbaaaaa",
+    "..............................aaaaaaaaaaaaaaaaaaaabbbbbbbbbaaaaa",
+    "..............................aaaaaaaaaaaaaaaaaaaabbbbbbbbbaaaaa",
+    "..............................aaaaaaaaaaaaaaaaaaaabaaaabbbaaaaaa",
+    "..............................aaaaaaaaaaaaaaaaaaaabaaaaaaabaaaaa",
+    "..............................aaaaaaaaaaaaaaaaaaaabaaaaaaabaaaaa",
+    "..............................aaaaaaaaaaaaaaaaaaabaaaaaaabaaaaaa",
+    "..............................aaaaaaaaaaaaaaaaaaabaaaaaaabaaaaaa",
+    "..............................aaaaaaaaaaaaaaaaaabaaaaaaaabaaaaaa",
+    "..............................aaaaaaaaaaaaaaaaaabaaaaaaaabaaaaaa",
+    "..............................aaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaa",
+    "..............................aaaaaaaaaaaaaaaaabaaaaaaaabaaaaaaa",
+    "..............................aaaaaaaaaaaaaaabbbbaaaaaaabaaaaaaa",
+    "aaaaaaaaaaaabbbaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbaaaaaaaaabaaaaaaa",
+    "aaaaaaaaaaabbbbbaaaaaaaaaaaaaaaaaaaaaaaaaaabbbbaaaaaaaabaaaaaaaa",
+    "aaaaaaaaaaabbbbbbaaaaaaaaaaaaaaaaaaaaaaaaabbbbaaaaaaaaabaaaaaaaa",
+    "aaaaaaaaaabaaabbbbbaaaaaaaaaaaaaaaaaaaaaaabbbaaaaaaaaabaaaaaaaaa",
+    "aaaaaaaaaaaaaaaaabbbaaaaaaaaaaaaaaaaaaaaabbbaaaaaaaaaabaaaaaaaaa",
+    "aaaaaaaaaaaaaaaaaabbbaaaaabaaaaabaaaaaabbbbaaaaaaaaaabaaaaaaaaaa",
+    "aaaaaaaaabaaaaaaaaaabbbaaabbbbbbbaaaaabbbbaaaabaaaaabaaaaaaaaaaa",
+    "aaaaaaaabaaaaabaaaaaabbbbaabbbbbaaabbbbaaaaaabaaaaabaaaaaaaaaaaa",
+    "aaaaaaabaaaaaabaaaaaabaabbaabbbbabbbbaaaaaaaabaaabbaaaaaaaaaaaaa",
+    "aaaaaabaaaaaaabaaaaaabaabaaaaaaaaababaaaaaaaababbaaaaaaaaaaaaaaa",
+    "aaaaaabaaaaaaabaaaaaabaabaabbbbaaababaaaaaaabbaaaaaaaaaaaaaaaaaa",
+    "aaaaabaaaaaaaabaaaaaabbbbaabbbbbabbbbaaaaaabbbaaaaaaaaaaaaaaaaaa",
+    "aaaaabaaaaaaaabbabbbbbaabaabbbbbabbabaaaabbbabaaaaaaaaaaaaaaaaaa",
+    "aaaabbaaaaaaaabbbaaaaabaababbbbbabaabaabbbaaabaaaaaaaaaaaaaaaaaa",
+    "aaaabbaaaaaaaabaaaaaaababbabbbbbabbbbabaaaaaabbaaaaaaaaaaaaaaaaa",
+    "aaaabbaaaaaaabaaaaaaaabbababbbbbabaababaaaaaaabaaaaaaaaaaaaaaaaa",
+    "aaaaabbaaaaaabaaaaaaaabaababbbbbabaababaaaaaaabaaaaaaaaaaaaaaaaa",
+    "aaaaaabbaaaaabaaaaaaaababbabbbbbabbbabaaaaaaaabaaaaaaaaaaaaaaaaa",
+    "aaaaaaabbaaaabaaaaaaaaabababbbbbabababaaaaaaaabaaaaaaaaaaaaaaaaa",
+    "aaaaaaaabbbaabaaaaaaaaabababbbbbababbaaaaaaaaabaaaaaaaaaaaaaaaaa",
+    "aaaaaaaaabbaabaaaaaaaaababaaaaaaababaaaaaaaaabbaaaaaaaaaaaaaaaaa",
+    "aaaaaaaaaabaabbbaaaaaaabbbbbbbbbbbbbaaaaaaaabbbaaaaaaaaaaaaaaaaa",
+    "aaaaaaaaaaaabbbbbaaaaaabbbbbaaaaaabbbbbbbbbbbbaaaaaaaaaaaaaaaaaa",
+    "aaaaaaaaaaaaaabbbbbbbbbaaaaaaaaaaaaaaaaaaaaabbaaaaaaaaaaaaaaaaaa",
+    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbaaaaabaaaaaaaaaaaaaaaaaaa",
+    "aaaaaaaaaaaaaaabaabbaaaaaaaaaaaaaaaaabbaaaaabaaaaaaaaaaaaaaaaaaa",
+    "aaaaaaaaaaaaaabaaabbaaaaaaaaaaaaaaaaabbaaaaaabaaaaaaaaaaaaaaaaaa",
+    "aaaaaaaaaaaaaabaabbaaaaaaaaaabaaaaaaabbaaaaaabaaaaaaaaaaaaaaaaaa",
+    "aaaaaaaaaaaaaabaabbaaaaaaaaababaaaaaabbaaaaaabaaaaaaaaaaaaaaaaaa",
+    "aaaaaaaaaaaaaabaabbaaaaaaaaababaaaaaabbbaaaaabaaaaaaaaaaaaaaaaaa",
+    "aaaaaaaaaaaaaabaabbaaaaaaaaababaaaaaabbbaaaaaabaaaaaaaaaaaaaaaaa",
+    "aaaaaaaaaaaaabaabbaaaaaaaaaabaabaaaaabbbaaaaaabaaaaaaaaaaaaaaaaa",
+    "aaaaaaaaaaaaabaabbaaaaaaaaabbaabaaaaabbbaaaaaabaaaaaaaaaaaaaaaaa",
+    "aaaaaaaaaaaaabaabbaaaaaaaaabaaabaaaaaabbaaaaaabaaaaaaaaaaaaaaaaa",
+    "aaaaaaaaaaaaabaabbaaaaaaaaabaaabaaaaaabbaaaaaabaaaaaaaaaaaaaaaaa",
+    "aaaaaaaaaaaaabaabbaaaaaaaaabaaabaaaaaabbaaaaaabaaaaaaaaaaaaaaaaa",
+    "aaaaaaaaaaaaabbbbbaaaaaaaaabaaabaaaaaabbbaabbbbaaaaaaaaaaaaaaaaa",
+    "aaaaaaaaaaaaaaaaaabbbbbbbbbaaaaabbbbbbbbbbbaaaaaaaaaaaaaaaaaaaaa",
+    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "aaaaaaaaaaaabbbbaabbbbaaaaaaaaaaaaaabbbbbbbaaabbbaaaaaaaaaaaaaaa",
+    "aaaaaaaaaaabbbbbbbabbbaaaaaaaaaaaaabbbbbbbaabbbbbbbaaaaaaaaaaaaa",
+    "aaaaaaaaaabbbbbbbbbabbaaaaaaaaaaaaabbbbbbabbbbbbbbbbaaaaaaaaaaaa",
+    "aaaaaaaaaabbbbbbbbbaaaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbaaaaaaaaaaaa",
+    "aaaaaaaaaabbbbbbbbbbabbaaaaaaaaaaabbbbbbabbbbbbbbbbaaaaaaaaaaaaa",
+    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+)
+
+SANS_UP_COLOURS = {"a": "#000000", "b": "#FFFFFF"}
+
+SANS_FACE_PX = (
+    "......aaabbbbbbbbbbbbaaa......",
+    "....aabbbbbbbbbbbbbbbbbbaa....",
+    "...abbbbbbbbbbbbbbbbbbbbbba...",
+    "..abbbbbbbbbbbbbbbbbbbbbbbba..",
+    ".abbbbbbbbbbbbbbbbbbbbbbbbbba.",
+    "abbbbbbbbbbbbbbbbbbbbbbbbbbbba",
+    "abbbbbbbbbbbbbbbbbbbbbbbbbbbba",
+    "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "abbbbbbbbbbbbbaabbbbbbbbbbbbba",
+    "abbbbbbbbbbbbbaabbbbbbbbbbbbba",
+    ".abbbbbbbbbbbaaaabbbbbbbbbbba.",
+    ".abbbbbbbbbbbaaaabbbbbbbbbbba.",
+    "abbbbbbbbbbbbaaaabbbbbbbbbbbba",
+    "abbbbaabbbbbbbbbbbbbbbbbaabbba",
+    "abbaaabaabbbbbbbbbbbbbaaaaabba",
+    "abbbbababaaaaaaaaaaaaabaabbbba",
+    ".abbbbaabbbabbabbbabbababbbba.",
+    ".abbbbbaabbabbabbbabbaabbbbba.",
+    "..abbbbbbaaabbabbbabaabbbbba..",
+    "...abbbbbbbaaaaaaaaabbbbbba...",
+    "....aabbbbbbbbbbbbbbbbbbaa....",
+    "......aaabbbbbbbbbbbbaaa......",
+)
+
+SANS_FACE_COLOURS = {"a": "#000000", "b": "#FFFFFF"}
 
 SOUL_COLOURS = {"a": "#FF3B3B"}
 HEART_PX = (
@@ -706,7 +939,7 @@ BLASTER_PX = (
 )
 
 
-BONE_COLOURS = {"#": "#FFFFFF"}
+BONE_COLOURS = {"#": "currentColor"}
 BONE_PX = (
     ".##....##.",
     "####..####",
@@ -843,13 +1076,18 @@ SCENE_CSS = (
     "<style>"
     " .friskHop{animation:friskHop 12s linear infinite}"
     " .sansBob{animation:sansBob 3.8s ease-in-out infinite}"
+    " .sF1{animation:sF1 12s linear infinite}"
+    " .sF2{animation:sF2 12s linear infinite;opacity:0}"
+    " .sF3{animation:sF3 12s linear infinite;opacity:0}"
     " .eye{animation:eye 12s linear infinite;opacity:0}"
     " .soulSlide{animation:soulSlide 12s linear infinite}"
     " .soulHop{animation:soulHop 12s linear infinite}"
     " .soulBob{animation:soulBob 1.5s ease-in-out infinite}"
     " .soulHurt{animation:soulHurt 12s linear infinite;opacity:0}"
+    " .soulBlue{animation:soulBlue 12s linear infinite;opacity:0}"
     " .bone{animation:boneSlide 12s linear infinite;opacity:0}"
     " .boneL{animation:boneSlideL 12s linear infinite;opacity:0}"
+    " .wall{animation:wallSweep 12s linear infinite;opacity:0}"
     " .blasterWrap{animation:blasterIn 12s linear infinite;opacity:0}"
     " .beam{animation:beamShot 12s linear infinite;opacity:0;stroke-dasharray:100}"
     " .beamFlash{animation:beamFlash 12s linear infinite;opacity:0}"
@@ -862,33 +1100,50 @@ SCENE_CSS = (
     "52%{transform:translateY(-6px)}53.5%{transform:translateY(-16px)}"
     "55.5%{transform:translateY(-16px)}57%{transform:translateY(-6px)}"
     "58.5%,100%{transform:translateY(0)}}"
-    " @keyframes soulHop{0%,14%{transform:translateY(0)}"
-    "15%{transform:translateY(-10px)}16.5%{transform:translateY(-20px)}"
-    "19.5%{transform:translateY(-20px)}20.5%{transform:translateY(-10px)}"
-    "21.5%,22.5%{transform:translateY(0)}"
-    "23.5%{transform:translateY(-20px)}26%{transform:translateY(-20px)}"
-    "27%{transform:translateY(-8px)}28%,100%{transform:translateY(0)}}"
-    " @keyframes soulSlide{0%,29.6%{transform:translateX(0)}"
-    "30.2%{transform:translateX(-6px)}32.4%{transform:translateX(-6px)}"
-    "34%{transform:translateX(0)}51.6%{transform:translateX(0)}"
+    # The SOUL hops the white bones, holds still for the blue ones, and rises into
+    # the bone wall's gap before it arrives.
+    " @keyframes soulHop{0%,11.5%{transform:translateY(0)}"
+    "12.5%{transform:translateY(-10px)}13.5%{transform:translateY(-20px)}"
+    "16.5%{transform:translateY(-20px)}17.5%{transform:translateY(-10px)}"
+    "18.5%,68%{transform:translateY(0)}"
+    "70%{transform:translateY(-12px)}72%{transform:translateY(-23px)}"
+    "84%{transform:translateY(-23px)}86%{transform:translateY(-12px)}"
+    "88%,100%{transform:translateY(0)}}"
+    " @keyframes soulSlide{0%,23.6%{transform:translateX(0)}"
+    "24.2%{transform:translateX(-6px)}26.4%{transform:translateX(-6px)}"
+    "28%{transform:translateX(0)}51.6%{transform:translateX(0)}"
     "52.2%{transform:translateX(-8px)}54%{transform:translateX(-8px)}"
-    "56.5%,83.4%{transform:translateX(0)}84%{transform:translateX(6px)}"
-    "86%{transform:translateX(6px)}88%,100%{transform:translateX(0)}}"
-    " @keyframes soulHurt{0%,29.6%{opacity:0}"
-    "30%{opacity:.95}31%{opacity:0}31.6%{opacity:.9}32.6%{opacity:0}"
+    "56.5%,90.9%{transform:translateX(0)}91.5%{transform:translateX(6px)}"
+    "93.5%{transform:translateX(6px)}95%,100%{transform:translateX(0)}}"
+    " @keyframes soulHurt{0%,23.4%{opacity:0}"
+    "23.8%{opacity:.95}24.8%{opacity:0}25.4%{opacity:.9}26.4%{opacity:0}"
     "51.7%{opacity:0}52.1%{opacity:.95}53.1%{opacity:0}53.7%{opacity:.9}54.7%{opacity:0}"
-    "83.4%{opacity:0}83.9%{opacity:.95}84.9%{opacity:0}85.5%{opacity:.9}86.5%{opacity:0}"
+    "91%{opacity:0}91.4%{opacity:.95}92.4%{opacity:0}93%{opacity:.9}94%{opacity:0}"
     "100%{opacity:0}}"
+    # Blue attacks only hurt a SOUL that moves, so the cue says: stay put.
+    " @keyframes soulBlue{0%,29%{opacity:0}30%{opacity:.32}34%{opacity:.32}"
+    "35.5%,100%{opacity:0}}"
     " @keyframes soulBob{0%,100%{transform:translateY(0)}50%{transform:translateY(1.6px)}}"
     " @keyframes sansBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-1.4px)}}"
-    " @keyframes eye{0%,6%{opacity:0}7%{opacity:1}9%{opacity:.3}10%{opacity:1}"
-    "65%{opacity:1}67%,100%{opacity:0}}"
+    # Arm down -> arm out -> arm up, the way his battle sprite moves when he attacks.
+    " @keyframes sF1{0%,5.2%{opacity:1}6.4%,37.2%{opacity:0}37.8%,39.2%{opacity:1}"
+    "40.2%,62.4%{opacity:0}63%,64.2%{opacity:1}65.2%,88.2%{opacity:0}88.8%,100%{opacity:1}}"
+    " @keyframes sF2{0%,5.6%{opacity:0}6.4%,7.6%{opacity:1}8.4%,39.6%{opacity:0}"
+    "40.2%,41.2%{opacity:1}41.8%,64.6%{opacity:0}65.4%,87.8%{opacity:1}88.6%,100%{opacity:0}}"
+    " @keyframes sF3{0%,7.8%{opacity:0}8.4%,36.9%{opacity:1}37.5%,41.6%{opacity:0}"
+    "42.2%,62.2%{opacity:1}62.8%,100%{opacity:0}}"
+    " @keyframes eye{0%,5%{opacity:0}6%{opacity:1}8%{opacity:.3}9%{opacity:1}"
+    "34%{opacity:1}36%,100%{opacity:0}}"
     " @keyframes boneSlide{0%,6%{transform:translateX(0);opacity:0}7%{opacity:1}"
     "26%{transform:translateX(-662px);opacity:1}"
     "27%,100%{transform:translateX(-662px);opacity:0}}"
     " @keyframes boneSlideL{0%,6%{transform:translateX(0);opacity:0}7%{opacity:1}"
     "26%{transform:translateX(662px);opacity:1}"
     "27%,100%{transform:translateX(662px);opacity:0}}"
+    # The wall of bones from above and below, with one gap to slip through.
+    " @keyframes wallSweep{0%,63%{transform:translateX(620px);opacity:0}"
+    "64%{opacity:1}84%{transform:translateX(236px);opacity:1}"
+    "85.5%,100%{transform:translateX(236px);opacity:0}}"
     " @keyframes blasterIn{0%,40%{opacity:0;transform:translateY(-12px)}"
     "43%{opacity:0;transform:translateY(-12px)}46%,62%{opacity:1;transform:translateY(0)}"
     "66%,100%{opacity:0;transform:translateY(-8px)}}"
@@ -897,14 +1152,14 @@ SCENE_CSS = (
     "59.4%,100%{stroke-dashoffset:0;opacity:0}}"
     " @keyframes beamFlash{0%,51.7%{opacity:0}52.2%{opacity:.16}54%{opacity:.07}"
     "58%,100%{opacity:0}}"
-    " @keyframes hpBar{0%,29.9%{transform:scaleX(1)}30.2%{transform:scaleX(.76)}"
+    " @keyframes hpBar{0%,23.6%{transform:scaleX(1)}24.2%{transform:scaleX(.76)}"
     "51.9%{transform:scaleX(.76)}52.2%{transform:scaleX(.52)}"
-    "83.9%{transform:scaleX(.52)}84.2%{transform:scaleX(.28)}"
+    "91.1%{transform:scaleX(.52)}91.6%{transform:scaleX(.28)}"
     "96.5%{transform:scaleX(.28)}97.5%,100%{transform:scaleX(1)}}"
-    " @keyframes hpN1{0%,29.9%{opacity:1}30%,96.9%{opacity:0}97%,100%{opacity:1}}"
-    " @keyframes hpN2{0%,29.9%{opacity:0}30%,51.9%{opacity:1}52%,100%{opacity:0}}"
-    " @keyframes hpN3{0%,51.9%{opacity:0}52%,83.9%{opacity:1}84%,100%{opacity:0}}"
-    " @keyframes hpN4{0%,83.9%{opacity:0}84%,96.9%{opacity:1}97%,100%{opacity:0}}"
+    " @keyframes hpN1{0%,23.6%{opacity:1}24%,96.9%{opacity:0}97%,100%{opacity:1}}"
+    " @keyframes hpN2{0%,23.6%{opacity:0}24%,51.9%{opacity:1}52%,100%{opacity:0}}"
+    " @keyframes hpN3{0%,51.9%{opacity:0}52%,91.1%{opacity:1}91.2%,100%{opacity:0}}"
+    " @keyframes hpN4{0%,91.1%{opacity:0}91.2%,96.9%{opacity:1}97%,100%{opacity:0}}"
     "</style>"
 )
 
@@ -978,16 +1233,18 @@ def activity():
     )
     last_x, last_y = points[-1]
 
-    # Undertale: the map is the arena. Frisk and Sans stand on it, bones sweep across,
-    # two Gaster Blasters fire an X through it, and the SOUL takes real hits.
+    # Undertale: the map is the arena. Sans stands over it in his battle sprite and
+    # swings his arm; bones run under the SOUL, blue ones she has to hold still for,
+    # and a wall of bones from above and below sweeps past with one gap to slip through.
     unit = 2.0
     grid_bottom = y0 + step * 6 + cell
     frisk_x = 68
     frisk_y = grid_bottom - 28 * unit
-    sans_unit = 1.9
-    sans_x, sans_y = 748, grid_bottom - 30 * sans_unit
-    eye_x = sans_x + 15.5 * sans_unit
-    eye_y = sans_y + 6.5 * sans_unit
+    sans_unit = 0.78
+    sans_x = 754
+    sans_y = grid_bottom - 73 * sans_unit
+    eye_x = sans_x + 20.5 * sans_unit
+    eye_y = sans_y + 7 * sans_unit
     soul_unit = 1.75
     soul_x = 450
     soul_y = grid_bottom - 16 * soul_unit - 9
@@ -1003,6 +1260,47 @@ def activity():
         bx, by = x1 + r * math.sin(t), y1 - r * math.cos(t)
         return f'<g transform="translate({bx:.1f} {by:.1f}) rotate({ang:.1f})"><use href="#blasterSprite"/></g>'
 
+    def bone_use(tint, glow=False):
+        """Bones take their colour from the <use>, so white and blue share one sprite."""
+        haze = (
+            f'<use href="#boneSprite" color="{tint}" opacity=".5" filter="url(#blueGlow)"/>'
+            if glow
+            else ""
+        )
+        return f'{haze}<use href="#boneSprite" color="{tint}"/>'
+
+    def hbone(delay, tint="#FFFFFF", cls="bone"):
+        return (
+            f'<g transform="translate(720 {grid_bottom - 20:.1f})">'
+            f'<g class="{cls}" style="animation-delay:{delay}s">'
+            f'<g transform="rotate(90)">{bone_use(tint, tint != "#FFFFFF")}</g></g></g>'
+        )
+
+    def left_bone(delay):
+        return (
+            f'<g transform="translate(64 {grid_bottom - 13:.1f})">'
+            f'<g class="boneL" style="animation-delay:{delay}s">'
+            f'<g transform="rotate(-90)">{bone_use("#FFFFFF")}</g></g></g>'
+        )
+
+    def vbone(x, length, from_top):
+        """A wall bone: stands on the floor, or hangs from the row above."""
+        span = length / 76
+        top = y0 if from_top else grid_bottom - length
+        return (
+            f'<g transform="translate({x:.1f} {top:.1f}) scale(1.5 1)">'
+            f'<use href="#boneSprite" color="#FFFFFF" transform="scale({span:.3f})"/></g>'
+        )
+
+    # White bones to jump, one blue bone to stand still under, then a bone off the floor.
+    bones = hbone(0.30) + hbone(1.30) + hbone(2.35, "#7CD4FF") + left_bone(9.55)
+
+    # The wall hangs from the top and rises from the floor, leaving one gap to slip through.
+    wall_gaps = ((118, 153), (114, 157), (120, 152), (116, 155), (119, 154), (115, 158))
+    wall = '<g class="wall">' + "".join(
+        vbone(64 + i * 22, top - y0, True) + vbone(64 + i * 22, grid_bottom - bottom, False)
+        for i, (top, bottom) in enumerate(wall_gaps)
+    ) + "</g>"
 
     x_shots = ((255, 104, 604, 181), (604, 129, 255, 181))
     x_beams = "".join(
@@ -1013,23 +1311,45 @@ def activity():
         for x1, y1, x2, y2 in x_shots
     )
     x_blasters = "".join(aimed_blaster(*shot) for shot in x_shots)
-    bones = "".join(
-        f'<g transform="translate(720 {grid_bottom - 20:.1f})">'
-        f'<g class="bone" style="animation-delay:{delay}s">'
-        f'<g transform="rotate(90)"><use href="#boneSprite"/></g></g></g>'
-        for delay in (0.6, 1.4, 2.2)
-    ) + "".join(
-        f'<g transform="translate(64 {grid_bottom - 13:.1f})">'
-        f'<g class="boneL" style="animation-delay:{delay}s">'
-        f'<g transform="rotate(-90)"><use href="#boneSprite"/></g></g></g>'
-        for delay in (8.2,)
+
+    # Only the arm moves between frames, so the body is drawn once and each frame
+    # contributes a crop of the arm box.
+    battle = (SANS_DOWN_PX, SANS_OUT_PX, SANS_UP_PX)
+    width = max(len(frame[0]) for frame in battle)
+    battle = tuple(tuple(row.ljust(width, ".") for row in frame) for frame in battle)
+    moving = [
+        (r, c)
+        for r in range(len(battle[0]))
+        for c in range(width)
+        if any(f[r][c] != battle[0][r][c] for f in battle)
+    ]
+    box_r0, box_r1 = min(r for r, _ in moving), max(r for r, _ in moving)
+    box_c0, box_c1 = min(c for _, c in moving), max(c for _, c in moving)
+
+    def in_box(r, c):
+        return box_r0 <= r <= box_r1 and box_c0 <= c <= box_c1
+
+    shared = tuple(
+        "".join("." if in_box(r, c) else ch for c, ch in enumerate(battle[0][r]))
+        for r in range(len(battle[0]))
+    )
+    arms = tuple(
+        tuple(
+            "".join(f[r][c] if in_box(r, c) else "." for c in range(width))
+            for r in range(len(f))
+        )
+        for f in battle
+    )
+    sans_frames = sprite(shared, sans_x, sans_y, sans_unit, SANS_UP_COLOURS) + "".join(
+        f'<g class="sF{i + 1}">{sprite(arm, sans_x, sans_y, sans_unit, SANS_UP_COLOURS)}</g>'
+        for i, arm in enumerate(arms)
     )
 
     return (
         open_svg(
             height,
             f"Contribution map for axs-official with {DATA['total']} contributions across {DATA['activeDays']} active days, "
-            "the weekly rhythm over the last 52 weeks, and Frisk and Sans duelling across the grid.",
+            "the weekly rhythm over the last 52 weeks, and Sans throwing bones at Frisk's SOUL across the grid.",
             "Contributions",
             SCENE_CSS,
         )
@@ -1039,6 +1359,9 @@ def activity():
     </filter>
     <filter id="soulSoft" x="-70%" y="-70%" width="240%" height="240%">
       <feGaussianBlur stdDeviation="3.4"/>
+    </filter>
+    <filter id="blueGlow" x="-40%" y="-20%" width="180%" height="140%">
+      <feGaussianBlur stdDeviation="2.6"/>
     </filter>
     <clipPath id="arenaClip">
       <rect x="{x0 - 2}" y="{y0 - 2}" width="{step * 52 + cell + 4:.1f}" height="{step * 6 + cell + 4:.1f}"/>
@@ -1087,12 +1410,15 @@ def activity():
   {''.join(legend)}
   <text x="{PAD + 136}" y="317" font-family="{MONO}" font-size="12.5" letter-spacing="1.4" fill="{DIM}">MORE</text>
 
-  <!-- Undertale: attacks sweep the map, the SOUL takes hits and the HP bar drops. -->
-  <g clip-path="url(#arenaClip)">{bones}{x_beams}</g>
+  <!-- Undertale: bones sweep the map, a wall closes in, and the SOUL takes its hits. -->
+  <g clip-path="url(#arenaClip)">{bones}{wall}{x_beams}</g>
   <ellipse cx="{frisk_x + 17:.1f}" cy="{grid_bottom - 1.6:.1f}" rx="17" ry="3" fill="#000000" opacity=".45"/>
-  <ellipse cx="{sans_x + 21.8:.1f}" cy="{grid_bottom - 1.6:.1f}" rx="21" ry="3.4" fill="#000000" opacity=".45"/>
+  <ellipse cx="{sans_x + 25:.1f}" cy="{grid_bottom - 1.6:.1f}" rx="25" ry="3.4" fill="#000000" opacity=".45"/>
   <g class="friskHop" filter="url(#spShadow)">{sprite(FRISK_PX, frisk_x, frisk_y, unit, FRISK_COLOURS)}</g>
-  <g class="sansBob" filter="url(#spShadow)">{sprite(SANS_PX, sans_x, sans_y, sans_unit, SANS_COLOURS)}</g>
+  <g class="sansBob" filter="url(#spShadow)">
+    {sans_frames}
+    {sprite(SANS_FACE_PX, sans_x + 16 * sans_unit, sans_y - 2 * sans_unit, sans_unit, SANS_FACE_COLOURS)}
+  </g>
   <g class="eye">
     <circle cx="{eye_x:.1f}" cy="{eye_y:.1f}" r="7.5" fill="#7FDBFF" opacity=".2"/>
     <circle cx="{eye_x:.1f}" cy="{eye_y:.1f}" r="2.8" fill="#A6ECFF"/>
@@ -1103,6 +1429,7 @@ def activity():
       <g class="soulBob">
         <ellipse cx="{soul_x + 14:.1f}" cy="{soul_y + 14:.1f}" rx="24" ry="21" fill="#000000"
                  opacity=".5" filter="url(#soulSoft)"/>
+        <ellipse class="soulBlue" cx="{soul_x + 14:.1f}" cy="{soul_y + 14:.1f}" rx="22" ry="19" fill="#6FC8FF"/>
         <ellipse cx="{soul_x + 14:.1f}" cy="{soul_y + 14:.1f}" rx="18" ry="14" fill="#FF3B3B" opacity=".18"/>
         {sprite(HEART_PX, soul_x, soul_y, soul_unit, SOUL_COLOURS)}
         <g class="soulHurt">{sprite(HEART_PX, soul_x, soul_y, soul_unit, {"a": "#FFFFFF"})}</g>
