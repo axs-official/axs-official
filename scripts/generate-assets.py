@@ -805,154 +805,165 @@ def sprite(rows, x, y, unit, palette):
     return f'<g transform="translate({x:.1f} {y:.1f})" shape-rendering="crispEdges">{body}</g>'
 
 
-# Sans's battle body, traced from the game's own parts: the skull, the torso and
-# the legs are drawn in place and only the arm changes, so raising his hand never
-# moves anything else. "#" is white ink, "a" the black fill, "." transparent.
-# Canvas is 58x70 with the body anchor at column 27 (0); the feet sit on the last row.
+# Sans's battle body, drawn the way the game draws it: legs behind, then the pose
+# sprite holding the torso and the throwing arm, then the skull on top. Every frame
+# keeps the same body and redraws only the arm, so the swap cannot move him.
+# "#" is white ink, "a" the black fill and "." transparent.
+# Canvas 64x75: the body anchor sits at column 30, the feet on the last row.
 SANS_COLOURS = {"#": "#FFFFFF", "a": "#0A0A0A"}
 SANS_REST_PX = (
-    ".................aaaa############aaaa.....................",
-    "...............aaa##################aaa...................",
-    "..............aa######################aa..................",
-    ".............aa########################aa.................",
-    "............aa##########################aa................",
-    "............a############################a.......aaaaa....",
-    "...........aa############################aa.....aa###aa...",
-    "...........a##############################a....aa#####aa..",
-    "...........a##############################a....a#######a..",
-    "...........a##############################a..aaa#######a..",
-    "...........a##############################a..a#a#######a..",
-    "...........a###########a######a###########a..a##a######a..",
-    "...........a###########a######a###########a..a#########a..",
-    "...........a##a#######aa######aa#######a##a..a#########a..",
-    "...........aa##aaaaaaaa###aa###aaaaaaaa##aa..a#########a..",
-    "............a####aaaaaa###aa###aaaaaa####a...a#aaaa###aa..",
-    "............aa#######a###aaaa###a#######aa...a#aaaaaaa#a..",
-    "............aa######a####aaaa####a######aa..aa#aaaaaaa#a..",
-    "............a####a#######aaaa#######a####a..a#aaaaaaa#aa..",
-    "............a####aa#################aa###a.aa#aaaaaaa#a...",
-    "............a##aaa#aa#############aaaaa##a.a#aaaaaaaa#a...",
-    "............a####a#a#aaaaaaaaaaaaa#aa####a.a#aaaaaaaa#a...",
-    "............aa####aa###a##a###a##a#a####aaaaaaaaaaaaa#a...",
-    ".......aaaaaaa#####aa##a##a###a##aa#####a###aaaaaaaa#aa...",
-    "......aa###aaaa######aaa##a###a#a######a#####aaaaaaa#a....",
-    "......a#####aaaa#######aaaaaaaaaa#####a####aaaaaaaaa#a....",
-    ".....aa######aaaaa###########aa#a###aa####aaaaaaaaa#aa....",
-    ".....a#aaa#####aaaaaa########aa#aaaaaa###aaaaaaaaaa#a.....",
-    ".....aaaaaaaa###aaaaaaaaaaaaaaaaaaaaa###aaaaaaaaaa#aa.....",
-    "....aaaaaaaaaa###aaaaa#aaaaa#aaaaaa####aaaaaaaaaaa#a......",
-    "...aa#aaaaaaaaaa###aaa#######aaaaa####aaaa#aaaaaa#aa......",
-    "..aa#aaaaa#aaaaaa####aa#####aaa####aaaaaa#aaaaaa#aa.......",
-    ".aa#aaaaaa#aaaaaa#aa##aa####a####aaaaaaaa#aaaaa#aa........",
-    ".a#aaaaaaa#aaaaaa#aa#aaaaaaaaa#a#aaaaaaaa#aaa##aa.........",
-    "aa#aaaaaaa#aaaaaa#aa#aa####aaa#a#aaaaaaa##a##aaa..........",
-    "a#aaaaaaaa#aaaaaa####aa#####a####aaaaaa###aaaa............",
-    "a#aaaaaaaa##a#####aa#aa#####a##a#aaaa###a#a...............",
-    "##aaaaaaaa###aaaaa#aa#a#####a#aa#aa###aaa#aa..............",
-    "##aaaaaaaa#aaaaaaa#a##a#####a####a#aaaaaa##a..............",
-    "##aaaaaaa#aaaaaaaa##a#a#####a#aa#a#aaaaaaa#a..............",
-    "a##aaaaaa#aaaaaaaa#aa#a#####a#aa#a#aaaaaaa#a..............",
-    "aa##aaaaa#aaaaaaaa#a##a#####a###a#aaaaaaaa#a..............",
-    ".aa##aaaa#aaaaaaaaa#a#a#####a#a#a#aaaaaaaa#a..............",
-    "..aa###aa#aaaaaaaaa#a#a#####a#a##aaaaaaaaa#a..............",
-    "...aa##aa#aaaaaaaaa#a#aaaaaaa#a#aaaaaaaaa##a..............",
-    "....aa#aa###aaaaaaa#############aaaaaaaa###a..............",
-    ".....aaa#####aaaaaa#####aaaaaa############aa..............",
-    ".......aaa#########aaaaaaaaaaaaaaaaaaaaa##a...............",
-    ".........aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa...............",
-    "..........aaaaaaaaaaaaaaaaaaaaaaa###aaaa##a...............",
-    ".........aa##a###aaaaaaaaaaaaaaaa###aaaa##aa..............",
-    ".........a##aa###aaaaaaaaaaaaaaaa###aaaaa##a..............",
-    ".........a##a###aaaaaaaaa##aaaaaa###aaaaa##a..............",
-    ".........a##a###aaaaaaaa####aaaaa###aaaaa##a..............",
-    ".........a##a###aaaaaaaa####aaaaa####aaaa##aa.............",
-    "........aa##a###aaaaaaaa####aaaaa####aaaaa##a.............",
-    "........a##a###aaaaaaaaa##a##aaaa####aaaaa##a.............",
-    "........a##a###aaaaaaaa###a##aaaa####aaaaa##a.............",
-    "........a##a###aaaaaaaa##aa##aaaaa###aaaaa##a.............",
-    "........a##a###aaaaaaaa##aa##aaaaa###aaaaa##a.............",
-    "........a##a###aaaaaaaa##aa##aaaaa###aaaaa##a.............",
-    "........a######aaaaaaaa##aa##aaaaa####a#####a.............",
-    "........aaaaaa##########aaaa############aaaaa.............",
-    ".............aaaaaaaaaaaa..aaaaaaaaaaaaaa.................",
-    ".......aaaaaaaaaaaaa...........a##aaaaaaaaaaaaa...........",
-    "......aa#####a#####a..........aa########aa####aaa.........",
-    ".....aa########a###a..........a########a########aa........",
-    ".....a#############a..........a#######a##########a........",
-    ".....a##########aaaaa........aaaaaaaa############a........",
-    ".....a##############a........a##################aa........",
+    ".......................aaaaaaaaaaaaaa...........................",
+    "....................aaaa############aaaa........................",
+    "..................aaa##################aaa......................",
+    ".................aa######################aa.....................",
+    "................aa########################aa....................",
+    "...............aa##########################aa...................",
+    "...............a############################a...................",
+    "..............aa############################aa..................",
+    "..............a##############################a..................",
+    "..............a##############################a..................",
+    "..............a#####aaaaaa########aaaaaa#####a..................",
+    "..............a###aaaaaaaaa######aaaaaaaaa###a..................",
+    "..............a##aaaaaaaaaa######aaaaaaaaaa##a..................",
+    "..............a##aaaaaaaaaa######aaaaaaaaaa##a..................",
+    "..............a##aaaaaaaaaa######aaaaaaaaaa##a..................",
+    "..............aa##aaaaaaaa###aa###aaaaaaaa##aa..................",
+    "...............a####aaaaaa###aa###aaaaaa####a...................",
+    "...............aa#######a###aaaa###a#######aa...................",
+    "...............aa#####aa####aaaa####aa#####aa...................",
+    "...............a####a#######aaaa#######a####a...................",
+    "...............a####aa#################aa###a...................",
+    "...............a##aaa#aa#############aaaaa##a...................",
+    "...............a####a#a#aaaaaaaaaaaaa#aa####a...................",
+    "...............aa####aa###a##a###a##a#a####aa...................",
+    "................a#####aa##a##a###a##aa#####a....................",
+    "................aa######aaa##a###a#aa#####aaaaaaa...............",
+    "...........aaaaaaaa#######aaaaaaaaa######aaaa###aa..............",
+    "..........aa###aaaaaa##################aaaaa#####aaa............",
+    "..........a#####aaaaaaaa############aaaaaaa####aaa#a............",
+    ".........aa######aaaaaaaaaaaaaaaaaaaaaaaaa####aaaa#aa...........",
+    ".........a#aaa#####aaaaaaaaaaaaaaaaaaaaaaa###aaaaaa#a...........",
+    ".........aaaaaaaa###aaaaaaaaaaaaaaaaaaaaa###aaaaaaa#aa..........",
+    "........aaaaaaaaaa###aaaaa#aaaaa#aaaaaa####aaaaaaaaa#a..........",
+    ".......aa#aaaaaaaaaa###aaa#######aaaaa####aaaa#aaaaa#aa.........",
+    "......aa#aaaaa#aaaaaa####aa#####aaa####aaaaaa#aaaaaaa#a.........",
+    ".....aa#aaaaaa#aaaaaa#aa##aa####a####aaaaaaaa#aaaaaaa#aa........",
+    ".....a#aaaaaaa#aaaaaa#aa#aaaaaaaaa#a#aaaaaaaa#aaaaaaaa#a........",
+    "....aa#aaaaaaa#aaaaaa#aa#aa####aaa#a#aaaaaaa##aaaaaaaa#a........",
+    "....a#aaaaaaaa#aaaaaa####aa#####a####aaaaaa###aaaaaaaa#a........",
+    "...aa#aaaaaaaa##a#####aa#aa#####a##a#aaaa###a#aaaaaaaa#aa.......",
+    "...a##aaaaaaaa###aaaaa#aa#a#####a#aa#aa###aaa#aaaaaaaaa#a.......",
+    "...a##aaaaaaaa#aaaaaaa#a##a#####a####a#aaaaaa##aaaaaaaa#a.......",
+    "...a##aaaaaaa#aaaaaaaa##a#a#####a#aa#a#aaaaaaa#aaaaaaaa#a.......",
+    "...aa##aaaaaa#aaaaaaaa#aa#a#####a#aa#a#aaaaaaa#aaaaaaaa#aa......",
+    "....aa##aaaaa#aaaaaaaa#a##a#####a###a#aaaaaaaa#aaaaaaaaa#a......",
+    ".....aa##aaaa#aaaaaaaaa#a#a#####a#a#a#aaaaaaaa#aaaaaaaaa#a......",
+    "......aa###aa#aaaaaaaaa#a#a#####a#a##aaaaaaaaa#aaaaaaaaa#a......",
+    ".......aa##aa#aaaaaaaaa#a#aaaaaaa#a#aaaaaaaaa##aaaaaaaaa#a......",
+    "........aa#aa###aaaaaaa#############aaaaaaaa###aaaaaaaaa#a......",
+    ".........aaa#####aaaaaa#####aaaaaa############aaaaaaaaaa#a......",
+    "...........aaa#########aaaaaaaaaaaaaaaaaaaaa##aa#aaaaaaa#a......",
+    ".............aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa#aaaaaaa#a......",
+    ".............aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa#aaaaa###aa.....",
+    ".............a#aa##aaaaaaaaaa#aaaaaaa##aaaaa#aaa##########aa....",
+    ".............a#aa##aaaaaaaaa#a#aaaaaa##aaaaa#aaaa##########aa...",
+    ".............a#aa##aaaaaaaaa#a#aaaaaa##aaaaaa#aa############aa..",
+    "............aa#aa##aaaaaaaaa#a#aaaaaa##aaaaaa#aa###aaa#######a..",
+    "............a#aa##aaaaaaaaaa#aa#aaaaa###aaaaa#aaaaaa.aa######a..",
+    "............a#aa##aaaaaaaaa##aa#aaaaa###aaaaa#aa......aaa###aa..",
+    "............a#aa##aaaaaaaaa#aaa#aaaaa###aaaaaa#a........aaaaa...",
+    "............a#aa##aaaaaaaaa#a.a#aaaaaa##aaaaaa#a................",
+    "............a#aa##aaaaaaaaa#a.a#aaaaaa##aaaaaa#a................",
+    "............a#####aaaaaaaaa#a.a#aaaaaa###aa####a................",
+    "............aaaaaa#########aa.aa###########aaaaa................",
+    ".................aaaaaaaaaaa...aaaaaaaaaaaaa....................",
+    "...........aaaaaaaaaaaa............a#aaaaaaa.aaaaa..............",
+    "..........aa####aa####a...........aa#######aaa###aaa............",
+    ".........aa#######a###a...........a#######aa#######aa...........",
+    ".........a#########a##a...........a######a##########a...........",
+    ".........a#########aaaaa.........aaaaaaaa###########a...........",
+    ".........a##########a##a.........a######a##########aa...........",
+    ".........aaaaaaaaaaaaaaa.........aaaaaaaaaaaaaaaaaaa............",
+    "................................................................",
+    "................................................................",
+    "................................................................",
 )
 SANS_RAISE_PX = (
-    ".................aaaa############aaaa.....................",
-    "...............aaa##################aaa...................",
-    "..............aa######################aa..................",
-    ".............aa########################aa.................",
-    "............aa##########################aa................",
-    "............a############################a................",
-    "...........aa############################aa.....aaaaa.....",
-    "...........a##############################a....aa###aa....",
-    "...........a##############################a...aa#####aa...",
-    "...........a##############################a...a#######a...",
-    "...........a##############################a...a#######aa..",
-    "...........a###########a######a###########a..aa########a..",
-    "...........a###########a######a###########a..a#a#######a..",
-    "...........a##a#######aa######aa#######a##a..a##a######a..",
-    "...........aa##aaaaaaaa###aa###aaaaaaaa##aa..a##a######a..",
-    "............a####aaaaaa###aa###aaaaaa####a...a###a#####a..",
-    "............aa#######a###aaaa###a#######aa...aa##a#####a..",
-    "............aa######a####aaaa####a######aa..aa#########a..",
-    "............a####a#######aaaa#######a####a..a#a########aa.",
-    "............a####aa#################aa###a.aa#a#########a.",
-    "............a##aaa#aa#############aaaaa##a.a#aaa######a#a.",
-    "............a####a#a#aaaaaaaaaaaaa#aa####a.a#aaaa#####a#a.",
-    "............aa####aa###a##a###a##a#a####aaaaaaaaaa##aaa#a.",
-    ".......aaaaaaa#####aa##a##a###a##aa#####a###aaaaaaaaaa##a.",
-    "......aa###aaaa######aaa##a###a#a######a#####aaaaa######a.",
-    "......a#####aaaa#######aaaaaaaaaa#####a####aaaaaa#aaaa##a.",
-    ".....aa######aaaaa###########aa#a###aa####aaaaaaaaaaaa##a.",
-    ".....a#aaa#####aaaaaa########aa#aaaaaa###aaaaaaaaaaaa###aa",
-    ".....aaaaaaaa###aaaaaaaaaaaaaaaaaaaaa###aaaaaaaaaa###aaa#a",
-    "....aaaaaaaaaa###aaaaa#aaaaa#aaaaaa####aaaaaaaaaaaaaaaaa#a",
-    "...aa#aaaaaaaaaa###aaa#######aaaaa####aaaa#aaaaaa#aaaaaa#a",
-    "..aa#aaaaa#aaaaaa####aa#####aaa####aaaaaa#aaaaaaaaaa#####a",
-    ".aa#aaaaaa#aaaaaa#aa##aa####a####aaaaaaaa#aaaaaaaa##aaaa#a",
-    ".a#aaaaaaa#aaaaaa#aa#aaaaaaaaa#a#aaaaaaaa#aaaaaaaaaaaaaa#a",
-    "aa#aaaaaaa#aaaaaa#aa#aa####aaa#a#aaaaaaa##aaaaaaaaaaaaaa#a",
-    "a#aaaaaaaa#aaaaaa####aa#####a####aaaaaa###aaaaaaaaa#######",
-    "a#aaaaaaaa##a#####aa#aa#####a##a#aaaa###a#aaaaaaaa#aaaa###",
-    "##aaaaaaaa###aaaaa#aa#a#####a#aa#aa###aaa#aaaaaaaaaaaaaaa#",
-    "##aaaaaaaa#aaaaaaa#a##a#####a####a#aaaaaa##aaaaaaaaaaaaaa#",
-    "##aaaaaaa#aaaaaaaa##a#a#####a#aa#a#aaaaaaa#aaaaaaa######a#",
-    "a##aaaaaa#aaaaaaaa#aa#a#####a#aa#a#aaaaaaa#aaaaaaa########",
-    "aa##aaaaa#aaaaaaaa#a##a#####a###a#aaaaaaaa#aaaaaaaaaaaa###",
-    ".aa##aaaa#aaaaaaaaa#a#a#####a#a#a#aaaaaaaa#aaaaaaaaaaaaa##",
-    "..aa###aa#aaaaaaaaa#a#a#####a#a##aaaaaaaaa#aaaaaa######a##",
-    "...aa##aa#aaaaaaaaa#a#aaaaaaa#a#aaaaaaaaa##aaaaaa#########",
-    "....aa#aa###aaaaaaa#############aaaaaaaa###aaaaaaaaaaa####",
-    ".....aaa#####aaaaaa#####aaaaaa############aaaaaa#####aa###",
-    ".......aaa#########aaaaaaaaaaaaaaaaaaaaa##aaaaaa#######a##",
-    ".........aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa############",
-    "...........aaaaaaaaaaaaaaaaaaaaaaa##aaaaa#aaa#############",
-    ".........aaa#aa##aaaaaaaaaaaaaaaaa##aaaaa#aa##############",
-    ".........a##aa###aaaaaaaaaaaaaaaa###aaaa#a#a#############a",
-    ".........a##a###aaaaaaaaa##aaaaaa###aaaa#a###############a",
-    ".........a##a###aaaaaaaa####aaaaa###aaaaa#####aaa########a",
-    ".........a##a###aaaaaaaa####aaaaa####aaaa##aaaa.aa######aa",
-    "........aa##a###aaaaaaaa####aaaaa####aaaa#a#a....aaa###aa.",
-    "........a##a###aaaaaaaaa##a##aaaa####aaaa#a#a......aaaaa..",
-    "........a##a###aaaaaaaa###a##aaaa####aaaaa##a.............",
-    "........a##a###aaaaaaaa##aa##aaaaa###aaaaa##a.............",
-    "........a##a###aaaaaaaa##aa##aaaaa###aaaaa##a.............",
-    "........a##a###aaaaaaaa##aa##aaaaa###aaaaa##a.............",
-    "........a######aaaaaaaa##aa##aaaaa####a#####a.............",
-    "........aaaaaa##########aaaa############aaaaa.............",
-    ".............aaaaaaaaaaaa..aaaaaaaaaaaaaa.................",
-    ".......aaaaaaaaaaaaa...........a##aaaaaaaaaaaaa...........",
-    "......aa#####a#####a..........aa########aa####aaa.........",
-    ".....aa########a###a..........a########a########aa........",
-    ".....a#############a..........a#######a##########a........",
-    ".....a##########aaaaa........aaaaaaaa############a........",
-    ".....a##############a........a##################aa........",
+    ".......................aaaaaaaaaaaaaa...........................",
+    "....................aaaa############aaaa........................",
+    "..................aaa##################aaa......................",
+    ".................aa######################aa.....................",
+    "................aa########################aa....................",
+    "...............aa##########################aa...................",
+    "...............a############################a.......aaaaa.......",
+    "..............aa############################aa.....aa###aa......",
+    "..............a##############################a....aa#####aa.....",
+    "..............a##############################a....a#######a.....",
+    "..............a#####aaaaaa########aaaaaa#####a..aaa#######a.....",
+    "..............a###aaaaaaaaa######aaaaaaaaa###a..a#a#######a.....",
+    "..............a##aaaaaaaaaa######aaaaaaaaaa##a..a##a######a.....",
+    "..............a##aaaaaaaaaa######aaaaaaaaaa##a..a#########a.....",
+    "..............a##aaaaaaaaaa######aaaaaaaaaa##a..a#########a.....",
+    "..............aa##aaaaaaaa###aa###aaaaaaaa##aa..a#########a.....",
+    "...............a####aaaaaa###aa###aaaaaa####a...a#aaaa###aa.....",
+    "...............aa#######a###aaaa###a#######aa...a#a..aaaa#a.....",
+    "...............aa#####aa####aaaa####aa#####aa..aa#a....aa#a.....",
+    "...............a####a#######aaaa#######a####a..a#aa....a#aa.....",
+    "...............a####aa#################aa###a.aa#a.....a#a......",
+    "...............a##aaa#aa#############aaaaa##a.a#aa.....a#a......",
+    "...............a####a#a#aaaaaaaaaaaaa#aa####a.a#a......a#a......",
+    "...............aa####aa###a##a###a##a#a####aaaaaa.....aa#a......",
+    "................a#####aa##a##a###a##aa#####a###aa.....a#aa......",
+    "................aa######aaa##a###a#aa#####a#####a.....a#a.......",
+    "...........aaaaaaaa#######aaaaaaaaa######a####aaaa...aa#a.......",
+    "..........aa###aaaaaa##################aa####aaaaaaa.a#aa.......",
+    "..........a#####aaaaaaaa############aaaaa###aaaaaaaaaa#a........",
+    ".........aa######aaaaaaaaaaaaaaaaaaaaaaa###aaaaaaaaaa#aa........",
+    ".........a#aaa#####aaaaaaaaaaaaaaaaaaa####aaaaaaaaaaa#a.........",
+    ".........aaaaaaaa###aaaaaaaaaaaaaaaaa####aaaa#aaaaaa#aa.........",
+    "........aaaaaaaaaa###aaaaa#aaaaa#aaa##aaaaaa#aaaaaa#aa..........",
+    ".......aa#aaaaaaaaaa###aaa#######aaaaaaaaaaa#aaaaa#aa...........",
+    "......aa#aaaaa#aaaaaa####aa#####aaa#aaaaaaaa#aaa##aa............",
+    ".....aa#aaaaaa#aaaaaa#aa##aa####a###aaaaaaa##a##aaaa............",
+    ".....a#aaaaaaa#aaaaaa#aa#aaaaaaaaa#aaaaaaa###aaaaaaa............",
+    "....aa#aaaaaaa#aaaaaa#aa#aa####aaa#aaaaa###a#a.aaaaaa...........",
+    "....a#aaaaaaaa#aaaaaa####aa#####a###aa###aaa#aaaaaaaa...........",
+    "...aa#aaaaaaaa##a#####aa#aa#####a##aa#aaaaaa##aaaaaaa...........",
+    "...a##aaaaaaaa###aaaaa#aa#a#####a#aaa#aaaaaaa#a.aaaaa...........",
+    "...a##aaaaaaaa#aaaaaaa#a##a#####a###a#aaaaaaa#a.aaaaaa..........",
+    "...a##aaaaaaa#aaaaaaaa##a#a#####a#aa#aaaaaaaa#a.aaaaaa..........",
+    "...aa##aaaaaa#aaaaaaaa#aa#a#####a#aa#aaaaaaaa#a.aaaaaa..........",
+    "....aa##aaaaa#aaaaaaaa#a##a#####a###aaaaaaaaa#a.aaaaaa..........",
+    ".....aa##aaaa#aaaaaaaaa#a#a#####a#a#aaaaaaaa##a.aaaaaaa.........",
+    "......aa###aa#aaaaaaaaa#a#a#####a#a#aaaaaaa###a.aaaaaaa.........",
+    ".......aa##aa#aaaaaaaaa#a#aaaaaaa#a##########aa.aaaaaaa.........",
+    "........aa#aa###aaaaaaa#############aaaaaaa##a..aaaaaaa.........",
+    ".........aaa#####aaaaaa#####aaaaaa##aaaaaaaaaa....aaaaa.........",
+    "...........aaa#########aaaaaaaaaaaaa##aaaaa#a.....aaaaa.........",
+    ".............aaaaaaaaaaaaaaaaaaaaaaa##aaaaa#aa....aaa...........",
+    ".............aaaaaaaaaaaaaaaaaaaaaaa##aaaaaa#aa.................",
+    ".............a#aa##aaaaaaaaaa#aaaaaa##aaaaaa#aa.................",
+    ".............a#aa##aaaaaaaaa#a#aaaaa##aaaaaa#a..................",
+    ".............a#aa##aaaaaaaaa#a#aaaaa###aaaaa#aa.................",
+    "............aa#aa##aaaaaaaaa#a#aaaaa###aaaaaa#a.................",
+    "............a#aa##aaaaaaaaaa#aa#aaaa###aaaaaa#a.................",
+    "............a#aa##aaaaaaaaa##aa#aaaa###aaaaaa#a.................",
+    "............a#aa##aaaaaaaaa#aaa#aaaaa##aaaaaa#a.................",
+    "............a#aa##aaaaaaaaa#a.a#aaaaa##aaaaaa#a.................",
+    "............a#aa##aaaaaaaaa#a.a#aaaaa##aaaaaa#a.................",
+    "............a#####aaaaaaaaa#a.a#aaaaa###aa####a.................",
+    "............aaaaaa#########aa.aa##########aaaaa.................",
+    ".................aaaaaaaaaaa...aaaaaaaaaaaa.....................",
+    "...........aaaaaaaaaaaa............aaaaaaaa.aaaaa...............",
+    "..........aa####aa####a...........aa######aaa###aaa.............",
+    ".........aa#######a###a...........a######aa#######aa............",
+    ".........a#########a##a...........a#####a##########a............",
+    ".........a#########aaaaa.........aaaaaaa###########a............",
+    ".........a##########a##a.........a#####a##########aa............",
+    ".........aaaaaaaaaaaaaaa.........aaaaaaaaaaaaaaaaaa.............",
+    "................................................................",
+    "................................................................",
+    "................................................................",
 )
 
 
@@ -992,22 +1003,20 @@ SCENE_CSS = (
     "25%{opacity:.8}25.8%,51.9%{opacity:0}52.2%{opacity:.92}53%{opacity:0}"
     "53.4%{opacity:.8}54.2%,91.3%{opacity:0}91.6%{opacity:.92}92.4%{opacity:0}"
     "92.8%{opacity:.8}93.6%,100%{opacity:0}}"
-    # The SOUL covers the whole board the way a person actually dodges: hops over the
-    # white bones, holds dead still for the blue one, and stands in the wall's gap.
-    " @keyframes soulHop{0%,11.5%{transform:translateY(0)}"
-    "12.5%{transform:translateY(-11px)}13.5%{transform:translateY(-21px)}"
-    "17%{transform:translateY(-21px)}18%{transform:translateY(-9px)}"
-    "19.2%{transform:translateY(0)}"
-    "25.4%{transform:translateY(-8px)}27%{transform:translateY(0)}"
-    "38%,40%{transform:translateY(0)}"
-    "41%{transform:translateY(-10px)}42.4%{transform:translateY(0)}"
-    "47%{transform:translateY(-9px)}48.6%{transform:translateY(0)}"
-    "55%{transform:translateY(-8px)}57%{transform:translateY(0)}"
-    "69%{transform:translateY(-10px)}70.5%{transform:translateY(-23px)}"
-    "83.5%{transform:translateY(-23px)}85%{transform:translateY(-12px)}"
-    "86.5%,96%{transform:translateY(0)}"
-    "97.4%{transform:translateY(-9px)}98.6%{transform:translateY(0)}"
-    "100%{transform:translateY(0)}}"
+    # The SOUL covers the whole board the way a person actually dodges. Every lift
+    # finishes before the bone reaches its column and every hit happens at rest:
+    # 1.38 s bone cleared, 2.86 s hit, 4.2-4.6 s blue lock, 6.25 s beam, 8.8-10.1 s
+    # wall gap, 10.97 s last bone.
+    " @keyframes soulHop{0%,8.5%{transform:translateY(0)}"
+    "10.17%{transform:translateY(-24px)}14.6%{transform:translateY(-24px)}"
+    "16.25%{transform:translateY(0)}"
+    "25.17%,26.67%{transform:translateY(-9px)}28.75%{transform:translateY(0)}"
+    "38.5%,40.5%{transform:translateY(-9px)}42.5%{transform:translateY(0)}"
+    "48.17%{transform:translateY(-10px)}50.17%{transform:translateY(0)}"
+    "54.33%{transform:translateY(-12px)}56.67%{transform:translateY(0)}"
+    "69.5%{transform:translateY(-24px)}84.33%{transform:translateY(-24px)}"
+    "86.67%{transform:translateY(0)}"
+    "92.5%{transform:translateY(-8px)}94.2%,100%{transform:translateY(0)}}"
     # It never slides along with a bone: it holds its ground through the hit, then
     # leaves in the direction the bone came from.
     " @keyframes soulSlide{0%,4%{transform:translateX(-60px)}"
@@ -1030,14 +1039,15 @@ SCENE_CSS = (
     " @keyframes soulBlue{0%,33.6%{opacity:0}34.4%{opacity:.55}40.6%{opacity:.55}"
     "41.4%,100%{opacity:0}}"
     " @keyframes soulBob{0%,100%{transform:translateY(0)}50%{transform:translateY(1.6px)}}"
-    # Arm at his side between attacks, one hand raised while the bones, blasters and
-    # wall are out: the game swaps the arm and nothing else on his body moves.
-    " .sF1{animation:sF1 12s linear infinite}"
-    " .sF2{animation:sF2 12s linear infinite;opacity:0}"
-    " @keyframes sF1{0%,4.4%{opacity:1}4.5%,41.4%{opacity:0}41.5%,43.4%{opacity:1}"
-    "43.5%,62.4%{opacity:0}62.5%,64.4%{opacity:1}64.5%,95.4%{opacity:0}95.5%,100%{opacity:1}}"
-    " @keyframes sF2{0%,4.4%{opacity:0}4.5%,41.4%{opacity:1}41.5%,43.4%{opacity:0}"
-    "43.5%,62.4%{opacity:1}62.5%,64.4%{opacity:0}64.5%,95.4%{opacity:1}95.5%,100%{opacity:0}}"
+    # Two arm frames on one unchanging body: his hand is up whenever bones, blasters
+    # or the wall are on screen, and at his side in between. Steps keep the swap hard,
+    # so the black jacket can never go see-through halfway between frames.
+    " .sF1{animation:sRest 12s steps(1,end) infinite}"
+    " .sF2{animation:sRaise 12s steps(1,end) infinite;opacity:0}"
+    " @keyframes sRest{0%{opacity:1}4.5%{opacity:0}41.5%{opacity:1}43%{opacity:0}"
+    "62%{opacity:1}63%{opacity:0}84.5%{opacity:1}86%{opacity:0}94.5%,100%{opacity:1}}"
+    " @keyframes sRaise{0%{opacity:0}4.5%{opacity:1}41.5%{opacity:0}43%{opacity:1}"
+    "62%{opacity:0}63%{opacity:1}84.5%{opacity:0}86%{opacity:1}94.5%,100%{opacity:0}}"
     " @keyframes eye{0%,5%{opacity:0}6%{opacity:1}8%{opacity:.3}9%{opacity:1}"
     "34%{opacity:1}36%,100%{opacity:0}}"
     # A bone dies a third of a second after its tip clears the SOUL, so it can never
@@ -1149,11 +1159,11 @@ def activity():
     frisk_x = 68
     frisk_y = grid_bottom - 28 * unit
     sans_unit = 0.8
-    sans_x = 773  # centre of his body; the sprite canvas starts 27 px left of it
-    sans_draw_x = sans_x - 27 * sans_unit
-    sans_y = grid_bottom - 70 * sans_unit
+    sans_x = 773  # his body anchor; the sprite canvas starts 30 px left of it
+    sans_draw_x = sans_x - 30 * sans_unit
+    sans_y = grid_bottom - 70 * sans_unit  # the feet sit on row 70 of the canvas
     eye_x = sans_x + 7 * sans_unit
-    eye_y = sans_y + 12 * sans_unit
+    eye_y = sans_y + 14 * sans_unit
     soul_unit = 1.49
     soul_x = 450
     soul_y = grid_bottom - 16 * soul_unit - 9
