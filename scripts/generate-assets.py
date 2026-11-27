@@ -556,8 +556,8 @@ def terminal():
 
 
 # %% Undertale sprites
-# Pixel maps lifted from the game's own sprite files (spr_maincharar_0, spr_sans_d_0,
-# spr_heart_0, spr_gasterblaster_0) so Frisk and Sans look exactly as they do in the game.
+# Pixel maps lifted from the game's own sprite files (spr_maincharar_0, spr_heart_0,
+# spr_gasterblaster_0) so Frisk and the SOUL look exactly as they do in the game.
 FRISK_COLOURS = {"a": "#3D120E", "b": "#FFC90E", "c": "#67A4E0", "d": "#E607F8"}
 FRISK_PX = (
     "....aaaaaaaaa....",
@@ -589,273 +589,6 @@ FRISK_PX = (
     "....aaaa..aaaaa..",
     ".....aaaa..aaa...",
 )
-
-SANS_DOWN_PX = (
-    ".............................aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-    ".............................aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-    ".............................aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-    ".............................aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-    ".............................aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-    ".............................aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-    ".............................aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-    ".............................aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-    ".............................aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-    ".............................aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-    ".............................aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-    ".............................aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-    ".............................aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-    ".............................aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-    ".............................aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-    ".............................aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-    ".............................aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-    ".............................aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-    ".............................aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-    ".............................aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-    ".............................aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-    ".............................aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-    ".............................aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-    ".............................aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-    ".............................aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-    ".............................aaaaaaaaaaaaaaabbbaaaaaaaaaaaaaaaa",
-    "aaaaaaaaaaabbbaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbbbaaaaaaaaaaaaaaa",
-    "aaaaaaaaaabbbbbaaaaaaaaaaaaaaaaaaaaaaaaaaabbbbaaabaaaaaaaaaaaaa",
-    "aaaaaaaaaabbbbbbaaaaaaaaaaaaaaaaaaaaaaaaabbbbaaaabaaaaaaaaaaaaa",
-    "aaaaaaaaabaaabbbbbaaaaaaaaaaaaaaaaaaaaaaabbbaaaaaabaaaaaaaaaaaa",
-    "aaaaaaaaaaaaaaaabbbaaaaaaaaaaaaaaaaaaaaabbbaaaaaaabaaaaaaaaaaaa",
-    "aaaaaaaaaaaaaaaaabbbaaaaabaaaaabaaaaaabbbbaaaaaaaaabaaaaaaaaaaa",
-    "aaaaaaaabaaaaaaaaaabbbaaabbbbbbbaaaaabbbbaaaabaaaaabaaaaaaaaaaa",
-    "aaaaaaabaaaaabaaaaaabbbbaabbbbbaaabbbbaaaaaabaaaaaaabaaaaaaaaaa",
-    "aaaaaabaaaaaabaaaaaabaabbaabbbbabbbbaaaaaaaabaaaaaaabaaaaaaaaaa",
-    "aaaaabaaaaaaabaaaaaabaabaaaaaaaaababaaaaaaaabaaaaaaaabaaaaaaaaa",
-    "aaaaabaaaaaaabaaaaaabaabaabbbbaaababaaaaaaabbaaaaaaaabaaaaaaaaa",
-    "aaaabaaaaaaaabaaaaaabbbbaabbbbbabbbbaaaaaabbbaaaaaaaabaaaaaaaaa",
-    "aaaabaaaaaaaabbabbbbbaabaabbbbbabbabaaaabbbabaaaaaaaabaaaaaaaaa",
-    "aaabbaaaaaaaabbbaaaaabaababbbbbabaabaabbbaaabaaaaaaaaabaaaaaaaa",
-    "aaabbaaaaaaaabaaaaaaababbabbbbbabbbbabaaaaaabbaaaaaaaabaaaaaaaa",
-    "aaabbaaaaaaabaaaaaaaabbababbbbbabaababaaaaaaabaaaaaaaabaaaaaaaa",
-    "aaaabbaaaaaabaaaaaaaabaababbbbbabaababaaaaaaabaaaaaaaabaaaaaaaa",
-    "aaaaabbaaaaabaaaaaaaababbabbbbbabbbabaaaaaaaabaaaaaaaaabaaaaaaa",
-    "aaaaaabbaaaabaaaaaaaaabababbbbbabababaaaaaaaabaaaaaaaaabaaaaaaa",
-    "aaaaaaabbbaabaaaaaaaaabababbbbbababbaaaaaaaaabaaaaaaaaabaaaaaaa",
-    "aaaaaaaabbaabaaaaaaaaababaaaaaaababaaaaaaaaabbaaaaaaaaabaaaaaaa",
-    "aaaaaaaaabaabbbaaaaaaabbbbbbbbbbbbbaaaaaaaabbbaaaaaaaaabaaaaaaa",
-    "aaaaaaaaaaabbbbbaaaaaabbbbbaaaaaabbbbbbbbbbbbaaaaaaaaaabaaaaaaa",
-    "aaaaaaaaaaaaabbbbbbbbbaaaaaaaaaaaaaaaaaaaaabbaabaaaaaaabaaaaaaa",
-    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaabaaaaaaa",
-    "aaaaaaaaaaaaabaabbaaaaaaaaaabaaaaaaabbaaaaabaaabaaaaabbbaaaaaaa",
-    "aaaaaaaaaaaaabaabbaaaaaaaaababaaaaaabbaaaaabaaabbbbbbbbbbaaaaaa",
-    "aaaaaaaaaaaaabaabbaaaaaaaaababaaaaaabbaaaaaabaaabbbbbbbbbbaaaaa",
-    "aaaaaaaaaaaaabaabbaaaaaaaaababaaaaaabbaaaaaabaabbbbbbbbbbbbaaaa",
-    "aaaaaaaaaaaabaabbaaaaaaaaaabaabaaaaabbbaaaaabaabbbaaabbbbbbbaaa",
-    "aaaaaaaaaaaabaabbaaaaaaaaabbaabaaaaabbbaaaaabaaaaaaaaabbbbbbaaa",
-    "aaaaaaaaaaaabaabbaaaaaaaaabaaabaaaaabbbaaaaaabaaaaaaaaaabbbaaaa",
-    "aaaaaaaaaaaabaabbaaaaaaaaabaaabaaaaaabbaaaaaabaaaaaaaaaaaaaaaaa",
-    "aaaaaaaaaaaabaabbaaaaaaaaabaaabaaaaaabbaaaaaabaaaaaaaaaaaaaaaaa",
-    "aaaaaaaaaaaabbbbbaaaaaaaaabaaabaaaaaabbbaabbbbaaaaaaaaaaaaaaaaa",
-    "aaaaaaaaaaaaaaaaabbbbbbbbbaaaaabbbbbbbbbbbaaaaaaaaaaaaaaaaaaaaa",
-    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-    "aaaaaaaaaaabbbbaabbbbaaaaaaaaaaaaaabbbbbbbaaabbbaaaaaaaaaaaaaaa",
-    "aaaaaaaaaabbbbbbbabbbaaaaaaaaaaaaabbbbbbbaabbbbbbbaaaaaaaaaaaaa",
-    "aaaaaaaaabbbbbbbbbabbaaaaaaaaaaaaabbbbbbabbbbbbbbbbaaaaaaaaaaaa",
-    "aaaaaaaaabbbbbbbbbaaaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbaaaaaaaaaaaa",
-    "aaaaaaaaabbbbbbbbbbabbaaaaaaaaaaabbbbbbabbbbbbbbbbaaaaaaaaaaaaa",
-    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-    "aaaaaaaa...........................aaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-    "aaaaaaaa...........................aaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-    "aaaaaaaa...........................aaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-)
-
-SANS_DOWN_COLOURS = {"a": "#000000", "b": "#FFFFFF"}
-
-SANS_OUT_PX = (
-    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbaaaaaaaaaaaaaaaa",
-    "aaaaaaaaaaaabbbaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbbbaaaaaaaaaaaaaaa",
-    "aaaaaaaaaaabbbbbaaaaaaaaaaaaaaaaaaaaaaaaaaabbbbaaabaaaaaaaaaaaaa",
-    "aaaaaaaaaaabbbbbbaaaaaaaaaaaaaaaaaaaaaaaaabbbbaaaabaaaaaaaaaaaaa",
-    "aaaaaaaaaabaaabbbbbaaaaaaaaaaaaaaaaaaaaaaabbbaaaaaabaaaaaaaaaaaa",
-    "aaaaaaaaaaaaaaaaabbbaaaaaaaaaaaaaaaaaaaaabbbaaaaaaabaaaaaaaaaaaa",
-    "aaaaaaaaaaaaaaaaaabbbaaaaabaaaaabaaaaaabbbbaaaaaaaaabaaaaaaaaaaa",
-    "aaaaaaaaabaaaaaaaaaabbbaaabbbbbbbaaaaabbbbaaaabaaaaabaaaaaaaaaaa",
-    "aaaaaaaabaaaaabaaaaaabbbbaabbbbbaaabbbbaaaaaabaaaaaaabaaaaaaaaaa",
-    "aaaaaaabaaaaaabaaaaaabaabbaabbbbabbbbaaaaaaaabaaaaaaabaaaaaaaaaa",
-    "aaaaaabaaaaaaabaaaaaabaabaaaaaaaaababaaaaaaaabaaaaaaaabaaaaaaaaa",
-    "aaaaaabaaaaaaabaaaaaabaabaabbbbaaababaaaaaaabbaaaaaaaabaaaaaaaaa",
-    "aaaaabaaaaaaaabaaaaaabbbbaabbbbbabbbbaaaaaabbbaaaaaaaabaaaaaaaaa",
-    "aaaaabaaaaaaaabbabbbbbaabaabbbbbabbabaaaabbbabaaaaaaaabaaaaaaaaa",
-    "aaaabbaaaaaaaabbbaaaaabaababbbbbabaabaabbbaaabaaaaaaaaabaaaaaaaa",
-    "aaaabbaaaaaaaabaaaaaaababbabbbbbabbbbabaaaaaabbaaaaaaaabaaaaaaaa",
-    "aaaabbaaaaaaabaaaaaaaabbababbbbbabaababaaaaaaabaaaaaaaabaaaaaaaa",
-    "aaaaabbaaaaaabaaaaaaaabaababbbbbabaababaaaaaaabaaaaaaaabaaaaaaaa",
-    "aaaaaabbaaaaabaaaaaaaababbabbbbbabbbabaaaaaaaabaaaaaaaaabaaaaaaa",
-    "aaaaaaabbaaaabaaaaaaaaabababbbbbabababaaaaaaaabaaaaaaaaabaaaaaaa",
-    "aaaaaaaabbbaabaaaaaaaaabababbbbbababbaaaaaaaaabaaaaaaaaabaaaaaaa",
-    "aaaaaaaaabbaabaaaaaaaaababaaaaaaababaaaaaaaaabbaaaaaaaaabaaaaaaa",
-    "aaaaaaaaaabaabbbaaaaaaabbbbbbbbbbbbbaaaaaaaabbbaaaaaaaaabaaaaaaa",
-    "aaaaaaaaaaaabbbbbaaaaaabbbbbaaaaaabbbbbbbbbbbbaaaaaaaaaabaaaaaaa",
-    "aaaaaaaaaaaaaabbbbbbbbbaaaaaaaaaaaaaaaaaaaaabbaabaaaaaaabaaaaaaa",
-    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaabaaaaaaa",
-    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaabbbaaaaaaa",
-    "aaaaaaaaaaaaaabaabbaaaaaaaaaabaaaaaaabbaaaaabaaabbbbbbbbbbaaaaaa",
-    "aaaaaaaaaaaaaabaabbaaaaaaaaababaaaaaabbaaaaabaaaabbbbbbbbbbaaaaa",
-    "aaaaaaaaaaaaaabaabbaaaaaaaaababaaaaaabbaaaaaabaabbbbbbbbbbbbaaaa",
-    "aaaaaaaaaaaaaabaabbaaaaaaaaababaaaaaabbaaaaaabaabbbaaabbbbbbbaaa",
-    "aaaaaaaaaaaaabaabbaaaaaaaaaabaabaaaaabbbaaaaabaaaaaaaaabbbbbbaaa",
-    "aaaaaaaaaaaaabaabbaaaaaaaaabbaabaaaaabbbaaaaabaaaaaaaaaaabbbaaaa",
-    "aaaaaaaaaaaaabaabbaaaaaaaaabaaabaaaaabbbaaaaaabaaaaaaaaaaaaaaaaa",
-    "aaaaaaaaaaaaabaabbaaaaaaaaabaaabaaaaaabbaaaaaabaaaaaaaaaaaaaaaaa",
-    "aaaaaaaaaaaaabaabbaaaaaaaaabaaabaaaaaabbaaaaaabaaaaaaaaaaaaaaaaa",
-    "aaaaaaaaaaaaabbbbbaaaaaaaaabaaabaaaaaabbbaabbbbaaaaaaaaaaaaaaaaa",
-    "aaaaaaaaaaaaaaaaaabbbbbbbbbaaaaabbbbbbbbbbbaaaaaaaaaaaaaaaaaaaaa",
-    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-    "aaaaaaaaaaaabbbbaabbbbaaaaaaaaaaaaaabbbbbbbaaabbbaaaaaaaaaaaaaaa",
-    "aaaaaaaaaaabbbbbbbabbbaaaaaaaaaaaaabbbbbbbaabbbbbbbaaaaaaaaaaaaa",
-    "aaaaaaaaaabbbbbbbbbabbaaaaaaaaaaaaabbbbbbabbbbbbbbbbaaaaaaaaaaaa",
-    "aaaaaaaaaabbbbbbbbbaaaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbaaaaaaaaaaaa",
-    "aaaaaaaaaabbbbbbbbbbabbaaaaaaaaaaabbbbbbabbbbbbbbbbaaaaaaaaaaaaa",
-    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-)
-
-SANS_OUT_COLOURS = {"a": "#000000", "b": "#FFFFFF"}
-
-SANS_UP_PX = (
-    "..............................aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-    "..............................aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-    "..............................aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-    "..............................aaaaaaaaaaaaaaaaaaaaaaaabbbaaaaaaa",
-    "..............................aaaaaaaaaaaaaaaaaaaaaaabbbbbaaaaaa",
-    "..............................aaaaaaaaaaaaaaaaaaaaaabbbbbbbaaaaa",
-    "..............................aaaaaaaaaaaaaaaaaaaaaabbbbbbbaaaaa",
-    "..............................aaaaaaaaaaaaaaaaaaaababbbbbbbaaaaa",
-    "..............................aaaaaaaaaaaaaaaaaaaabbabbbbbbaaaaa",
-    "..............................aaaaaaaaaaaaaaaaaaaabbbbbbbbbaaaaa",
-    "..............................aaaaaaaaaaaaaaaaaaaabbbbbbbbbaaaaa",
-    "..............................aaaaaaaaaaaaaaaaaaaabbbbbbbbbaaaaa",
-    "..............................aaaaaaaaaaaaaaaaaaaabaaaabbbaaaaaa",
-    "..............................aaaaaaaaaaaaaaaaaaaabaaaaaaabaaaaa",
-    "..............................aaaaaaaaaaaaaaaaaaaabaaaaaaabaaaaa",
-    "..............................aaaaaaaaaaaaaaaaaaabaaaaaaabaaaaaa",
-    "..............................aaaaaaaaaaaaaaaaaaabaaaaaaabaaaaaa",
-    "..............................aaaaaaaaaaaaaaaaaabaaaaaaaabaaaaaa",
-    "..............................aaaaaaaaaaaaaaaaaabaaaaaaaabaaaaaa",
-    "..............................aaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaa",
-    "..............................aaaaaaaaaaaaaaaaabaaaaaaaabaaaaaaa",
-    "..............................aaaaaaaaaaaaaaabbbbaaaaaaabaaaaaaa",
-    "aaaaaaaaaaaabbbaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbaaaaaaaaabaaaaaaa",
-    "aaaaaaaaaaabbbbbaaaaaaaaaaaaaaaaaaaaaaaaaaabbbbaaaaaaaabaaaaaaaa",
-    "aaaaaaaaaaabbbbbbaaaaaaaaaaaaaaaaaaaaaaaaabbbbaaaaaaaaabaaaaaaaa",
-    "aaaaaaaaaabaaabbbbbaaaaaaaaaaaaaaaaaaaaaaabbbaaaaaaaaabaaaaaaaaa",
-    "aaaaaaaaaaaaaaaaabbbaaaaaaaaaaaaaaaaaaaaabbbaaaaaaaaaabaaaaaaaaa",
-    "aaaaaaaaaaaaaaaaaabbbaaaaabaaaaabaaaaaabbbbaaaaaaaaaabaaaaaaaaaa",
-    "aaaaaaaaabaaaaaaaaaabbbaaabbbbbbbaaaaabbbbaaaabaaaaabaaaaaaaaaaa",
-    "aaaaaaaabaaaaabaaaaaabbbbaabbbbbaaabbbbaaaaaabaaaaabaaaaaaaaaaaa",
-    "aaaaaaabaaaaaabaaaaaabaabbaabbbbabbbbaaaaaaaabaaabbaaaaaaaaaaaaa",
-    "aaaaaabaaaaaaabaaaaaabaabaaaaaaaaababaaaaaaaababbaaaaaaaaaaaaaaa",
-    "aaaaaabaaaaaaabaaaaaabaabaabbbbaaababaaaaaaabbaaaaaaaaaaaaaaaaaa",
-    "aaaaabaaaaaaaabaaaaaabbbbaabbbbbabbbbaaaaaabbbaaaaaaaaaaaaaaaaaa",
-    "aaaaabaaaaaaaabbabbbbbaabaabbbbbabbabaaaabbbabaaaaaaaaaaaaaaaaaa",
-    "aaaabbaaaaaaaabbbaaaaabaababbbbbabaabaabbbaaabaaaaaaaaaaaaaaaaaa",
-    "aaaabbaaaaaaaabaaaaaaababbabbbbbabbbbabaaaaaabbaaaaaaaaaaaaaaaaa",
-    "aaaabbaaaaaaabaaaaaaaabbababbbbbabaababaaaaaaabaaaaaaaaaaaaaaaaa",
-    "aaaaabbaaaaaabaaaaaaaabaababbbbbabaababaaaaaaabaaaaaaaaaaaaaaaaa",
-    "aaaaaabbaaaaabaaaaaaaababbabbbbbabbbabaaaaaaaabaaaaaaaaaaaaaaaaa",
-    "aaaaaaabbaaaabaaaaaaaaabababbbbbabababaaaaaaaabaaaaaaaaaaaaaaaaa",
-    "aaaaaaaabbbaabaaaaaaaaabababbbbbababbaaaaaaaaabaaaaaaaaaaaaaaaaa",
-    "aaaaaaaaabbaabaaaaaaaaababaaaaaaababaaaaaaaaabbaaaaaaaaaaaaaaaaa",
-    "aaaaaaaaaabaabbbaaaaaaabbbbbbbbbbbbbaaaaaaaabbbaaaaaaaaaaaaaaaaa",
-    "aaaaaaaaaaaabbbbbaaaaaabbbbbaaaaaabbbbbbbbbbbbaaaaaaaaaaaaaaaaaa",
-    "aaaaaaaaaaaaaabbbbbbbbbaaaaaaaaaaaaaaaaaaaaabbaaaaaaaaaaaaaaaaaa",
-    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbaaaaabaaaaaaaaaaaaaaaaaaa",
-    "aaaaaaaaaaaaaaabaabbaaaaaaaaaaaaaaaaabbaaaaabaaaaaaaaaaaaaaaaaaa",
-    "aaaaaaaaaaaaaabaaabbaaaaaaaaaaaaaaaaabbaaaaaabaaaaaaaaaaaaaaaaaa",
-    "aaaaaaaaaaaaaabaabbaaaaaaaaaabaaaaaaabbaaaaaabaaaaaaaaaaaaaaaaaa",
-    "aaaaaaaaaaaaaabaabbaaaaaaaaababaaaaaabbaaaaaabaaaaaaaaaaaaaaaaaa",
-    "aaaaaaaaaaaaaabaabbaaaaaaaaababaaaaaabbbaaaaabaaaaaaaaaaaaaaaaaa",
-    "aaaaaaaaaaaaaabaabbaaaaaaaaababaaaaaabbbaaaaaabaaaaaaaaaaaaaaaaa",
-    "aaaaaaaaaaaaabaabbaaaaaaaaaabaabaaaaabbbaaaaaabaaaaaaaaaaaaaaaaa",
-    "aaaaaaaaaaaaabaabbaaaaaaaaabbaabaaaaabbbaaaaaabaaaaaaaaaaaaaaaaa",
-    "aaaaaaaaaaaaabaabbaaaaaaaaabaaabaaaaaabbaaaaaabaaaaaaaaaaaaaaaaa",
-    "aaaaaaaaaaaaabaabbaaaaaaaaabaaabaaaaaabbaaaaaabaaaaaaaaaaaaaaaaa",
-    "aaaaaaaaaaaaabaabbaaaaaaaaabaaabaaaaaabbaaaaaabaaaaaaaaaaaaaaaaa",
-    "aaaaaaaaaaaaabbbbbaaaaaaaaabaaabaaaaaabbbaabbbbaaaaaaaaaaaaaaaaa",
-    "aaaaaaaaaaaaaaaaaabbbbbbbbbaaaaabbbbbbbbbbbaaaaaaaaaaaaaaaaaaaaa",
-    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-    "aaaaaaaaaaaabbbbaabbbbaaaaaaaaaaaaaabbbbbbbaaabbbaaaaaaaaaaaaaaa",
-    "aaaaaaaaaaabbbbbbbabbbaaaaaaaaaaaaabbbbbbbaabbbbbbbaaaaaaaaaaaaa",
-    "aaaaaaaaaabbbbbbbbbabbaaaaaaaaaaaaabbbbbbabbbbbbbbbbaaaaaaaaaaaa",
-    "aaaaaaaaaabbbbbbbbbaaaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbaaaaaaaaaaaa",
-    "aaaaaaaaaabbbbbbbbbbabbaaaaaaaaaaabbbbbbabbbbbbbbbbaaaaaaaaaaaaa",
-    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-)
-
-SANS_UP_COLOURS = {"a": "#000000", "b": "#FFFFFF"}
-
-SANS_FACE_PX = (
-    "......aaabbbbbbbbbbbbaaa......",
-    "....aabbbbbbbbbbbbbbbbbbaa....",
-    "...abbbbbbbbbbbbbbbbbbbbbba...",
-    "..abbbbbbbbbbbbbbbbbbbbbbbba..",
-    ".abbbbbbbbbbbbbbbbbbbbbbbbbba.",
-    "abbbbbbbbbbbbbbbbbbbbbbbbbbbba",
-    "abbbbbbbbbbbbbbbbbbbbbbbbbbbba",
-    "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
-    "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
-    "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
-    "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
-    "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
-    "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
-    "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
-    "abbbbbbbbbbbbbaabbbbbbbbbbbbba",
-    "abbbbbbbbbbbbbaabbbbbbbbbbbbba",
-    ".abbbbbbbbbbbaaaabbbbbbbbbbba.",
-    ".abbbbbbbbbbbaaaabbbbbbbbbbba.",
-    "abbbbbbbbbbbbaaaabbbbbbbbbbbba",
-    "abbbbaabbbbbbbbbbbbbbbbbaabbba",
-    "abbaaabaabbbbbbbbbbbbbaaaaabba",
-    "abbbbababaaaaaaaaaaaaabaabbbba",
-    ".abbbbaabbbabbabbbabbababbbba.",
-    ".abbbbbaabbabbabbbabbaabbbbba.",
-    "..abbbbbbaaabbabbbabaabbbbba..",
-    "...abbbbbbbaaaaaaaaabbbbbba...",
-    "....aabbbbbbbbbbbbbbbbbbaa....",
-    "......aaabbbbbbbbbbbbaaa......",
-)
-
-SANS_FACE_COLOURS = {"a": "#000000", "b": "#FFFFFF"}
 
 SOUL_COLOURS = {"a": "#FF3B3B"}
 HEART_PX = (
@@ -1072,9 +805,61 @@ def sprite(rows, x, y, unit, palette):
     return f'<g transform="translate({x:.1f} {y:.1f})" shape-rendering="crispEdges">{body}</g>'
 
 
+def sans_defs():
+    """Sans's battle sprite, drawn as shapes so the empty parts of him stay empty.
+
+    A pixel map of the game's sprite carries its transparent background as well, and
+    that turned into solid black boxes over the grid; shapes keep him clean: white
+    skull and body, dark sockets, one arm per pose.
+    """
+    dark = "#0A0A0A"
+
+    def shape(x, y, w, h, rx, fill="#FFFFFF"):
+        return f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="{rx}" fill="{fill}"/>'
+
+    def limb(x, y, w, h, rx):
+        # A dark edge under each limb keeps the arm and hand clear of the body.
+        return shape(x - 1, y - 1, w + 2, h + 2, rx + 1, dark) + shape(x, y, w, h, rx)
+
+    body = (
+        shape(27.5, 28, 9, 6, 2.5)  # neck
+        + shape(17, 32, 30, 22, 6)  # jacket
+        + shape(21.8, 31.4, 20.4, 4, 2, dark)  # collar shadow
+        + shape(30.6, 35.6, 1.8, 18.4, 0.9, dark)  # zip
+        + shape(17.3, 50.5, 29.4, 2.2, 1.1, dark)  # hem
+        + shape(18, 52.5, 28, 8.5, 2.5)  # shorts
+        + shape(30.5, 52.5, 2, 8.5, 1, dark)
+        + shape(21.5, 61, 7.5, 8.5, 1.5)  # legs
+        + shape(34, 61, 7.5, 8.5, 1.5)
+        + shape(16, 68.4, 14, 4.6, 2.3)  # slippers
+        + shape(34, 68.4, 14, 4.6, 2.3)
+        + shape(12, 3, 36, 28, 13)  # skull
+        + shape(17.6, 10.4, 6.6, 8.6, 2.4, dark)  # eye sockets
+        + shape(31.8, 10.4, 6.6, 8.6, 2.4, dark)
+        + shape(27.2, 19.4, 3.4, 2.4, 1.2, dark)  # nose
+        + shape(18.6, 23.2, 22.8, 3.6, 1.8, dark)  # grin
+        + shape(24.6, 23.2, 1.3, 3.6, 0.5)
+        + shape(30.4, 23.2, 1.3, 3.6, 0.5)
+        + shape(36.2, 23.2, 1.3, 3.6, 0.5)
+    )
+
+    rest = limb(44.5, 34, 9, 14.5, 4) + limb(42.5, 47, 11.5, 10, 4.5)
+    out = limb(44, 35.5, 14, 8.5, 4) + limb(55.5, 33, 12, 12.5, 5)
+    up = limb(44.5, 23, 9, 15, 4) + limb(42.5, 11.5, 11.5, 12, 5)
+
+    return (
+        f'<g id="sansBody">{body}</g>'
+        f'<g id="sansArmRest">{rest}</g>'
+        f'<g id="sansArmOut">{out}</g>'
+        f'<g id="sansArmUp">{up}</g>'
+    )
+
+
 SCENE_CSS = (
     "<style>"
-    " .friskHop{animation:friskHop 12s linear infinite}"
+    " .friskIdle{animation:friskIdle 2.3s ease-in-out infinite}"
+    " .friskHit{animation:friskHit 12s linear infinite}"
+    " .friskFlash{animation:friskFlash 12s linear infinite;opacity:0}"
     " .sansBob{animation:sansBob 3.8s ease-in-out infinite}"
     " .sF1{animation:sF1 12s linear infinite}"
     " .sF2{animation:sF2 12s linear infinite;opacity:0}"
@@ -1096,10 +881,22 @@ SCENE_CSS = (
     " .hpN2{animation:hpN2 12s linear infinite;opacity:0}"
     " .hpN3{animation:hpN3 12s linear infinite;opacity:0}"
     " .hpN4{animation:hpN4 12s linear infinite;opacity:0}"
-    " @keyframes friskHop{0%,50.5%{transform:translateY(0)}"
-    "52%{transform:translateY(-6px)}53.5%{transform:translateY(-16px)}"
-    "55.5%{transform:translateY(-16px)}57%{transform:translateY(-6px)}"
-    "58.5%,100%{transform:translateY(0)}}"
+    # Frisk breathes the whole time and is knocked about only when a bone lands.
+    " @keyframes friskIdle{0%,100%{transform:translateY(0)}50%{transform:translateY(-1.6px)}}"
+    " @keyframes friskHit{0%,23.4%{transform:translateX(0)}"
+    "23.8%{transform:translateX(2.6px)}24.3%{transform:translateX(-2.6px)}"
+    "24.8%{transform:translateX(2px)}25.3%{transform:translateX(-1.6px)}"
+    "25.8%,51.8%{transform:translateX(0)}"
+    "52.2%{transform:translateX(2.6px)}52.7%{transform:translateX(-2.6px)}"
+    "53.2%{transform:translateX(2px)}53.7%{transform:translateX(-1.6px)}"
+    "54.2%,91.2%{transform:translateX(0)}"
+    "91.6%{transform:translateX(2.6px)}92.1%{transform:translateX(-2.6px)}"
+    "92.6%{transform:translateX(2px)}93.1%{transform:translateX(-1.6px)}"
+    "93.6%,100%{transform:translateX(0)}}"
+    " @keyframes friskFlash{0%,23.5%{opacity:0}23.8%{opacity:.92}24.6%{opacity:0}"
+    "25%{opacity:.8}25.8%,51.9%{opacity:0}52.2%{opacity:.92}53%{opacity:0}"
+    "53.4%{opacity:.8}54.2%,91.3%{opacity:0}91.6%{opacity:.92}92.4%{opacity:0}"
+    "92.8%{opacity:.8}93.6%,100%{opacity:0}}"
     # The SOUL hops the white bones, holds still for the blue ones, and rises into
     # the bone wall's gap before it arrives.
     " @keyframes soulHop{0%,11.5%{transform:translateY(0)}"
@@ -1134,12 +931,13 @@ SCENE_CSS = (
     "42.2%,62.2%{opacity:1}62.8%,100%{opacity:0}}"
     " @keyframes eye{0%,5%{opacity:0}6%{opacity:1}8%{opacity:.3}9%{opacity:1}"
     "34%{opacity:1}36%,100%{opacity:0}}"
+    # Bones fade out well clear of Frisk: they only ever reach the SOUL's lane.
     " @keyframes boneSlide{0%,6%{transform:translateX(0);opacity:0}7%{opacity:1}"
-    "26%{transform:translateX(-662px);opacity:1}"
-    "27%,100%{transform:translateX(-662px);opacity:0}}"
+    "21.7%{transform:translateX(-520px);opacity:1}"
+    "23.5%,100%{transform:translateX(-520px);opacity:0}}"
     " @keyframes boneSlideL{0%,6%{transform:translateX(0);opacity:0}7%{opacity:1}"
-    "26%{transform:translateX(662px);opacity:1}"
-    "27%,100%{transform:translateX(662px);opacity:0}}"
+    "21.7%{transform:translateX(520px);opacity:1}"
+    "23.5%,100%{transform:translateX(520px);opacity:0}}"
     # The wall of bones from above and below, with one gap to slip through.
     " @keyframes wallSweep{0%,63%{transform:translateX(620px);opacity:0}"
     "64%{opacity:1}84%{transform:translateX(236px);opacity:1}"
@@ -1243,9 +1041,9 @@ def activity():
     sans_unit = 0.78
     sans_x = 754
     sans_y = grid_bottom - 73 * sans_unit
-    eye_x = sans_x + 20.5 * sans_unit
-    eye_y = sans_y + 7 * sans_unit
-    soul_unit = 1.75
+    eye_x = sans_x + 35.1 * sans_unit
+    eye_y = sans_y + 14.7 * sans_unit
+    soul_unit = 1.49
     soul_x = 450
     soul_y = grid_bottom - 16 * soul_unit - 9
     blaster_unit = 0.72
@@ -1277,8 +1075,9 @@ def activity():
         )
 
     def left_bone(delay):
+        # Starts clear of Frisk so it sweeps in from the left of the SOUL instead.
         return (
-            f'<g transform="translate(64 {grid_bottom - 13:.1f})">'
+            f'<g transform="translate(150 {grid_bottom - 13:.1f})">'
             f'<g class="boneL" style="animation-delay:{delay}s">'
             f'<g transform="rotate(-90)">{bone_use("#FFFFFF")}</g></g></g>'
         )
@@ -1288,17 +1087,41 @@ def activity():
         span = length / 76
         top = y0 if from_top else grid_bottom - length
         return (
-            f'<g transform="translate({x:.1f} {top:.1f}) scale(1.5 1)">'
+            f'<g transform="translate({x:.1f} {top:.1f}) scale(2.2 1)">'
             f'<use href="#boneSprite" color="#FFFFFF" transform="scale({span:.3f})"/></g>'
         )
 
     # White bones to jump, one blue bone to stand still under, then a bone off the floor.
-    bones = hbone(0.30) + hbone(1.30) + hbone(2.35, "#7CD4FF") + left_bone(9.55)
+    bones = hbone(0.30) + hbone(1.30) + hbone(2.35, "#7CD4FF") + left_bone(9.37)
 
-    # The wall hangs from the top and rises from the floor, leaving one gap to slip through.
-    wall_gaps = ((118, 153), (114, 157), (120, 152), (116, 155), (119, 154), (115, 158))
+    # The wall is packed bone against bone, top and floor, the way the game's is, with
+    # one ragged gap running through it for the SOUL to rise into.
+    wall_gaps = (
+        (120, 156),
+        (114, 160),
+        (119, 158),
+        (112, 161),
+        (117, 157),
+        (121, 159),
+        (113, 162),
+        (118, 155),
+        (115, 161),
+        (122, 158),
+        (116, 163),
+        (120, 156),
+        (114, 160),
+        (123, 159),
+        (116, 162),
+        (119, 157),
+        (115, 160),
+        (121, 155),
+        (114, 159),
+        (118, 162),
+        (122, 158),
+        (117, 161),
+    )
     wall = '<g class="wall">' + "".join(
-        vbone(64 + i * 22, top - y0, True) + vbone(64 + i * 22, grid_bottom - bottom, False)
+        vbone(64 + i * 12, top - y0, True) + vbone(64 + i * 12, grid_bottom - bottom, False)
         for i, (top, bottom) in enumerate(wall_gaps)
     ) + "</g>"
 
@@ -1311,39 +1134,6 @@ def activity():
         for x1, y1, x2, y2 in x_shots
     )
     x_blasters = "".join(aimed_blaster(*shot) for shot in x_shots)
-
-    # Only the arm moves between frames, so the body is drawn once and each frame
-    # contributes a crop of the arm box.
-    battle = (SANS_DOWN_PX, SANS_OUT_PX, SANS_UP_PX)
-    width = max(len(frame[0]) for frame in battle)
-    battle = tuple(tuple(row.ljust(width, ".") for row in frame) for frame in battle)
-    moving = [
-        (r, c)
-        for r in range(len(battle[0]))
-        for c in range(width)
-        if any(f[r][c] != battle[0][r][c] for f in battle)
-    ]
-    box_r0, box_r1 = min(r for r, _ in moving), max(r for r, _ in moving)
-    box_c0, box_c1 = min(c for _, c in moving), max(c for _, c in moving)
-
-    def in_box(r, c):
-        return box_r0 <= r <= box_r1 and box_c0 <= c <= box_c1
-
-    shared = tuple(
-        "".join("." if in_box(r, c) else ch for c, ch in enumerate(battle[0][r]))
-        for r in range(len(battle[0]))
-    )
-    arms = tuple(
-        tuple(
-            "".join(f[r][c] if in_box(r, c) else "." for c in range(width))
-            for r in range(len(f))
-        )
-        for f in battle
-    )
-    sans_frames = sprite(shared, sans_x, sans_y, sans_unit, SANS_UP_COLOURS) + "".join(
-        f'<g class="sF{i + 1}">{sprite(arm, sans_x, sans_y, sans_unit, SANS_UP_COLOURS)}</g>'
-        for i, arm in enumerate(arms)
-    )
 
     return (
         open_svg(
@@ -1367,6 +1157,7 @@ def activity():
       <rect x="{x0 - 2}" y="{y0 - 2}" width="{step * 52 + cell + 4:.1f}" height="{step * 6 + cell + 4:.1f}"/>
     </clipPath>
     <g id="blasterSprite">{sprite(BLASTER_PX, -blaster_w / 2, -blaster_h / 2, blaster_unit, BLASTER_COLOURS)}</g>
+    {sans_defs()}
     <g id="boneSprite">
       {sprite(BONE_PX, -0.5, -0.5, 0.76, {"#": "#080808"})}
       {sprite(BONE_PX, 0, 0, 0.7, BONE_COLOURS)}
@@ -1414,23 +1205,36 @@ def activity():
   <g clip-path="url(#arenaClip)">{bones}{wall}{x_beams}</g>
   <ellipse cx="{frisk_x + 17:.1f}" cy="{grid_bottom - 1.6:.1f}" rx="17" ry="3" fill="#000000" opacity=".45"/>
   <ellipse cx="{sans_x + 25:.1f}" cy="{grid_bottom - 1.6:.1f}" rx="25" ry="3.4" fill="#000000" opacity=".45"/>
-  <g class="friskHop" filter="url(#spShadow)">{sprite(FRISK_PX, frisk_x, frisk_y, unit, FRISK_COLOURS)}</g>
+  <g class="friskIdle" filter="url(#spShadow)">
+    <g class="friskHit">
+      {sprite(FRISK_PX, frisk_x, frisk_y, unit, FRISK_COLOURS)}
+      <g class="friskFlash">
+        {sprite(FRISK_PX, frisk_x, frisk_y, unit, {"a": "#FFFFFF", "b": "#FFFFFF", "c": "#FFFFFF", "d": "#FFFFFF"})}
+      </g>
+    </g>
+  </g>
   <g class="sansBob" filter="url(#spShadow)">
-    {sans_frames}
-    {sprite(SANS_FACE_PX, sans_x + 16 * sans_unit, sans_y - 2 * sans_unit, sans_unit, SANS_FACE_COLOURS)}
+    <g transform="translate({sans_x:.1f} {sans_y:.1f}) scale({sans_unit})">
+      <use href="#sansBody"/>
+      <g class="sF1"><use href="#sansArmRest"/></g>
+      <g class="sF2"><use href="#sansArmOut"/></g>
+      <g class="sF3"><use href="#sansArmUp"/></g>
+    </g>
   </g>
   <g class="eye">
-    <circle cx="{eye_x:.1f}" cy="{eye_y:.1f}" r="7.5" fill="#7FDBFF" opacity=".2"/>
-    <circle cx="{eye_x:.1f}" cy="{eye_y:.1f}" r="2.8" fill="#A6ECFF"/>
+    <circle cx="{eye_x:.1f}" cy="{eye_y:.1f}" r="6" fill="#7FDBFF" opacity=".22"/>
+    <circle cx="{eye_x:.1f}" cy="{eye_y:.1f}" r="2.4" fill="#A6ECFF"/>
   </g>
   <g class="blasterWrap">{x_blasters}</g>
   <g class="soulSlide">
     <g class="soulHop">
       <g class="soulBob">
-        <ellipse cx="{soul_x + 14:.1f}" cy="{soul_y + 14:.1f}" rx="24" ry="21" fill="#000000"
-                 opacity=".5" filter="url(#soulSoft)"/>
-        <ellipse class="soulBlue" cx="{soul_x + 14:.1f}" cy="{soul_y + 14:.1f}" rx="22" ry="19" fill="#6FC8FF"/>
-        <ellipse cx="{soul_x + 14:.1f}" cy="{soul_y + 14:.1f}" rx="18" ry="14" fill="#FF3B3B" opacity=".18"/>
+        <ellipse cx="{soul_x + 8 * soul_unit:.1f}" cy="{soul_y + 8 * soul_unit:.1f}" rx="{13.7 * soul_unit:.1f}"
+                 ry="{12 * soul_unit:.1f}" fill="#000000" opacity=".5" filter="url(#soulSoft)"/>
+        <ellipse class="soulBlue" cx="{soul_x + 8 * soul_unit:.1f}" cy="{soul_y + 8 * soul_unit:.1f}"
+                 rx="{12.6 * soul_unit:.1f}" ry="{10.9 * soul_unit:.1f}" fill="#6FC8FF"/>
+        <ellipse cx="{soul_x + 8 * soul_unit:.1f}" cy="{soul_y + 8 * soul_unit:.1f}"
+                 rx="{10.3 * soul_unit:.1f}" ry="{8 * soul_unit:.1f}" fill="#FF3B3B" opacity=".18"/>
         {sprite(HEART_PX, soul_x, soul_y, soul_unit, SOUL_COLOURS)}
         <g class="soulHurt">{sprite(HEART_PX, soul_x, soul_y, soul_unit, {"a": "#FFFFFF"})}</g>
       </g>
