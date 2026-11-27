@@ -805,54 +805,83 @@ def sprite(rows, x, y, unit, palette):
     return f'<g transform="translate({x:.1f} {y:.1f})" shape-rendering="crispEdges">{body}</g>'
 
 
-def sans_defs():
-    """Sans's battle sprite, drawn as shapes so the empty parts of him stay empty.
-
-    A pixel map of the game's sprite carries its transparent background as well, and
-    that turned into solid black boxes over the grid; shapes keep him clean: white
-    skull and body, dark sockets, one arm per pose.
-    """
-    dark = "#0A0A0A"
-
-    def shape(x, y, w, h, rx, fill="#FFFFFF"):
-        return f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="{rx}" fill="{fill}"/>'
-
-    def limb(x, y, w, h, rx):
-        # A dark edge under each limb keeps the arm and hand clear of the body.
-        return shape(x - 1, y - 1, w + 2, h + 2, rx + 1, dark) + shape(x, y, w, h, rx)
-
-    body = (
-        shape(27.5, 28, 9, 6, 2.5)  # neck
-        + shape(17, 32, 30, 22, 6)  # jacket
-        + shape(21.8, 31.4, 20.4, 4, 2, dark)  # collar shadow
-        + shape(30.6, 35.6, 1.8, 18.4, 0.9, dark)  # zip
-        + shape(17.3, 50.5, 29.4, 2.2, 1.1, dark)  # hem
-        + shape(18, 52.5, 28, 8.5, 2.5)  # shorts
-        + shape(30.5, 52.5, 2, 8.5, 1, dark)
-        + shape(21.5, 61, 7.5, 8.5, 1.5)  # legs
-        + shape(34, 61, 7.5, 8.5, 1.5)
-        + shape(16, 68.4, 14, 4.6, 2.3)  # slippers
-        + shape(34, 68.4, 14, 4.6, 2.3)
-        + shape(12, 3, 36, 28, 13)  # skull
-        + shape(17.6, 10.4, 6.6, 8.6, 2.4, dark)  # eye sockets
-        + shape(31.8, 10.4, 6.6, 8.6, 2.4, dark)
-        + shape(27.2, 19.4, 3.4, 2.4, 1.2, dark)  # nose
-        + shape(18.6, 23.2, 22.8, 3.6, 1.8, dark)  # grin
-        + shape(24.6, 23.2, 1.3, 3.6, 0.5)
-        + shape(30.4, 23.2, 1.3, 3.6, 0.5)
-        + shape(36.2, 23.2, 1.3, 3.6, 0.5)
-    )
-
-    rest = limb(44.5, 34, 9, 14.5, 4) + limb(42.5, 47, 11.5, 10, 4.5)
-    out = limb(44, 35.5, 14, 8.5, 4) + limb(55.5, 33, 12, 12.5, 5)
-    up = limb(44.5, 23, 9, 15, 4) + limb(42.5, 11.5, 11.5, 12, 5)
-
-    return (
-        f'<g id="sansBody">{body}</g>'
-        f'<g id="sansArmRest">{rest}</g>'
-        f'<g id="sansArmOut">{out}</g>'
-        f'<g id="sansArmUp">{up}</g>'
-    )
+# Sans's battle sprite, traced from the game's own art (spr_sansb idle and the
+# unused fists frame): white skull and outlines over the black jacket, shorts and
+# slippers, with the sockets left as holes. "#" is white, "a" the black fill and
+# "." stays transparent so the grid shows around him.
+SANS_COLOURS = {"#": "#FFFFFF", "a": "#0A0A0A"}
+SANS_BODY_PX = (
+    "....................############....................",
+    ".................##################.................",
+    "...............######################...............",
+    "..............########################..............",
+    ".............##########################.............",
+    "............############################............",
+    "............############################............",
+    "...........##############################...........",
+    "...........##############################...........",
+    "...........#####aaaaaa########aaaaaa#####...........",
+    "...........###aaaaaaaaa######aaaaaaaaa###...........",
+    "...........##aaaaaaaaaa######aaaaaaaaaa##...........",
+    "...........##aaaaa##aaa######aaa##aaaaa##...........",
+    "...........##aaaaa##aaa######aaa##aaaaa##...........",
+    "............##aaaaaaaa###aa###aaaaaaaa##............",
+    "............####aaaaaa###aa###aaaaaa####............",
+    "............a#######a###aaaa###a#######a............",
+    "............a#####aa####aaaa####aa#####a............",
+    "............####a#######aaaa#######a####............",
+    "............####aa#################aa###............",
+    "............##aaa#aa#############aaaaa##............",
+    "............####a#a#aaaaaaaaaaaaa#aa####............",
+    "............a####aa###a##a###a##a#a####a............",
+    "............a#####aa##a##a###a##aa#####aa###........",
+    "........###aaa######aaa##a###a#aa#####aa#####.......",
+    ".......#####aaa#######aaaaaaaaa######aa####aa.......",
+    ".......######aaaa##################aaa####aa#.......",
+    "......#aaa#####aaaaa############aaaaaa###aaaa#......",
+    "......aaaaaaa###aaaaaaaaaaaaaaaaaaaaa###aaaaa##.....",
+    "......aaaaaaaa###aaaaa#aaaaa#aaaaaa####aaaaaaa##....",
+    ".....#aaaaaaaaaa###aaa#######aaaaa####aaaa#aaaa#....",
+    "....#aaaaa#aaaaaa####aa#####aaa####aaaaaa#aaaaaa#...",
+    "...#aaaaaa#aaaaaa#aa##aa####a####aaaaaaaa#aaaaaa##..",
+    "..#aaaaaaa#aaaaaa#aa#aaaaaaaaa#a#aaaaaaaa#aaaaaaa##.",
+    "..#aaaaaaa#aaaaaa#aa#aa####aaa#a#aaaaaaa##aaaaaaaa#.",
+    ".#aaaaaaaa#aaaaaa####aa#####a####aaaaaa###aaaaaaaa##",
+    ".#aaaaaaaa##a#####aa#aa#####a##a#aaaa###a#aaaaaaaa##",
+    "##aaaaaaaa###aaaaa#aa#a#####a#aa#aa###aaa#aaaaaaaaa#",
+    "##aaaaaaaa#aaaaaaa#a##a#####a####a#aaaaaa##aaaaaaaa#",
+    "##aaaaaaa#aaaaaaaa##a#a#####a#aa#a#aaaaaaa#aaaaaaaa#",
+    ".##aaaaaa#aaaaaaaa#aa#a#####a#aa#a#aaaaaaa#aaaaaaaa#",
+    "..##aaaaa#aaaaaaaa#a##a#####a###a#aaaaaaaa#aaaaaaa##",
+    "...##aaaa#aaaaaaaaa#a#a#####a#a#a#aaaaaaaa#aaaaaa##.",
+    "....###aa#aaaaaaaaa#a#a#####a#a##aaaaaaaaa#aaaaa##..",
+    ".....##aa#aaaaaaaaa#a#aaaaaaa#a#aaaaaaaaa##aaaa##...",
+    "......#aa###aaaaaaa#############aaaaaaaa###a###.....",
+    "........#####aaaaaa#####aaaaaa############aa##......",
+    "..........#########aaaaaaaaaaaaaaaaaaaaa##..........",
+    "..........aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa..........",
+    "..........aaaaaaaaaaaaaaaaaaaaaaa##aaaaa#a..........",
+    "..........a#aa##aaaaaaaaaaaaaaaaa##aaaaa#a..........",
+    "..........#aaa##aaaaaaaaaaaaaaaaa##aaaaaa#..........",
+    "..........#aa##aaaaaaaaaa#aaaaaaa##aaaaaa#..........",
+    "..........#aa##aaaaaaaaa#a#aaaaaa##aaaaaa#..........",
+    "..........#aa##aaaaaaaaa#a#aaaaaa###aaaaa#..........",
+    "..........#aa##aaaaaaaaa#a#aaaaaa###aaaaaa#.........",
+    ".........#aa##aaaaaaaaaa#aa#aaaaa###aaaaaa#.........",
+    ".........#aa##aaaaaaaaa##aa#aaaaa###aaaaaa#.........",
+    ".........#aa##aaaaaaaaa#aaa#aaaaaa##aaaaaa#.........",
+    ".........#aa##aaaaaaaaa#aaa#aaaaaa##aaaaaa#.........",
+    ".........#aa##aaaaaaaaa#aaa#aaaaaa##aaaaaa#.........",
+    ".........#####aaaaaaaaa#aaa#aaaaaa###aa####.........",
+    ".........aaaaa#########aaaaa###########aaaa.........",
+    ".........aaaaaaaaaa...........aaaaaaaaaaaaa.........",
+    ".........aaaaaaaaaa...........aa#aaaaaaaaaa.........",
+    "........####aa####a...........aa#######aaa###.......",
+    ".......#######a###a...........a#######aa#######.....",
+    "......#########a##a...........a######a##########....",
+    "......#########aaaa...........aaaaaaa###########....",
+    "......##########a##...........######a##########.....",
+)
 
 
 SCENE_CSS = (
@@ -861,9 +890,6 @@ SCENE_CSS = (
     " .friskHit{animation:friskHit 12s linear infinite}"
     " .friskFlash{animation:friskFlash 12s linear infinite;opacity:0}"
     " .sansBob{animation:sansBob 3.8s ease-in-out infinite}"
-    " .sF1{animation:sF1 12s linear infinite}"
-    " .sF2{animation:sF2 12s linear infinite;opacity:0}"
-    " .sF3{animation:sF3 12s linear infinite;opacity:0}"
     " .eye{animation:eye 12s linear infinite;opacity:0}"
     " .soulSlide{animation:soulSlide 12s ease-in-out infinite}"
     " .soulHop{animation:soulHop 12s linear infinite}"
@@ -956,12 +982,6 @@ SCENE_CSS = (
     " @keyframes soulBob{0%,100%{transform:translateY(0)}50%{transform:translateY(1.6px)}}"
     " @keyframes sansBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-1.4px)}}"
     # Arm down -> arm out -> arm up, the way his battle sprite moves when he attacks.
-    " @keyframes sF1{0%,5.2%{opacity:1}6.4%,37.2%{opacity:0}37.8%,39.2%{opacity:1}"
-    "40.2%,62.4%{opacity:0}63%,64.2%{opacity:1}65.2%,88.2%{opacity:0}88.8%,100%{opacity:1}}"
-    " @keyframes sF2{0%,5.6%{opacity:0}6.4%,7.6%{opacity:1}8.4%,39.6%{opacity:0}"
-    "40.2%,41.2%{opacity:1}41.8%,64.6%{opacity:0}65.4%,87.8%{opacity:1}88.6%,100%{opacity:0}}"
-    " @keyframes sF3{0%,7.8%{opacity:0}8.4%,36.9%{opacity:1}37.5%,41.6%{opacity:0}"
-    "42.2%,62.2%{opacity:1}62.8%,100%{opacity:0}}"
     " @keyframes eye{0%,5%{opacity:0}6%{opacity:1}8%{opacity:.3}9%{opacity:1}"
     "34%{opacity:1}36%,100%{opacity:0}}"
     # Bones fade out well clear of Frisk: they only ever reach the SOUL's lane.
@@ -1071,11 +1091,11 @@ def activity():
     grid_bottom = y0 + step * 6 + cell
     frisk_x = 68
     frisk_y = grid_bottom - 28 * unit
-    sans_unit = 0.78
-    sans_x = 754
-    sans_y = grid_bottom - 73 * sans_unit
-    eye_x = sans_x + 35.1 * sans_unit
-    eye_y = sans_y + 14.7 * sans_unit
+    sans_unit = 0.8
+    sans_x = 752
+    sans_y = grid_bottom - 70 * sans_unit
+    eye_x = sans_x + 33.5 * sans_unit
+    eye_y = sans_y + 12.7 * sans_unit
     soul_unit = 1.49
     soul_x = 450
     soul_y = grid_bottom - 16 * soul_unit - 9
@@ -1190,7 +1210,6 @@ def activity():
       <rect x="{x0 - 2}" y="{y0 - 2}" width="{step * 52 + cell + 4:.1f}" height="{step * 6 + cell + 4:.1f}"/>
     </clipPath>
     <g id="blasterSprite">{sprite(BLASTER_PX, -blaster_w / 2, -blaster_h / 2, blaster_unit, BLASTER_COLOURS)}</g>
-    {sans_defs()}
     <g id="boneSprite">
       {sprite(BONE_PX, -0.5, -0.5, 0.76, {"#": "#080808"})}
       {sprite(BONE_PX, 0, 0, 0.7, BONE_COLOURS)}
@@ -1247,16 +1266,11 @@ def activity():
     </g>
   </g>
   <g class="sansBob" filter="url(#spShadow)">
-    <g transform="translate({sans_x:.1f} {sans_y:.1f}) scale({sans_unit})">
-      <use href="#sansBody"/>
-      <g class="sF1"><use href="#sansArmRest"/></g>
-      <g class="sF2"><use href="#sansArmOut"/></g>
-      <g class="sF3"><use href="#sansArmUp"/></g>
-    </g>
+    {sprite(SANS_BODY_PX, sans_x, sans_y, sans_unit, SANS_COLOURS)}
   </g>
   <g class="eye">
-    <circle cx="{eye_x:.1f}" cy="{eye_y:.1f}" r="6" fill="#7FDBFF" opacity=".22"/>
-    <circle cx="{eye_x:.1f}" cy="{eye_y:.1f}" r="2.4" fill="#A6ECFF"/>
+    <circle cx="{eye_x:.1f}" cy="{eye_y:.1f}" r="3.6" fill="#7FDBFF" opacity=".22"/>
+    <circle cx="{eye_x:.1f}" cy="{eye_y:.1f}" r="1.5" fill="#A6ECFF"/>
   </g>
   <g class="blasterWrap">{x_blasters}</g>
   <g class="soulSlide">
